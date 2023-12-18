@@ -1,5 +1,5 @@
 package app.mailserver.models;
 
-public class ContactMail {
+public class ContactModel {
     
 }
