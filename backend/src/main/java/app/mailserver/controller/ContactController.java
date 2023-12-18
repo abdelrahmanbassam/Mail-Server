@@ -1,5 +1,5 @@
 package app.mailserver.controller;
 
-public class MailControler {
+public class ContactController {
     
 }
