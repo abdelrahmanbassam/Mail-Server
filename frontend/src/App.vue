@@ -1,12 +1,24 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
-  <router-view/>
+  <div class="main-view">
+    <!-- <sideBar/> -->
+    <router-view/>
+  </div>
 </template>
 
+
+<script>
+  // import SideBar from './components/SideBar.vue'
+  export default {
+    // components: {SideBar}
+  }
+</script>
+
 <style>
+/* .main-view {
+  display: flex;
+  flex-direction: row;  
+} */
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
