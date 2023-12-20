@@ -23,7 +23,7 @@ public class MailModel {
     }
 
     @Builder
-    public MailModel(List<String> to, String from, String Subject,String body,String Attachment ,LocalDate date, String type) {
+    public MailModel(List<String> to, String from, String Subject,String body,String Attachment , String type) {
         this.to=to;
         this.from=from;
         this.Subject = Subject;
@@ -85,11 +85,18 @@ public class MailModel {
         return this.type;
     }
 
+    public String getImportance() {
+        return this.importance;
+    }
+
+    public void setImportance(String importance) {
+        this.importance = importance;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
-    public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment,
-            LocalDate date, String type) {
+    public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment, String type) {
         MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
             // user.SendMailModel(MailModel);
         return MailModel;
