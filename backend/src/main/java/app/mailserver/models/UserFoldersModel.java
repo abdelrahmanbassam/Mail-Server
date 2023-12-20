@@ -3,27 +3,34 @@ import java.util.List;
 
 public class UserFoldersModel {
     FolderModel inbox;
+    FolderModel starred;
+    FolderModel important;
     FolderModel sentEmails;
     FolderModel trash;
-    FolderModel favorites;
     List<FolderModel>labels;
 
   // transfeer emalis between folders by folders name
   public void moveEmailsFromTo(List<MailModel> emails,String from,String to){
+  
+  }
 
+  //dont forget to move it to trash 
+  public void deleteEmails(List<MailModel> emails,String from){
+  
   }
   
   public void deleteLabel(List<MailModel> emails,String from,String to){
 
   }
   
+  // check if the name is unique in the labels list then add it and return true
   public boolean addLabel(String LabelName){
-    // check if the name in unique in the labels list then add it and return true
    return true;
   }
 
+  // check if the newName is unique in the labels list then rename it 
   public void renameLabel(String oldName,String newName){
-     // check if the newName in unique in the labels list then rename it 
+    
   }
 
 }

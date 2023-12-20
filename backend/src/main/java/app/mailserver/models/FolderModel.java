@@ -5,21 +5,21 @@ import java.util.List;
 public class FolderModel {
 
     private String name;
-    private List <MailModel> mails;
+    private List <MailModel> emails;
     private List<FolderModel> subFolders;
 
  
-    public FolderModel(String name, List<MailModel> mails, List<FolderModel> subFolders) {
+    public FolderModel(String name, List<MailModel> emails, List<FolderModel> subFolders) {
         this.name = name;
-        this.mails = mails;
+        this.emails = emails;
         this.subFolders = subFolders;
     }
 
     public void addEmail(MailModel newEmail){
-        mails.add(newEmail);
+        emails.add(newEmail);
     }
 
-    public void deleteEmail(MailModel newEmail){
+    public void deleteEmail( MailModel deletedEmail){
        
     }
     // public List <MailModel> filterEmails(filterParameter){
