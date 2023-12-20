@@ -1,5 +1,7 @@
 package app.mailserver.service;
 
-public class UserService {
+import app.mailserver.models.UserModel;
 
+public class UserService {
+   private UserModel curUser;
 }

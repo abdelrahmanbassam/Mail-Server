@@ -2,13 +2,17 @@ package app.mailserver.models;
 
 import java.util.List;
 
+import org.springframework.boot.SpringApplication;
+
+import app.mailserver.MailServerApplication;
+
 public class UserModel {
     private int id;
     private String name;
     private String password;
     private String emailAddress;
     private List<ContactModel> contacts;
-    
+    private UserFoldersModel folders;
     public List<ContactModel> getContacts() {
         return contacts;
     }

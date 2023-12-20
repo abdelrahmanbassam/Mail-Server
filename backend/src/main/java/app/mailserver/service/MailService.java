@@ -1,8 +1,10 @@
 package app.mailserver.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import lombok.Builder;
+import app.mailserver.models.MailModel;
+
+// import java.time.LocalDate;
+// import java.util.List;
+// import lombok.Builder;
 
 /**
  * MailService
@@ -10,6 +12,11 @@ import lombok.Builder;
 
 
 public class MailService {
+   private MailModel newEmail;
+  
    
+   public void sendEmail(){
+
+   }
     
 }
