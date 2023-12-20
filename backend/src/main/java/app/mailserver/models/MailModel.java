@@ -3,29 +3,58 @@ package app.mailserver.models;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
+
+import lombok.Builder;
 
 public class MailModel {
-    private String Sender = new String();
-    private String Reciver = new String();
-    private String Subject = new String();
-    private String Body = new String();
-    private byte[] Attachment;
-    private int importance;
+    private String Attachment;
+    private String from;
+    private List<String> to;
+    private String Subject;
+    private String body;
+    private LocalDate date;
+    private String type;
+    private String importance;
 
-    public String getSender() {
-        return this.Sender;
+
+    public MailModel() {
     }
 
-    public void setSender(String Sender) {
-        this.Sender = Sender;
+    @Builder
+    public MailModel(List<String> to, String from, String Subject,String body,String Attachment ,LocalDate date, String type) {
+        this.to=to;
+        this.from=from;
+        this.Subject = Subject;
+        this.body=body;
+        this.Attachment=Attachment;
+        this.date = date.now();
+        this.type = type;
     }
 
-    public String getReciver() {
-        return this.Reciver;
+    public String getAttachment() {
+        return this.Attachment;
     }
 
-    public void setReciver(String Reciver) {
-        this.Reciver = Reciver;
+    public void setAttachment(String Attachment) {
+        this.Attachment = Attachment;
+    }
+
+    public String getFrom() {
+        return this.from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public List<String> getTo() {
+        return this.to;
+    }
+
+    public void setTo(List<String> to) {
+        this.to = to;
     }
 
     public String getSubject() {
@@ -37,32 +66,34 @@ public class MailModel {
     }
 
     public String getBody() {
-        return this.Body;
+        return this.body;
     }
 
-    public void setBody(String Body) {
-        this.Body = Body;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public byte[] getAttachment() {
-        return this.Attachment;
+    public LocalDate getDate() {
+        return this.date;
     }
 
-    public void setAttachment(byte[] Attachment) {
-        this.Attachment = Attachment;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public int getImportance() {
-        return this.importance;
+    public String getType() {
+        return this.type;
     }
 
-    public void setImportance(int importance) {
-        this.importance = importance;
+    public void setType(String type) {
+        this.type = type;
     }
-
-    public byte[] addAttachment(Path path) throws IOException {
-        byte[] file = Files.readAllBytes(path);
-        return file;
+    public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment,
+            LocalDate date, String type) {
+        MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
+            // user.SendMailModel(MailModel);
+        return MailModel;
     }
-
+   
 }
+
