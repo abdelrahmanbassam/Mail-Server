@@ -1,8 +1,11 @@
 <template>
     <div class="home-view">
+        
         <SideBar/>
         <div class="mails-nav">
-            <NavBar/>
+            <nav>
+                <NavBar/>
+            </nav>
             <v-scroll class="mail-list">
                 <div v-for="i in 100" :key="i" class="mail">
                     <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
@@ -38,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+nav {
+    z-index: 2;
+}
 .v-icon {
     display: flex;
     align-self: center;
@@ -53,6 +59,7 @@ export default {
     /* color: rgb(239, 99, 68); */
 }
 .mail-list{
+    z-index: 1;
     margin-top: 2vh;
     height: 78vh;
     /* width: 100%; */

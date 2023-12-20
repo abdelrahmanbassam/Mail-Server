@@ -1,8 +1,5 @@
 <template>
     <div class="nav-bar">
-      <!-- <v-card class="mx-auto" color="info">
-
-      </v-card> -->
     <div class="Frombutton">
     <v-card
       class="mx-auto"
@@ -27,7 +24,6 @@
 <div class="Tobutton">
     <v-card
       class="mx-auto"
-      outlined
     >
       <v-list :opened="opento">  
         <v-list-group value="Users">
@@ -51,7 +47,6 @@
 <div class="Anytimebutton">
     <v-card
       class="mx-auto"
-      outlined
     >
       <v-list :opened="openanytime">  
         <v-list-group value="Users">
