@@ -1,80 +1,76 @@
 <template>
     <div class="nav-bar">
+      <!-- <v-card class="mx-auto" color="info">
+
+      </v-card> -->
     <div class="Frombutton">
-    <!-- <v-card> -->
+    <v-card
+      class="mx-auto"
+      color="info"
+    >
       <v-list :opened="openfrom">
-        <!-- <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item> -->
-  
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
-            <!-- <v-list-item
-              v-bind="props"
-              prepend-icon="mdi-account-circle"
-              title="From"
-            ></v-list-item> -->
             <v-list-item v-bind="props" title="From"></v-list-item>
           </template>
 
             <v-list-item
-              v-for="([title, icon], i) in crudsfrom"
+              v-for="(title, i) in crudsfrom"
               :key="i"
               :value="title"
               :title="title"
-              :prepend-icon="icon"
             ></v-list-item>
           </v-list-group>
       </v-list>
-    <!-- </v-card> -->
+    </v-card>
 </div>
 <div class="Tobutton">
-    <!-- <v-card> -->
-      <v-list :opened="opento">
-        <!-- <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item> -->
-  
+    <v-card
+      class="mx-auto"
+      outlined
+    >
+      <v-list :opened="opento">  
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
             <v-list-item
               v-bind="props"
-              prepend-icon="mdi-account-circle"
               title="To"
             ></v-list-item>
           </template>
 
             <v-list-item
-              v-for="([title, icon], i) in crudsto"
+              v-for="(title, i) in crudsto"
               :key="i"
               :value="title"
               :title="title"
-              :prepend-icon="icon"
             ></v-list-item>
           </v-list-group>
       </v-list>
-    <!-- </v-card> -->
+    </v-card>
 </div>
 <div class="Anytimebutton">
-    <!-- <v-card> -->
-      <v-list :opened="openanytime">
-        <!-- <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item> -->
-  
+    <v-card
+      class="mx-auto"
+      outlined
+    >
+      <v-list :opened="openanytime">  
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
             <v-list-item
               v-bind="props"
-              prepend-icon="mdi-account-circle"
               title="Anytime"
             ></v-list-item>
           </template>
         
             <v-list-item
-              v-for="([title, icon], i) in crudsanytime"
+              v-for="(title, i) in crudsanytime"
               :key="i"
               :value="title"
               :title="title"
-              :prepend-icon="icon"
             ></v-list-item>
           </v-list-group>
       </v-list>
-    <!-- </v-card> -->
+    </v-card>
 </div>
 <button id="hasattachmentbutton" @click="changeColorhasattachment">Has attachment</button>
 <button id="isunreadbutton" @click="changeColorisunread">Is unread</button>
@@ -86,36 +82,36 @@
     data: () => ({
       openfrom: [],
       adminsfrom: [
-        ['Management', 'mdi-account-multiple-outline'],
-        ['Settings', 'mdi-cog-outline'],
+        ['Management'],
+        ['Settings'],
       ],
       crudsfrom: [
-        ['Create', 'mdi-plus-outline'],
-        ['Read', 'mdi-file-outline'],
-        ['Update', 'mdi-update'],
-        ['Delete', 'mdi-delete'],
+        ['Create'],
+        ['Read'],
+        ['Update'],
+        ['Delete'],
       ],
       opento: [],
       adminsto: [
-        ['Management', 'mdi-account-multiple-outline'],
-        ['Settings', 'mdi-cog-outline'],
+        ['Management'],
+        ['Settings'],
       ],
       crudsto: [
-        ['Create', 'mdi-plus-outline'],
-        ['Read', 'mdi-file-outline'],
-        ['Update', 'mdi-update'],
-        ['Delete', 'mdi-delete'],
+        ['Create'],
+        ['Read'],
+        ['Update'],
+        ['Delete'],
       ],
       openanytime: [],
       adminsanytime: [
-        ['Management', 'mdi-account-multiple-outline'],
-        ['Settings', 'mdi-cog-outline'],
+        ['Management'],
+        ['Settings'],
       ],
       crudsanytime: [
-        ['Create', 'mdi-plus-outline'],
-        ['Read', 'mdi-file-outline'],
-        ['Update', 'mdi-update'],
-        ['Delete', 'mdi-delete'],
+        ['Create'],
+        ['Read'],
+        ['Update'],
+        ['Delete'],
       ],
     }),
     methods: {
@@ -133,66 +129,58 @@
 
 <style scoped>
 .Frombutton{
-    /* background: rgb(197, 102, 24); */
-    /* margin-left: 150%; */
-    border: 2px solid black;
-    width: 15%; /* Set the desired width */
-    height: 5%; /* Set the desired height */
+    /* border: 2px solid black; */
+    width: 17%; 
+    height: 10vh; 
 }
 .Tobutton{
-    /* background: rgb(103, 8, 228); */
-    margin-left: 5%;
-    border: 2px solid black;
-    width: 300px; /* Set the desired width */
-    height: 70px; /* Set the desired height */
+    margin-left: 30px;
+    /* border: 2px solid black; */
+    width: 17%;     
+    height: 10vh; 
 }
 .Anytimebutton{
-    /* background: rgb(197, 102, 24) ; */
     margin-left: 30px; 
-    border: 2px solid black;
-    width: 15vh; /* Set the desired width */
-    height: 5vh; /* Set the desired height */
+    /* border: 2px solid black; */
+    width: 17%; 
+    height: 10vh; 
 }
 
 #hasattachmentbutton {
     margin-left: 30px; 
-      background-color: white; /* Initial color */
-      padding: 10px;
-      border: none;
-      border: 2px solid black;
-      color: black;
-      cursor: pointer;
-      width: 15vh; /* Set the desired width */
-    height: 5vh; /* Set the desired height */
-    }
+    background-color: white; 
+    /* padding: 10px; */
+    border: none;
+    border: 2px solid black;
+    color: black;
+    cursor: pointer;
+    width: 17%; 
+    height: 10vh; 
+}
 
 #hasattachmentbutton.blue {
-      background-color: blue; /* Color when clicked */
-    }
-    #isunreadbutton {
-    margin-left: 30px; 
-      background-color: white; /* Initial color */
-      padding: 10px;
-      border: none;
-      border: 2px solid black;
-      color: black;
-      cursor: pointer;
-      width: 15%; /* Set the desired width */
-      height: 5%; /* Set the desired height */
-    }
+      background-color: blue; 
+}
+#isunreadbutton {
+margin-left: 30px; 
+  background-color: white; 
+  /* padding: 10px; */
+  border: none;
+  border: 2px solid black;
+  color: black;
+  cursor: pointer;
+  width: 17%; 
+height: 10vh; 
+}
 
 #isunreadbutton.blue {
-      background-color: blue; /* Color when clicked */
+      background-color: blue; 
     }
 .nav-bar{
-    background: rgb(245, 228, 228);
+    margin-top: 40px;
     display: flex;
-    /* flex-direction: row; */
-    padding: 5vh 2vh  2vh 2vh;
-    margin-left: 10%;
-    /* height: 10vh;
-    width: 40vh; */
-    /* max-height: 10vh; */
+    flex-direction: row;
+    /* padding: 2vh 2vh  2vh 2vh; */
 }
 
 </style>
