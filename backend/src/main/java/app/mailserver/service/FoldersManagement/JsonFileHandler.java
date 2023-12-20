@@ -2,6 +2,7 @@ package app.mailserver.service.FoldersManagement;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,7 @@ public class JsonFileHandler {
         catch(Exception e){
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
      } 
    
  

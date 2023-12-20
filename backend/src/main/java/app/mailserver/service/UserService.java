@@ -1,12 +1,16 @@
 package app.mailserver.service;
 import app.mailserver.service.FoldersManagement.SystemFolders;
 
+import org.springframework.stereotype.Service;
+
 import app.mailserver.models.UserModel;
 
+@Service
 public class UserService {
    private UserModel curUser;
 
    public UserModel login(String emailAddress, String password){
+   
        if(SystemFolders.loginChecker(emailAddress,password)){
            
             this.curUser=SystemFolders.getCurUser();
@@ -16,7 +20,7 @@ public class UserService {
    }
 
    public UserModel signUp(String name,String emailAddress, String password){
-       if(SystemFolders.loginChecker(emailAddress,password)){
+       if(SystemFolders.signUp(name,emailAddress,password)!=null){
            
             this.curUser=SystemFolders.getCurUser();
             return curUser;
@@ -26,5 +30,9 @@ public class UserService {
    
    public void logOut(){
    
-}
+   }
+   public static void main(String[] args) {
+     UserService userService=new UserService();
+     userService.signUp("tayson","ahmed@gmail.com", "fat7y");
+   }
 }

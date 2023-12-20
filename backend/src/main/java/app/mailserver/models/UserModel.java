@@ -11,6 +11,11 @@ public class UserModel {
     private String name;
     private String password;
     private String emailAddress;
+    public UserModel(String name, String password, String emailAddress) {
+        this.name = name;
+        this.password = password;
+        this.emailAddress = emailAddress;
+    }
     private List<ContactModel> contacts;
     private UserFoldersModel folders;
     

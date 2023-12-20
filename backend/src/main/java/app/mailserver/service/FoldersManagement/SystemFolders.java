@@ -15,7 +15,7 @@ public class SystemFolders {
             return null;
         }
         else{
-            UserModel newUser=new UserModel();
+            UserModel newUser=new UserModel(name,emailAddress,password);
             allUsers.add(newUser);
             curUser=newUser;
 
@@ -25,19 +25,19 @@ public class SystemFolders {
 
     public static boolean loginChecker(String emailAddress,String password){
         fetchAllUsers();
-        
-        if(!isUserExist(emailAddress)){
-            //if we want to type message"user not found"
-            return false;
-        }
-        else{
-             if(getUser(emailAddress).getPassword().equals(password)){
-                curUser= getUser(emailAddress);
-                return true;
-            //we can type a message here
-             }
-        }
-     return false;
+        return true;
+    //     if(!isUserExist(emailAddress)){
+    //         //if we want to type message"user not found"
+    //         return false;
+    //     }
+    //     else{
+    //          if(getUser(emailAddress).getPassword().equals(password)){
+    //             curUser= getUser(emailAddress);
+    //             return true;
+    //         //we can type a message here
+    //          }
+    //     }
+    //  return false;
     }
 
     public static UserModel getCurUser() {
@@ -65,14 +65,14 @@ public class SystemFolders {
 
     // search in this.allUsers and return a user model 
     public static boolean isUserExist(String emailAddress){
-      return true;
+      return false;
     }
 
     //get user by address 
-    public static UserModel getUser(String emailAddress){
-       //seach in allusers 
-       UserModel x=new UserModel();
-        return x;
-    }
+    // public static UserModel getUser(String emailAddress){
+    //    //seach in allusers 
+    //    UserModel x=new UserModel();
+    //     return x;
+    // }
 
 }

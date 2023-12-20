@@ -17,7 +17,7 @@ public class MailService {
   
   
 
-   public void sendEmail(MailModel newEmail){
+   public UserModel sendEmail(MailModel newEmail){
        UserModel curUser=SystemFolders.getCurUser();
        curUser.getFolders().addEmailTo("sentEmails",newEmail);
        
@@ -27,12 +27,14 @@ public class MailService {
          }
        }
         SystemFolders.updateUser(curUser);
+        return curUser;
    }
 
-   public void addToDraft(MailModel newEmail){
+   public UserModel addToDraft(MailModel newEmail){
        UserModel curUser=SystemFolders.getCurUser();
        curUser.getFolders().addEmailTo("draft",newEmail);
        SystemFolders.updateUser(curUser);
+      return curUser; 
    }
     
 }
