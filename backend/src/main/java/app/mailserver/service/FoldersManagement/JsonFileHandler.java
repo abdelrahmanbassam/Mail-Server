@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class JsonFileHandler {
-        private static final String allUsersFilePath =  Paths.get("").toAbsolutePath().resolve("elsisi").toString();    
+        private static final String usersDataFilePath =  Paths.get("").toAbsolutePath().resolve("src/main/resources/usersData.json").toString();    
    
 
     //read from all_usersfile    
