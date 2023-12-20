@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MailListView from '@/views/Mails/MailListView.vue'
 import MailDetailView from '@/views/Mails/MailDetailView.vue'
 import LandingPage from '@/views/LandingPage/LandingPageView.vue'
-import NavBar from '@/views/NavBar.vue'
+// import NavBar from '@/components/NavBar.vue'
 
 const routes = [
   {
