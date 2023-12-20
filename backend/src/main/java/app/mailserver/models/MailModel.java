@@ -34,7 +34,7 @@ public class MailModel {
         this.Subject = Subject;
         this.body=body;
         this.Attachment=Attachment;
-        this.date = date.now();
+        // this.date = date.now();
         this.type = type;
     }
 
@@ -101,11 +101,11 @@ public class MailModel {
     public void setType(String type) {
         this.type = type;
     }
-    public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment, String type) {
-        MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
-            // user.SendMailModel(MailModel);
-        return MailModel;
-    }
+    // public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment, String type) {
+    //     MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
+    //         // user.SendMailModel(MailModel);
+    //     return MailModel;
+    // }
    
 }
 

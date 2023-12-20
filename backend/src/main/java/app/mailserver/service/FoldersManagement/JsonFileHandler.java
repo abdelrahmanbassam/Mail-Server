@@ -1,16 +1,9 @@
 package app.mailserver.service.FoldersManagement;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-
-import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.mailserver.models.UserModel;
@@ -20,7 +13,7 @@ public class JsonFileHandler {
    
 
     //read from all_usersfile    
-     public List<UserModel> fetchAllUsers(){
+     public static List<UserModel> fetchAllUsers(){
         ObjectMapper objectmapper=new ObjectMapper();
         try{
             File file=new File(usersDataFilePath);

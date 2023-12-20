@@ -1,6 +1,7 @@
 package app.mailserver.service.FoldersManagement;
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
+
 import java.util.List;
 
 
@@ -42,14 +43,9 @@ public class SystemFolders {
     public static UserModel getCurUser() {
         return curUser;
     }
-    
-    public List<UserModel> getAllUsers() {
-        return allUsers;
-    }
 
-    //use json file handler to fetch allUsers
     public static void fetchAllUsers(){
-
+        allUsers=JsonFileHandler.fetchAllUsers();
     }
 
     //search in this.allUsers and set the user to the changedUser then update the file using json file handler 
