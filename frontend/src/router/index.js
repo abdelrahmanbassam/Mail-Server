@@ -16,7 +16,7 @@ const routes = [
   //   component: NavBar
   // },
   {
-    path: '/mail/:id',
+    path: '/mail',
     name: 'mail-detail-view',
     component: MailDetailView
   },

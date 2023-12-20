@@ -7,10 +7,12 @@
                 <NavBar/>
             </nav>
             <v-scroll class="mail-list">
-                <div v-for="i in 100" :key="i" class="mail">
+                <div v-for="i in 30" :key="i" class="mail">
                     <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
                     <v-icon @click="toggleStar" size="27" color="rgb(239, 99, 68)">{{isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-                    <v-btn>mail</v-btn>
+                    <router-link to="/mail" class="mail-link">
+                    <v-btn>mail1</v-btn>
+                    </router-link>
                 </div>
             </v-scroll>
         </div>
@@ -72,5 +74,8 @@ nav {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+.mail-link {
+    width: 80%;
 }
 </style>

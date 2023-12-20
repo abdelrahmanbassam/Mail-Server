@@ -79,10 +79,6 @@
   export default {
     data: () => ({
       openfrom: [],
-      adminsfrom: [
-        ['Management'],
-        ['Settings'],
-      ],
       crudsfrom: [
         ['Create'],
         ['Read'],
@@ -90,10 +86,6 @@
         ['Delete'],
       ],
       opento: [],
-      adminsto: [
-        ['Management'],
-        ['Settings'],
-      ],
       crudsto: [
         ['Create'],
         ['Read'],
@@ -101,10 +93,6 @@
         ['Delete'],
       ],
       openanytime: [],
-      adminsanytime: [
-        ['Management'],
-        ['Settings'],
-      ],
       crudsanytime: [
         ['Create'],
         ['Read'],
