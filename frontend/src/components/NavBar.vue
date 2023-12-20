@@ -1,4 +1,7 @@
 <template>
+  <div class="Search">
+      <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
+    </div>
     <div class="nav-bar">
       <!-- <v-card class="mx-auto" color="info">
 
@@ -115,6 +118,21 @@
       ],
     }),
     methods: {
+      searchEmails() {
+      // Implement your logic to filter emails based on the search query
+      // You may want to filter the emails in openfrom, opento, or openanytime arrays
+      // For example, if you have an 'emails' array, you can filter it like this:
+      this.openfrom = this.filterEmails(this.openfrom);
+      this.opento = this.filterEmails(this.opento);
+      this.openanytime = this.filterEmails(this.openanytime);
+    },
+    filterEmails(emailArray) {
+      // Use the Array.filter method to filter emails based on the search query
+      return emailArray.filter(email => {
+        // Modify this condition based on your email structure and search criteria
+        return email.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    },
     changeColorhasattachment() {
       var button = document.getElementById("hasattachmentbutton");
       button.classList.toggle("blue");
@@ -181,6 +199,14 @@ height: 10vh;
     display: flex;
     flex-direction: row;
     /* padding: 2vh 2vh  2vh 2vh; */
+}
+.Search {
+  margin-left: 25%;
+}
+.Search input {
+  padding: 5px;
+  width: 50%;
+  border: 2px solid aqua;
 }
 
 </style>
