@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="mail-list-view">
         <SideBar/>
         
@@ -10,11 +11,17 @@
         </div>
         </v-scroll>
 
+=======
+    <div class="show">
+        <SideBar/>
+        <NavBar/>
+>>>>>>> fb85206011afc3c7ccfc22de8de456f646e76665
     </div>
 </template>
 
 <script>
 import SideBar from '@/components/SideBar.vue';
+<<<<<<< HEAD
 import NavBar from '@/components/NavBar.vue';
 export default {
     components: {SideBar, NavBar},
@@ -64,4 +71,17 @@ export default {
     display: flex;
     flex-direction: column;
 }
+=======
+import NavBar from '@/views/NavBar.vue';
+export default {
+    components: {SideBar, NavBar,}
+}
+</script>
+
+<style>
+.show{
+    display: flex;
+}
+
+>>>>>>> fb85206011afc3c7ccfc22de8de456f646e76665
 </style>

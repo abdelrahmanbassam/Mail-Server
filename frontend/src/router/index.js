@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MailListView from '@/views/Mails/MailListView.vue'
 import MailDetailView from '@/views/Mails/MailDetailView.vue'
 import LandingPage from '@/views/LandingPage/LandingPageView.vue'
-
+import NavBar from '@/views/NavBar.vue'
 
 const routes = [
   {
@@ -10,6 +10,11 @@ const routes = [
     name: 'mail-list-view',
     component: MailListView
   },
+  // {
+  //   path: '/',
+  //   name: 'mail-navbar-view',
+  //   component: NavBar
+  // },
   {
     path: '/mail/:id',
     name: 'mail-detail-view',
