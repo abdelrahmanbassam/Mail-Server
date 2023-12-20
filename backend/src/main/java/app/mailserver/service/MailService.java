@@ -9,7 +9,6 @@ import lombok.Builder;
  */
 class messsageBody {
 
-    private String body = new String();
 
     public messsageBody() {
     }
@@ -26,12 +25,8 @@ class messsageBody {
 }
 
 class messageHeader {
-    private String from;
-    private List<String> to;
-    private String Subject;
-
-    public messageHeader() {
-    };
+    
+    public messageHeader() {};
 
     @Builder
     public messageHeader(List<String> to, String from, String subject) {
@@ -55,7 +50,7 @@ class messageHeader {
 }
 
 class Attachment {
-    private String Attachment;
+    
 
     public Attachment() {
     }
@@ -72,35 +67,86 @@ class Attachment {
 }
 
 class message {
-    private messsageBody messbody;
-    private messageHeader header;
-    private Attachment attachment;
+    private String Attachment;
+    private String from;
+    private List<String> to;
+    private String Subject;
+    private String body;
     private LocalDate date;
     private String type;
+
 
     public message() {
     }
 
     @Builder
-    public message(messageHeader header, messsageBody messbody, Attachment attachment, LocalDate date, String type) {
-        this.messbody = messbody;
-        this.header = header;
-        this.attachment = attachment;
+    public message(List<String> to, String from, String Subject,String body,String Attachment ,LocalDate date, String type) {
+        this.to=to;
+        this.from=from;
+        this.Subject = Subject;
+        this.body=body;
+        this.Attachment=Attachment;
         this.date = date.now();
         this.type = type;
     }
 
-    public messsageBody getMessbody() {
-        return this.messbody;
+    public String getAttachment() {
+        return this.Attachment;
     }
 
-    public messageHeader getHeader() {
-        return this.header;
+    public void setAttachment(String Attachment) {
+        this.Attachment = Attachment;
     }
 
-    public Attachment getAttachment() {
-        return this.attachment;
+    public String getFrom() {
+        return this.from;
     }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public List<String> getTo() {
+        return this.to;
+    }
+
+    public void setTo(List<String> to) {
+        this.to = to;
+    }
+
+    public String getSubject() {
+        return this.Subject;
+    }
+
+    public void setSubject(String Subject) {
+        this.Subject = Subject;
+    }
+
+    public String getBody() {
+        return this.body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+   
 }
 
 public class MailService {
@@ -108,12 +154,7 @@ public class MailService {
     // needed
     public message CreateMessage(List<String> to, String from, String Subject, String body, String attachment,
             LocalDate date, String type) {
-        messageHeader header = new messageHeader().builder().to(to).from(from).subject(Subject).build();
-        message message = new message().builder()
-                .header(header)
-                .messbody(messsageBody.builder().body(body).build())
-                .attachment(Attachment.builder().Attachment(attachment).build())
-                .date(date).type(type).build();
+        message message = new message().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
             // user.Sendmessage(message);
         return message;
     }

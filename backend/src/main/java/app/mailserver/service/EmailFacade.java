@@ -30,6 +30,7 @@ class messageHeader {
 
     public messageHeader() {
     }
+
     public String getFrom() {
         return this.from;
     }
