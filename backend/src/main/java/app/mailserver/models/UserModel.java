@@ -2,9 +2,9 @@ package app.mailserver.models;
 
 import java.util.List;
 
-import org.springframework.boot.SpringApplication;
+// import org.springframework.boot.SpringApplication;
 
-import app.mailserver.MailServerApplication;
+// import app.mailserver.MailServerApplication;
 
 public class UserModel {
     private int id;
@@ -13,6 +13,13 @@ public class UserModel {
     private String emailAddress;
     private List<ContactModel> contacts;
     private UserFoldersModel folders;
+    
+    public UserFoldersModel getFolders() {
+        return folders;
+    }
+    public void setFolders(UserFoldersModel folders) {
+        this.folders = folders;
+    }
     public List<ContactModel> getContacts() {
         return contacts;
     }

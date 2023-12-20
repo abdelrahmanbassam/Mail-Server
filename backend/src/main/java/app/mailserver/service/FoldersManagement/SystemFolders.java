@@ -5,9 +5,44 @@ import java.util.List;
 
 
 public class SystemFolders {
-    private List<UserModel> allUsers;
-    private UserModel curUser;
+    private static List<UserModel> allUsers;
+    private static  UserModel curUser;
 
+    public static UserModel signUp(String name,String emailAddress, String password){
+        fetchAllUsers();
+        if(isUserExist(emailAddress)){
+            return null;
+        }
+        else{
+            UserModel newUser=new UserModel();
+            allUsers.add(newUser);
+            curUser=newUser;
+
+           return curUser; 
+        }
+    }
+
+    public static boolean loginChecker(String emailAddress,String password){
+        fetchAllUsers();
+        
+        if(!isUserExist(emailAddress)){
+            //if we want to type message"user not found"
+            return false;
+        }
+        else{
+             if(getUser(emailAddress).getPassword().equals(password)){
+                curUser= getUser(emailAddress);
+                return true;
+            //we can type a message here
+             }
+        }
+     return false;
+    }
+
+    public static UserModel getCurUser() {
+        return curUser;
+    }
+    
     public List<UserModel> getAllUsers() {
         return allUsers;
     }
@@ -32,10 +67,16 @@ public class SystemFolders {
      
     }
 
-    //search in this.allUsers and return a user model 
-    // public UserModel getUserByAddress(String emailAddress){
-      
-    // }
+    // search in this.allUsers and return a user model 
+    public static boolean isUserExist(String emailAddress){
+      return true;
+    }
 
+    //get user by address 
+    public static UserModel getUser(String emailAddress){
+       //seach in allusers 
+       UserModel x=new UserModel();
+        return x;
+    }
 
 }

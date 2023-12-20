@@ -1,10 +1,6 @@
 package app.mailserver.models;
 
-import java.sql.Date;
-import java.sql.Struct;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FolderModel {
@@ -14,6 +10,14 @@ public class FolderModel {
     private List<FolderModel> subFolders;
     
     
+    public List<FolderModel> getSubFolders() {
+        return subFolders;
+    }
+
+    public void setSubFolders(List<FolderModel> subFolders) {
+        this.subFolders = subFolders;
+    }
+
     public void SetName(String name ){
         this.name=name;
     }

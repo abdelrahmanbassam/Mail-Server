@@ -1,8 +1,5 @@
 package app.mailserver.models;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,7 +8,15 @@ import lombok.Builder;
 public class MailModel {
     private String Attachment;
     private String from;
-    private List<String> to;
+    private List<String> to;//change it to reciver in all program 
+    private List<String> recivers;
+    public List<String> getRecivers() {
+        return recivers;
+    }
+
+    public void setRecivers(List<String> recivers) {
+        this.recivers = recivers;
+    }
     private String Subject;
     private String body;
     private LocalDate date;

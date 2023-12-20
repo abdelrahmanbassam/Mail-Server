@@ -1,11 +1,12 @@
 package app.mailserver.models;
 import java.util.ArrayList;
 import java.util.List;
-import app.mailserver.models.*;
-import org.springframework.boot.context.properties.PropertyMapper.Source;
+// import app.mailserver.models.*;
+// import org.springframework.boot.context.properties.PropertyMapper.Source;
 
 public class UserFoldersModel {
     FolderModel inbox= new FolderModel("inbox", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+    FolderModel draft= new FolderModel("draft", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
     FolderModel starred=new FolderModel("starred", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
     FolderModel important=new FolderModel("important", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
     FolderModel sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
@@ -92,5 +93,9 @@ public class UserFoldersModel {
       }
     }
     return null;
+  }
+  
+  public void addEmailTo(String folderName,MailModel newEmail){
+    findFolder(folderName).addEmail(newEmail);
   }
 }
