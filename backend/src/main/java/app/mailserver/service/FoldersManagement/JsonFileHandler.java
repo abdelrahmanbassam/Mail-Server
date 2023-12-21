@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.mailserver.models.UserModel;
 
 public class JsonFileHandler {
-    private static final String usersDataFilePath =  Paths.get("").toAbsolutePath().resolve("src/main/resources/usersData.json").toString();    
+    private static final String usersDataFilePath =  Paths.get("").toAbsolutePath().resolve("backend/src/main/resources/usersData.json").toString();    
   
 
     //read from all_usersfile    
