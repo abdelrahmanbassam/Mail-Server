@@ -2,7 +2,6 @@ package app.mailserver.service;
 
 import java.util.List;
 
-import org.apache.catalina.mbeans.UserMBean;
 
 import app.mailserver.models.ContactModel;
 import app.mailserver.models.UserModel;

@@ -11,6 +11,7 @@ public class SystemFolders {
 
     public static UserModel signUp(String name,String emailAddress, String password){
         fetchAllUsers();
+        List<UserModel> x=allUsers;
         if(isUserExist(emailAddress)){
             return null;
         }
@@ -18,26 +19,27 @@ public class SystemFolders {
             UserModel newUser=new UserModel(name,emailAddress,password);
             allUsers.add(newUser);
             curUser=newUser;
+            updateAllUsers();
 
-           return curUser; 
+            return curUser; 
         }
     }
 
     public static boolean loginChecker(String emailAddress,String password){
         fetchAllUsers();
-        return true;
-    //     if(!isUserExist(emailAddress)){
-    //         //if we want to type message"user not found"
-    //         return false;
-    //     }
-    //     else{
-    //          if(getUser(emailAddress).getPassword().equals(password)){
-    //             curUser= getUser(emailAddress);
-    //             return true;
-    //         //we can type a message here
-    //          }
-    //     }
-    //  return false;
+        
+        if(!isUserExist(emailAddress)){
+            //if we want to type message"user not found"
+            return false;
+        }
+        else{
+             if(getUser(emailAddress).getPassword().equals(password)){
+                curUser= getUser(emailAddress);
+                return true;
+            //we can type a message here
+             }
+        }
+     return false;
     }
 
     public static UserModel getCurUser() {
@@ -50,14 +52,17 @@ public class SystemFolders {
 
     //search in this.allUsers and set the user to the changedUser then update the file using json file handler 
     public static void updateUser(UserModel changedUser){
-        
+        for(int i = 0; i < allUsers.size(); i++){
+            UserModel x = allUsers.get(i);
+            if(x.getEmailAddress().equals(changedUser.getEmailAddress())){
+                allUsers.set(i, changedUser); // Update the list at the specific index
+                // Assuming you have a method to save the updated list to a file
+                
+                updateAllUsers();
+            }
+        }
     }
     
-    //search in allUsers.emailAddress and return 
-    public static boolean isAddressExist(String address){
-     return true;
-    }
-
     //take an email and put it in receiver inbox and change the receiver to be me and the sender 
     public static void sendEmailTo(MailModel email ,String receiverAddress){
      
@@ -65,14 +70,30 @@ public class SystemFolders {
 
     // search in this.allUsers and return a user model 
     public static boolean isUserExist(String emailAddress){
+     for(var x :allUsers){
+        if(x.getEmailAddress().equals(emailAddress))
+        return true;
+      }
       return false;
     }
 
     //get user by address 
-    // public static UserModel getUser(String emailAddress){
-    //    //seach in allusers 
-    //    UserModel x=new UserModel();
-    //     return x;
-    // }
+    public static UserModel getUser(String emailAddress){
 
+       for(var x :allUsers){
+          if(x.getEmailAddress().equals(emailAddress))
+            return x;
+       }
+
+       return null;
+    }
+    
+    public static void updateAllUsers(){
+          try {
+                 JsonFileHandler.updateAllUsers(allUsers);
+          } catch (Exception e) {
+                    return;
+          }
+         
+     }
 }

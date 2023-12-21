@@ -22,7 +22,7 @@ public class MailService {
        curUser.getFolders().addEmailTo("sentEmails",newEmail);
        
        for(var x : newEmail.getRecivers()){
-         if(SystemFolders.isAddressExist(x)){
+         if(SystemFolders.isUserExist(x)){
            SystemFolders.sendEmailTo(newEmail, x);
          }
        }

@@ -22,7 +22,8 @@ public class UserService {
    public UserModel signUp(String name,String emailAddress, String password){
        if(SystemFolders.signUp(name,emailAddress,password)!=null){
            
-            this.curUser=SystemFolders.getCurUser();
+            curUser=SystemFolders.getCurUser();
+            
             return curUser;
        }
        return null; 
@@ -32,7 +33,9 @@ public class UserService {
    
    }
    public static void main(String[] args) {
+
      UserService userService=new UserService();
-     userService.signUp("tayson","ahmed@gmail.com", "fat7y");
-   }
+     UserModel x=userService.signUp("tayson","ahmed@gmail.com", "fat7y");
+     System.out.println("done");
+    }
 }

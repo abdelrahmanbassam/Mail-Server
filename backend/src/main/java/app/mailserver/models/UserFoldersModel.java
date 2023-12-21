@@ -5,15 +5,22 @@ import java.util.List;
 // import org.springframework.boot.context.properties.PropertyMapper.Source;
 
 public class UserFoldersModel {
-    FolderModel inbox= new FolderModel("inbox", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    FolderModel draft= new FolderModel("draft", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    FolderModel starred=new FolderModel("starred", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    FolderModel important=new FolderModel("important", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    FolderModel sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    FolderModel trash=new FolderModel("trash", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-    List<FolderModel>labels=new ArrayList<>();
+  private  FolderModel inbox;
+  private  FolderModel draft;
+  private  FolderModel starred;
+  private  FolderModel important;
+  private  FolderModel sentEmails;
+  private  FolderModel trash;
+  private  List<FolderModel>labels;
     
-    public UserFoldersModel(){
+  public UserFoldersModel(){
+      this.inbox= new FolderModel("inbox", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.draft= new FolderModel("draft", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.starred=new FolderModel("starred", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.important=new FolderModel("important", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.trash=new FolderModel("trash", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.labels=new ArrayList<>();
       labels=new ArrayList<>();
     }
   // transfeer emalis between folders by folders name
@@ -56,7 +63,6 @@ public class UserFoldersModel {
     labels.add(new FolderModel(LabelName, new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0)));
    return true;
   }
-
   // check if the newName is unique in the labels list then rename it 
   public void renameLabel(String oldName,String newName){
     for(var check:labels){
@@ -83,7 +89,9 @@ public class UserFoldersModel {
         return important;
       case "sentEmails":
         return sentEmails;
-    
+      case "draft":
+        return draft;
+
       default:
         break;
     }
