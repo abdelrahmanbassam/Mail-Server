@@ -1,6 +1,7 @@
 package app.mailserver.models;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 // import app.mailserver.models.*;
 // import org.springframework.boot.context.properties.PropertyMapper.Source;
 
@@ -14,12 +15,12 @@ public class UserFoldersModel {
   private  List<FolderModel>labels;
     
   public UserFoldersModel(){
-      this.inbox= new FolderModel("inbox", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-      this.draft= new FolderModel("draft", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-      this.starred=new FolderModel("starred", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-      this.important=new FolderModel("important", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-      this.sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
-      this.trash=new FolderModel("trash", new ArrayList<MailModel>(0), new ArrayList<FolderModel>(0));
+      this.inbox= new FolderModel("inbox", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.draft= new FolderModel("draft", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.starred=new FolderModel("starred", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.important=new FolderModel("important", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.trash=new FolderModel("trash", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.labels=new ArrayList<>();
       labels=new ArrayList<>();
     }
@@ -106,4 +107,99 @@ public class UserFoldersModel {
   public void addEmailTo(String folderName,MailModel newEmail){
     findFolder(folderName).addEmail(newEmail);
   }
+
+  public UserFoldersModel(FolderModel inbox, FolderModel draft, FolderModel starred, FolderModel important, FolderModel sentEmails, FolderModel trash, List<FolderModel> labels) {
+    this.inbox = inbox;
+    this.draft = draft;
+    this.starred = starred;
+    this.important = important;
+    this.sentEmails = sentEmails;
+    this.trash = trash;
+    this.labels = labels;
+  }
+
+  public FolderModel getInbox() {
+    return this.inbox;
+  }
+
+  public void setInbox(FolderModel inbox) {
+    this.inbox = inbox;
+  }
+
+  public FolderModel getDraft() {
+    return this.draft;
+  }
+
+  public void setDraft(FolderModel draft) {
+    this.draft = draft;
+  }
+
+  public FolderModel getStarred() {
+    return this.starred;
+  }
+
+  public void setStarred(FolderModel starred) {
+    this.starred = starred;
+  }
+
+  public FolderModel getImportant() {
+    return this.important;
+  }
+
+  public void setImportant(FolderModel important) {
+    this.important = important;
+  }
+
+  public FolderModel getSentEmails() {
+    return this.sentEmails;
+  }
+
+  public void setSentEmails(FolderModel sentEmails) {
+    this.sentEmails = sentEmails;
+  }
+
+  public FolderModel getTrash() {
+    return this.trash;
+  }
+
+  public void setTrash(FolderModel trash) {
+    this.trash = trash;
+  }
+
+  public List<FolderModel> getLabels() {
+    return this.labels;
+  }
+
+  public void setLabels(List<FolderModel> labels) {
+    this.labels = labels;
+  }
+  @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof UserFoldersModel)) {
+            return false;
+        }
+        UserFoldersModel userFoldersModel = (UserFoldersModel) o;
+        return Objects.equals(inbox, userFoldersModel.inbox) && Objects.equals(draft, userFoldersModel.draft) && Objects.equals(starred, userFoldersModel.starred) && Objects.equals(important, userFoldersModel.important) && Objects.equals(sentEmails, userFoldersModel.sentEmails) && Objects.equals(trash, userFoldersModel.trash) && Objects.equals(labels, userFoldersModel.labels);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(inbox, draft, starred, important, sentEmails, trash, labels);
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+      " inbox='" + getInbox() + "'" +
+      ", draft='" + getDraft() + "'" +
+      ", starred='" + getStarred() + "'" +
+      ", important='" + getImportant() + "'" +
+      ", sentEmails='" + getSentEmails() + "'" +
+      ", trash='" + getTrash() + "'" +
+      ", labels='" + getLabels() + "'" +
+      "}";
+  }
+  
 }

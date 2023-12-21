@@ -1,5 +1,6 @@
 package app.mailserver.models;
 import java.util.List; 
+import java.util.Objects;
 
 public class ContactModel {
   
@@ -54,4 +55,30 @@ public class ContactModel {
     public void addPhoneNum(String newPhoneNum) {
          this.phoneNums.add(newPhoneNum);
     }
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ContactModel)) {
+            return false;
+        }
+        ContactModel contactModel = (ContactModel) o;
+        return Objects.equals(name, contactModel.name) && Objects.equals(emailAddresses, contactModel.emailAddresses) && Objects.equals(phoneNums, contactModel.phoneNums) && importance == contactModel.importance;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, emailAddresses, phoneNums, importance);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " name='" + getName() + "'" +
+            ", emailAddresses='" + getEmailAddresses() + "'" +
+            ", phoneNums='" + getPhoneNums() + "'" +
+            ", importance='" + getImportance() + "'" +
+            "}";
+    }
+    
 }

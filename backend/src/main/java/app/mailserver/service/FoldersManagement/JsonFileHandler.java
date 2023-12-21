@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import app.mailserver.models.UserModel;
 
@@ -36,7 +37,9 @@ public class JsonFileHandler {
     //write in all_usersfile
      public static void updateAllUsers(List<UserModel> updatedList) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(usersDataFilePath), updatedList);          
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.writeValue(new File(usersDataFilePath), updatedList);
      } 
+     
 
 }

@@ -1,6 +1,7 @@
 package app.mailserver.models;
 
 import java.util.List;
+import java.util.Objects;
 
 // import org.springframework.boot.SpringApplication;
 
@@ -60,5 +61,33 @@ public class UserModel {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof UserModel)) {
+            return false;
+        }
+        UserModel userModel = (UserModel) o;
+        return id == userModel.id && Objects.equals(name, userModel.name) && Objects.equals(password, userModel.password) && Objects.equals(emailAddress, userModel.emailAddress) && Objects.equals(contacts, userModel.contacts) && Objects.equals(folders, userModel.folders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, password, emailAddress, contacts, folders);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", emailAddress='" + getEmailAddress() + "'" +
+            ", contacts='" + getContacts() + "'" +
+            ", folders='" + getFolders() + "'" +
+            "}";
+    }
+    
 
 }

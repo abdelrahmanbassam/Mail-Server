@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import lombok.Builder;
+import java.util.Objects;
 
 public class MailModel {
     private String Attachment;
@@ -37,7 +38,6 @@ public class MailModel {
         // this.date = date.now();
         this.type = type;
     }
-
     public String getAttachment() {
         return this.Attachment;
     }
@@ -101,6 +101,50 @@ public class MailModel {
     public void setType(String type) {
         this.type = type;
     }
+
+    public MailModel(String Attachment, String from, List<String> to, List<String> recivers, String Subject, String body, LocalDate date, String type, String importance) {
+        this.Attachment = Attachment;
+        this.from = from;
+        this.to = to;
+        this.recivers = recivers;
+        this.Subject = Subject;
+        this.body = body;
+        this.date = date;
+        this.type = type;
+        this.importance = importance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof MailModel)) {
+            return false;
+        }
+        MailModel mailModel = (MailModel) o;
+        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) && Objects.equals(recivers, mailModel.recivers) && Objects.equals(Subject, mailModel.Subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(type, mailModel.type) && Objects.equals(importance, mailModel.importance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Attachment, from, to, recivers, Subject, body, date, type, importance);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " Attachment='" + getAttachment() + "'" +
+            ", from='" + getFrom() + "'" +
+            ", to='" + getTo() + "'" +
+            ", recivers='" + getRecivers() + "'" +
+            ", Subject='" + getSubject() + "'" +
+            ", body='" + getBody() + "'" +
+            ", date='" + getDate() + "'" +
+            ", type='" + getType() + "'" +
+            ", importance='" + getImportance() + "'" +
+            "}";
+    }
+
     // public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment, String type) {
     //     MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
     //         // user.SendMailModel(MailModel);
