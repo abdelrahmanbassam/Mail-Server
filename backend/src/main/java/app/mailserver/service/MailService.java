@@ -1,5 +1,7 @@
 package app.mailserver.service;
 
+import org.springframework.stereotype.Service;
+
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
 import app.mailserver.service.FoldersManagement.SystemFolders;
@@ -12,21 +14,29 @@ import app.mailserver.service.FoldersManagement.SystemFolders;
  * MailService
  */
 
-
+@Service
 public class MailService {
   
   
 
    public UserModel sendEmail(MailModel newEmail){
+
        UserModel curUser=SystemFolders.getCurUser();
        curUser.getFolders().addEmailTo("sentEmails",newEmail);
-       
-       for(var x : newEmail.getRecivers()){
+       SystemFolders.updateUser(curUser);
+
+       //we can make it as a queue 
+       for(var x : newEmail.getReceivers()){
+
          if(SystemFolders.isUserExist(x)){
-           SystemFolders.sendEmailTo(newEmail, x);
+
+           UserModel receiver=SystemFolders.getUser(x);
+           receiver.getFolders().addEmailTo("inbox", newEmail);
+
+           SystemFolders.updateUser(receiver);
          }
+
        }
-        SystemFolders.updateUser(curUser);
         return curUser;
    }
 

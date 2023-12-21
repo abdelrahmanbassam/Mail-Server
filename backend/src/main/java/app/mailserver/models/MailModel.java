@@ -6,36 +6,30 @@ import java.util.List;
 import lombok.Builder;
 
 public class MailModel {
-    private String Attachment;
-    private String from;
-    private List<String> to;//change it to reciver in all program 
-    private List<String> recivers;
-    public List<String> getRecivers() {
-        return recivers;
-    }
 
-    public void setRecivers(List<String> recivers) {
-        this.recivers = recivers;
-    }
+    private String sender;
+    private List<String> receivers;//change it receivers reciver in all program 
     private String Subject;
     private String body;
     private LocalDate date;
-    private String type;
     private String importance;
+    private String Attachment;
+    
 
+  
 
     public MailModel() {
     }
 
     @Builder
-    public MailModel(List<String> to, String from, String Subject,String body,String Attachment , String type) {
-        this.to=to;
-        this.from=from;
+    public MailModel(List<String> receivers, String sender, String Subject,String body,String Attachment,String importance) {
+        this.receivers=receivers;
+        this.sender=sender;
         this.Subject = Subject;
         this.body=body;
         this.Attachment=Attachment;
+        this.importance=importance;
         // this.date = date.now();
-        this.type = type;
     }
 
     public String getAttachment() {
@@ -46,20 +40,20 @@ public class MailModel {
         this.Attachment = Attachment;
     }
 
-    public String getFrom() {
-        return this.from;
+    public String getsender() {
+        return this.sender;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setsender(String sender) {
+        this.sender = sender;
     }
 
-    public List<String> getTo() {
-        return this.to;
+    public List<String> getReceivers() {
+        return this.receivers;
     }
 
-    public void setTo(List<String> to) {
-        this.to = to;
+    public void setReceivers(List<String> receivers) {
+        this.receivers = receivers;
     }
 
     public String getSubject() {
@@ -86,9 +80,7 @@ public class MailModel {
         this.date = date;
     }
 
-    public String getType() {
-        return this.type;
-    }
+   
 
     public String getImportance() {
         return this.importance;
@@ -98,11 +90,8 @@ public class MailModel {
         this.importance = importance;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-    // public MailModel CreateMailModel(List<String> to, String from, String Subject, String body, String attachment, String type) {
-    //     MailModel MailModel = new MailModel().builder().to(to).from(from).Subject(Subject).body(body).Attachment(attachment).build();
+    // public MailModel CreateMailModel(List<String> receivers, String sender, String Subject, String body, String attachment, String type) {
+    //     MailModel MailModel = new MailModel().builder().receivers(receivers).sender(sender).Subject(Subject).body(body).Attachment(attachment).build();
     //         // user.SendMailModel(MailModel);
     //     return MailModel;
     // }

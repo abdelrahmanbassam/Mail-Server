@@ -65,7 +65,10 @@ public class SystemFolders {
     
     //take an email and put it in receiver inbox and change the receiver to be me and the sender 
     public static void sendEmailTo(MailModel email ,String receiverAddress){
-     
+           
+           UserModel receiver=getUser(receiverAddress);
+           receiver.getFolders().addEmailTo("inbox", email); 
+
     }
 
     // search in this.allUsers and return a user model 
