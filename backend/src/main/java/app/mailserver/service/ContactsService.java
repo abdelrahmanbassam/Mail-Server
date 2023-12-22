@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.parsing.EmptyReaderEventListener;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.core.annotation.MergedAnnotations.Search;
+import org.springframework.stereotype.Service;
 
 import app.mailserver.models.ContactModel;
 import app.mailserver.models.UserModel;
 import app.mailserver.service.FoldersManagement.JsonFileHandler;
 import app.mailserver.service.FoldersManagement.SystemFolders;
-
+@Service
 public class ContactsService {
   // add
   // delete
