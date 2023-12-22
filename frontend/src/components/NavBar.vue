@@ -1,5 +1,7 @@
 <template>
-  <div class="Search">
+  <div>
+
+    <div class="Search">
       <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
     </div>
     <div class="nav-bar">
@@ -7,14 +9,14 @@
     <v-card
       class="mx-auto"
       color="info"
-    >
+      >
       <v-list :opened="openfrom">
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" title="From"></v-list-item>
           </template>
 
-            <v-list-item
+          <v-list-item
               v-for="(title, i) in crudsfrom"
               :key="i"
               :value="title"
@@ -27,51 +29,52 @@
 <div class="Tobutton">
     <v-card
       class="mx-auto"
-    >
+      >
       <v-list :opened="opento">  
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
             <v-list-item
-              v-bind="props"
-              title="To"
+            v-bind="props"
+            title="To"
             ></v-list-item>
           </template>
-
-            <v-list-item
-              v-for="(title, i) in crudsto"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
+          
+          <v-list-item
+          v-for="(title, i) in crudsto"
+          :key="i"
+          :value="title"
+          :title="title"
+          ></v-list-item>
+        </v-list-group>
       </v-list>
     </v-card>
 </div>
 <div class="Anytimebutton">
-    <v-card
-      class="mx-auto"
-    >
+  <v-card
+  class="mx-auto"
+  >
       <v-list :opened="openanytime">  
         <v-list-group value="Users">
           <template v-slot:activator="{ props }">
             <v-list-item
-              v-bind="props"
-              title="Anytime"
+            v-bind="props"
+            title="Anytime"
             ></v-list-item>
           </template>
-        
-            <v-list-item
-              v-for="(title, i) in crudsanytime"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
+          
+          <v-list-item
+          v-for="(title, i) in crudsanytime"
+          :key="i"
+          :value="title"
+          :title="title"
+          ></v-list-item>
+        </v-list-group>
       </v-list>
     </v-card>
-</div>
+  </div>
 <button id="hasattachmentbutton" @click="changeColorhasattachment">Has attachment</button>
 <button id="isunreadbutton" @click="changeColorisunread">Is unread</button>
+</div>
 </div>
   </template>
 
