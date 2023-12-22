@@ -42,6 +42,7 @@ public class MailService {
 
    public UserModel addToDraft(MailModel newEmail){
        UserModel curUser=SystemFolders.getCurUser();
+       System.out.println(newEmail.toString());
        curUser.getFolders().addEmailTo("draft",newEmail);
        SystemFolders.updateUser(curUser);
       return curUser; 

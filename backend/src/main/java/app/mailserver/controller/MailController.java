@@ -1,5 +1,7 @@
 package app.mailserver.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +28,7 @@ public class MailController {
     
     @PostMapping("/toDraft")
     public UserModel draft(@RequestBody MailModel newEmail) {
+        newEmail.setDate();
         return mailService.addToDraft(newEmail);
         
     }

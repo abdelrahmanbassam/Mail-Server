@@ -78,7 +78,7 @@ public class UserModel {
     public String toString() {
         return "{" +
             
-            ", name='" + getName() + "'" +
+            " name='" + getName() + "'" +
             ", password='" + getPassword() + "'" +
             ", emailAddress='" + getEmailAddress() + "'" +
             ", contacts='" + getContacts() + "'" +

@@ -1,19 +1,21 @@
 package app.mailserver.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import lombok.Builder;
 import java.util.Objects;
 
 public class MailModel {
-    private String sender;
+    private String sender="ahmed";
     private List<String> receivers;//change it receivers reciver in all program 
-    private String Subject;
+    private String subject;
     private String body;
     private String Attachment;
     private String importance;
-    private LocalDate date;
+    private String date=setDate();
     
     
     public List<String> getReceivers() {
@@ -21,17 +23,18 @@ public class MailModel {
     }
 
     public MailModel() {
+      
     }
 
-    @Builder
-    public MailModel(List<String> receivers, String sender, String Subject,String body,String Attachment , String type) {
-        this.receivers=receivers;
-        this.sender=sender;
-        this.Subject = Subject;
-        this.body=body;
-        this.Attachment=Attachment;
-        // this.date = date.now();
-    }
+    // @Builder
+    // public MailModel(List<String> receivers, String sender, String subject,String body,String Attachment , String type) {
+    //     this.receivers=receivers;
+    //     this.sender=sender;
+    //     this.subject = subject;
+    //     this.body=body;
+    //     this.Attachment=Attachment;
+    //     this.date = date.now();
+    // }
     public String getAttachment() {
         return this.Attachment;
     }
@@ -54,28 +57,29 @@ public class MailModel {
         this.receivers = receivers;
     }
 
-    public String getSubject() {
-        return this.Subject;
+    public String getsubject() {
+        return this.subject;
     }
 
-    public void setSubject(String Subject) {
-        this.Subject = Subject;
+    public void setsubject(String subject) {
+        this.subject = subject;
     }
 
     public String getBody() {
         return this.body;
     }
-
+    
     public void setBody(String body) {
         this.body = body;
     }
-
-    public LocalDate getDate() {
-        return this.date;
+    
+    public String getDate() {
+        return date; 
     }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
+  
+    public String setDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.now().format(formatter);
     }
 
   
@@ -90,16 +94,16 @@ public class MailModel {
 
  
 
-    public MailModel(String Attachment, String sender, List<String> receivers, List<String> recivers, String Subject, String body, LocalDate date, String type, String importance) {
-        this.Attachment = Attachment;
-        this.sender = sender;
-        this.receivers = receivers;
-        this.Subject = Subject;
-        this.body = body;
-        this.date = date;
+    // public MailModel(String Attachment, String sender, List<String> receivers, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
+    //     this.Attachment = Attachment;
+    //     this.sender = sender;
+    //     this.receivers = receivers;
+    //     this.subject = subject;
+    //     this.body = body;
+    //     this.date = date;
         
-        this.importance = importance;
-    }
+    //     this.importance = importance;
+    // }
 
     @Override
     public boolean equals(Object o) {
@@ -109,24 +113,24 @@ public class MailModel {
             return false;
         }
         MailModel mailModel = (MailModel) o;
-        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(sender, mailModel.sender) && Objects.equals(receivers, mailModel.receivers) &&  Objects.equals(Subject, mailModel.Subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
+        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(sender, mailModel.sender) && Objects.equals(receivers, mailModel.receivers) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Attachment, sender, receivers, Subject, body, date, importance);
+        return Objects.hash(Attachment, sender, receivers, subject, body, date, importance);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " Attachment='" + getAttachment() + "'" +
-            ", sender='" + getsender() + "'" +
-            ", receivers='" + getReceivers() + "'" +
-            ", Subject='" + getSubject() + "'" +
-            ", body='" + getBody() + "'" +
-            ", date='" + getDate() + "'" +
-            ", importance='" + getImportance() + "'" +
+        " sender='" + getsender() + "'" +
+        ", receivers='" + getReceivers() + "'" +
+        ", subject='" + getsubject() + "'" +
+        ", body='" + getBody() + "'" +
+        ", Attachment='" + getAttachment() + "'" +
+        ", importance='" + getImportance() + "'" +
+        ", date='" + getDate() + "'" +
             "}";
     }
 

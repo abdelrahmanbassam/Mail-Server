@@ -30,11 +30,11 @@ public class ContactsService {
     curUser.setContacts(curContacts);
 
     curContacts.add(newContact);
-
+    SystemFolders.updateUser(curUser);
     return curUser;
   }
 
-  public void deleteContact(ContactModel contact, UserModel curUser) {
+  public UserModel deleteContact(ContactModel contact, UserModel curUser) {
 
     List<ContactModel> curContacts = curUser.getContacts();
 
@@ -46,14 +46,14 @@ public class ContactsService {
           && curContacts.get(i).getName().toLowerCase().equals(contact.getName().toLowerCase())) {
 
         curContacts.remove(i);
-
         break;
-
+        
       }
-
     }
     curUser.setContacts(curContacts);
-
+    SystemFolders.updateUser(curUser);
+    return curUser;
+    
   }
 
   public List<ContactModel> searchContacts(String Name, UserModel curUser) {
@@ -64,12 +64,15 @@ public class ContactsService {
     return searched;
   }
 
-  public void sort(UserModel curUser) {
+  public UserModel sort(UserModel curUser) {
     List<ContactModel> curContacts = curUser.getContacts();
     Collections.sort(curContacts, new Comparator<ContactModel>() {
       public int compare(ContactModel Contact1, ContactModel Contact2) {
         return Contact1.getName().toLowerCase().compareTo(Contact2.getName().toLowerCase());
       }
     });
+    SystemFolders.updateUser(curUser);
+    return curUser;
   }
+
 }

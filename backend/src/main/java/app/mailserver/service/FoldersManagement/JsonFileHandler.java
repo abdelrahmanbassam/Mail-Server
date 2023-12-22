@@ -20,11 +20,7 @@ public class JsonFileHandler {
       try{
           File file=new File(usersDataFilePath);
         List<UserModel>usersData=objectmapper.readValue(file, new TypeReference<List<UserModel>>(){});
-        // System.out.println("Values read from Json");
-
-        //   for(var x:usersData){
-        //       System.out.println(x.getId());
-        //   }
+        
         return usersData;
       }
       catch(Exception e){
@@ -37,6 +33,11 @@ public class JsonFileHandler {
     //write in all_usersfile
      public static void updateAllUsers(List<UserModel> updatedList) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
+
+        // System.out.println("Values read from Json");
+        //   for(var x:updatedList){
+        //       System.out.println(x.toString());
+        //   }
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(new File(usersDataFilePath), updatedList);
      } 
