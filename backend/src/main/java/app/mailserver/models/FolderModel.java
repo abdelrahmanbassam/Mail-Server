@@ -2,6 +2,7 @@ package app.mailserver.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FolderModel {
 
@@ -45,6 +46,32 @@ public class FolderModel {
     public void deleteEmail( MailModel deletedEmail){
        emails.remove(deletedEmail);
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof FolderModel)) {
+            return false;
+        }
+        FolderModel folderModel = (FolderModel) o;
+        return Objects.equals(name, folderModel.name) && Objects.equals(emails, folderModel.emails) && Objects.equals(subFolders, folderModel.subFolders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, emails, subFolders);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " name='" + getName() + "'" +
+            ", emails='" + getEmails() + "'" +
+            ", subFolders='" + getSubFolders() + "'" +
+            "}";
+    }
+    
     // public List <MailModel> filterEmails(filterParameter){
        
     // }

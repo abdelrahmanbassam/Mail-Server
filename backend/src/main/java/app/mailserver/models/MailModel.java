@@ -4,34 +4,34 @@ import java.time.LocalDate;
 import java.util.List;
 
 import lombok.Builder;
+import java.util.Objects;
 
 public class MailModel {
-
+    private String Attachment;
     private String sender;
     private List<String> receivers;//change it receivers reciver in all program 
     private String Subject;
     private String body;
     private LocalDate date;
     private String importance;
-    private String Attachment;
     
-
-  
+    
+        public List<String> getRecivers() {
+            return receivers;
+        }
 
     public MailModel() {
     }
 
     @Builder
-    public MailModel(List<String> receivers, String sender, String Subject,String body,String Attachment,String importance) {
+    public MailModel(List<String> receivers, String sender, String Subject,String body,String Attachment , String type) {
         this.receivers=receivers;
         this.sender=sender;
         this.Subject = Subject;
         this.body=body;
         this.Attachment=Attachment;
-        this.importance=importance;
         // this.date = date.now();
     }
-
     public String getAttachment() {
         return this.Attachment;
     }
@@ -48,11 +48,11 @@ public class MailModel {
         this.sender = sender;
     }
 
-    public List<String> getReceivers() {
+    public List<String> getreceivers() {
         return this.receivers;
     }
 
-    public void setReceivers(List<String> receivers) {
+    public void setreceivers(List<String> receivers) {
         this.receivers = receivers;
     }
 
@@ -80,7 +80,7 @@ public class MailModel {
         this.date = date;
     }
 
-   
+  
 
     public String getImportance() {
         return this.importance;
@@ -90,11 +90,49 @@ public class MailModel {
         this.importance = importance;
     }
 
-    // public MailModel CreateMailModel(List<String> receivers, String sender, String Subject, String body, String attachment, String type) {
-    //     MailModel MailModel = new MailModel().builder().receivers(receivers).sender(sender).Subject(Subject).body(body).Attachment(attachment).build();
-    //         // user.SendMailModel(MailModel);
-    //     return MailModel;
-    // }
+ 
+
+    public MailModel(String Attachment, String sender, List<String> receivers, List<String> recivers, String Subject, String body, LocalDate date, String type, String importance) {
+        this.Attachment = Attachment;
+        this.sender = sender;
+        this.receivers = receivers;
+        this.Subject = Subject;
+        this.body = body;
+        this.date = date;
+        
+        this.importance = importance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof MailModel)) {
+            return false;
+        }
+        MailModel mailModel = (MailModel) o;
+        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(sender, mailModel.sender) && Objects.equals(receivers, mailModel.receivers) &&  Objects.equals(Subject, mailModel.Subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Attachment, sender, receivers, Subject, body, date, importance);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " Attachment='" + getAttachment() + "'" +
+            ", sender='" + getsender() + "'" +
+            ", receivers='" + getreceivers() + "'" +
+            ", Subject='" + getSubject() + "'" +
+            ", body='" + getBody() + "'" +
+            ", date='" + getDate() + "'" +
+            ", importance='" + getImportance() + "'" +
+            "}";
+    }
+
+ 
    
 }
 
