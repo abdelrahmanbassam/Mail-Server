@@ -16,7 +16,7 @@ public class MailModel {
     private String importance;
     
     
-        public List<String> getRecivers() {
+        public List<String> getReceivers() {
             return receivers;
         }
 
