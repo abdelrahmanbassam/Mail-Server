@@ -1,5 +1,6 @@
 package app.mailserver.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +24,7 @@ public class UserModel {
         this.password = password;
         this.emailAddress = emailAddress;
         this.folders=new UserFoldersModel();
+        this.contacts=new ArrayList<>();
     }
     
     public UserFoldersModel getFolders() {
