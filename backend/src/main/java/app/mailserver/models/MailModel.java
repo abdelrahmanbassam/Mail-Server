@@ -7,18 +7,18 @@ import lombok.Builder;
 import java.util.Objects;
 
 public class MailModel {
-    private String Attachment;
     private String sender;
     private List<String> receivers;//change it receivers reciver in all program 
     private String Subject;
     private String body;
-    private LocalDate date;
+    private String Attachment;
     private String importance;
+    private LocalDate date;
     
     
-        public List<String> getReceivers() {
-            return receivers;
-        }
+    public List<String> getReceivers() {
+        return receivers;
+    }
 
     public MailModel() {
     }
@@ -48,11 +48,9 @@ public class MailModel {
         this.sender = sender;
     }
 
-    public List<String> getreceivers() {
-        return this.receivers;
-    }
+    
 
-    public void setreceivers(List<String> receivers) {
+    public void setReceivers(List<String> receivers) {
         this.receivers = receivers;
     }
 
@@ -124,7 +122,7 @@ public class MailModel {
         return "{" +
             " Attachment='" + getAttachment() + "'" +
             ", sender='" + getsender() + "'" +
-            ", receivers='" + getreceivers() + "'" +
+            ", receivers='" + getReceivers() + "'" +
             ", Subject='" + getSubject() + "'" +
             ", body='" + getBody() + "'" +
             ", date='" + getDate() + "'" +

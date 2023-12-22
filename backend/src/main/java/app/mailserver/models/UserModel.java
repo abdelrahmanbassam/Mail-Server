@@ -9,17 +9,17 @@ import java.util.Objects;
 // import app.mailserver.MailServerApplication;
 
 public class UserModel {
-    private int id;
+   
     private String name;
-    private String password;
     private String emailAddress;
+    private String password;
     private List<ContactModel> contacts;
     private UserFoldersModel folders;
     
     public UserModel(){
         this.folders=new UserFoldersModel();
     }
-    public UserModel(String name, String password, String emailAddress) {
+    public UserModel(String name, String emailAddress,String password) {
         this.name = name;
         this.password = password;
         this.emailAddress = emailAddress;
@@ -39,12 +39,7 @@ public class UserModel {
     public void setContacts(List<ContactModel> contacts) {
         this.contacts = contacts;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+  
     public String getName() {
         return name;
     }
@@ -71,18 +66,18 @@ public class UserModel {
             return false;
         }
         UserModel userModel = (UserModel) o;
-        return id == userModel.id && Objects.equals(name, userModel.name) && Objects.equals(password, userModel.password) && Objects.equals(emailAddress, userModel.emailAddress) && Objects.equals(contacts, userModel.contacts) && Objects.equals(folders, userModel.folders);
+        return Objects.equals(name, userModel.name) && Objects.equals(password, userModel.password) && Objects.equals(emailAddress, userModel.emailAddress) && Objects.equals(contacts, userModel.contacts) && Objects.equals(folders, userModel.folders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, password, emailAddress, contacts, folders);
+        return Objects.hash(name, password, emailAddress, contacts, folders);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
+            
             ", name='" + getName() + "'" +
             ", password='" + getPassword() + "'" +
             ", emailAddress='" + getEmailAddress() + "'" +

@@ -11,7 +11,6 @@ public class SystemFolders {
 
     public static UserModel signUp(String name,String emailAddress, String password){
         fetchAllUsers();
-        List<UserModel> x=allUsers;
         if(isUserExist(emailAddress)){
             return null;
         }

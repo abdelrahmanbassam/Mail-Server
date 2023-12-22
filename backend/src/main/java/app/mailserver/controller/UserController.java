@@ -30,7 +30,6 @@ public class UserController {
 
     @PostMapping("/signUp")
     public UserModel signUp(@RequestBody RequestUser requestUser) {
-        
         return userService.signUp(requestUser.userName, requestUser.emailAddress,requestUser.password);
     }
 }
