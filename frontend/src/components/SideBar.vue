@@ -27,8 +27,20 @@
       ></v-text-field>
       <v-textarea label="Message" single-line variant="underlined"></v-textarea>
     </div>
+
     <v-card-actions>
-          <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+
+        <v-file-input
+        label="Attachment"
+        multiple
+        show-size
+        @click.prevent
+        >
+        </v-file-input>
+        <!-- <v-file-input multiple label="File input"></v-file-input> -->
+
+
           <v-btn
             color="blue-darken-2"
             variant="text"
@@ -54,7 +66,7 @@
         <v-list-item  
         prepend-icon="mdi-inbox" 
         title="Inbox" 
-        value="inbox" 
+        value="inbox"
         @click="navigateTo('inbox')"
         ></v-list-item>
         <v-list-item 
@@ -115,23 +127,18 @@ export default {
     },
     methods: {
         navigateTo(listMails){
-            this.$emit('navigatTo', listMails);
+            this.$emit('navigateTo', listMails);
         }
     },
 }
 </script>
 
 <style scoped>
-.compose {
-    background: rgb(249, 212, 212);
-}
 .side-bar{
-    background: rgb(245, 228, 228);
     display: flex;
     flex-direction: column;
     padding: 5vh 2vh  2vh 2vh;
-    height: 100vh;
-    /* width: 40vh; */
+    height: 91vh;
 }
 .compose{
     display: flex;

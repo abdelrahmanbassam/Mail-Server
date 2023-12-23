@@ -1,13 +1,13 @@
 <template>
     <v-list class="mail-list">
         <div v-for="mail in user?.folders.inbox.emails" :key="mail" class="mail">
-            <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
-            <v-icon @click="toggleStar" size="27" color="rgb(239, 99, 68)">{{isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
+            <v-icon @click="toggleSelect(mail)" size="25" color="rgb(239, 99, 68)">{{mail.isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
+            <v-icon @click="toggleStar(mail)" size="27" color="rgb(239, 99, 68)">{{mail.isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
             <v-list-item value="">
                 <div  class="bs">
-                    <p class="truncate">from: {{ mail.from }}</p>
-                    <p class="truncate">subject: {{ mail.subject }}</p>
-                    <p class="truncate">date: {{ mail.date }}</p>
+                    <p class="truncate">{{ mail.from }}</p>
+                    <p class="truncate">{{ mail.subject }}</p>
+                    <p class="truncate">{{ mail.date }}</p>
                 </div>
                 </v-list-item>
         </div>
@@ -41,11 +41,11 @@ export default {
                 console.error('Error fetching user data:', e.message);
             }
         },
-        toggleSelect() {
-            this.isSelected = !this.isSelected;
+        toggleSelect(mail) {
+            mail.isSelected = !mail.isSelected;
         },
-        toggleStar() {
-            this.isStared = !this.isStared;
+        toggleStar(mail) {
+            mail.isStared = !mail.isStared;
         },
     }
 }

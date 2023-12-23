@@ -1,7 +1,6 @@
 <template>
-  <v-app>
-    <NavBar/>
-    <!-- <MailListView/> -->
+  <v-app >
+    <NavBar />
     <v-main>
       <router-view/>
     </v-main>
@@ -11,11 +10,14 @@
 
 <script>
   import NavBar from './components/NavBar.vue';
-  // import MailListView from './views/mails/MailListView.vue';
   export default {
     components:{NavBar},
+    methods: {
+      handleNavigation(mailList) {
+        console.log(mailList);
+      }
+    }
   }
 </script>
-
 <style>
 </style>
