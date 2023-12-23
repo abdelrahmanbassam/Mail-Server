@@ -36,6 +36,40 @@
         </template>
     </template>
   </v-toolbar>
+  <div class="container">
+  <div class="subject">
+    <br>
+  <h1>Subject:</h1>
+</div>
+<div class="from">
+  <h3>From:</h3>
+  <h3>Date:</h3>
+</div>
+<div class="email">
+    <br>
+  <h3>email:</h3>
+</div>
+<div class="forwardandreply">
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="auto">
+  <v-btn
+  color="blue"
+  >
+  reply
+</v-btn>
+</v-col>
+<v-col cols="auto">
+    <v-btn
+    color="blue"
+    >
+  forward
+</v-btn>
+</v-col>
+    </v-row>
+  </v-container>
+</div>
+</div>
 </div>
 <div class="Frombutton">
       <v-list :opened="openfrom">
@@ -118,5 +152,17 @@ width: 60%;
 .refreshbutton{
     margin-top: 1vh;
     margin-left: 2vh;
+}
+.from{
+  display: flex;
+  justify-content:space-between
+}
+.forwardandreply{
+  display: flex;
+  margin-top: 450px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
 }
 </style>
