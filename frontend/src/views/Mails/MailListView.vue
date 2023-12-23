@@ -1,18 +1,21 @@
 <template>
+    
     <div class="home-view">
-        
-        <SideBar/>
+        <!-- <SideBar :user="user"/> -->
         <div class="mails-nav">
-            <nav>
-                <NavBar/>
-            </nav>
-            <v-scroll class="mail-list">
-                <div v-for="i in 100" :key="i" class="mail">
+            <v-list class="mail-list">
+                <div v-for="mail in user?.folders.inbox.emails" :key="mail" class="mail">
                     <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
                     <v-icon @click="toggleStar" size="27" color="rgb(239, 99, 68)">{{isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-                    <v-btn>mail</v-btn>
+                    <v-list-item value="">
+                        <div  class="bs">
+                            <p class="truncate">from: {{ mail.from }}</p>
+                            <p class="truncate">subject: {{ mail.subject }}</p>
+                            <p class="truncate">date: {{ mail.date }}</p>
+                        </div>
+                        </v-list-item>
                 </div>
-            </v-scroll>
+            </v-list>
         </div>
     </div>
 </template>
@@ -24,12 +27,29 @@ export default {
     components: {SideBar, NavBar},
     data() {
         return {
-            mailList:["bxbxbx", "djjd", "mdnnmd"],
+            user: null,
+            currentList: null,
             isSelected: false,
             isStared: false,
         }
     },
+    mounted() {
+        this.fetchData();
+    },
     methods: {
+        async fetchData(){
+            try {
+                fetch('http://localhost:3000/user')
+                .then(response => response.json())
+                .then(data => {
+                    this.user = data;
+                    console.log(this.user.name);
+                });
+                
+            }catch(e) {
+                console.error('Error fetching user data:', e.message);
+            }
+        },
         toggleSelect() {
             this.isSelected = !this.isSelected;
         },
@@ -44,6 +64,9 @@ export default {
 nav {
     z-index: 2;
 }
+p{
+    max-width: 30vh;
+}
 .v-icon {
     display: flex;
     align-self: center;
@@ -51,18 +74,20 @@ nav {
 }
 .mail{
     display: flex;
-    margin: 0.5%;
-    height: 5vh;
+    margin: 0.25vh 0 0.5vh 0.5vh;
 }
-.v-btn {
-    width: 100%;
-    /* color: rgb(239, 99, 68); */
+.bs {
+    display: flex;
+    justify-content: space-between;
+}
+.v-list-item {
+    max-height: 10vh;
+    width: 93%;
 }
 .mail-list{
     z-index: 1;
     margin-top: 2vh;
     height: 78vh;
-    /* width: 100%; */
     overflow-y: auto;
 }
 .home-view {
@@ -72,5 +97,10 @@ nav {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

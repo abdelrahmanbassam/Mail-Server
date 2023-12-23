@@ -1,13 +1,14 @@
 <template>
     <div>
-        <SideBar/>
+        <!-- <SideBar :user="user"/> -->
     </div>
 </template>
 
 <script>
-import SideBar from '@/components/SideBar.vue';
+// import SideBar from '@/components/SideBar.vue';
 export default {
-    components: {SideBar, }
+    // components: {SideBar, },
+    // props:{user}
 }
 </script>
 

@@ -1,12 +1,13 @@
 <template>
-  <div>
-
-    <div class="Search">
-      <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
-    </div>
-    <div class="nav-bar">
+  <nav>
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <div class="Search">
+        <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
+  </div>
+  <div class="nav-bar">
     <div class="Frombutton">
-    <v-card
+      <v-card
       class="mx-auto"
       color="info"
       >
@@ -15,30 +16,30 @@
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" title="From"></v-list-item>
           </template>
-
+          
           <v-list-item
-              v-for="(title, i) in crudsfrom"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
+          v-for="(title, i) in crudsfrom"
+          :key="i"
+          :value="title"
+          :title="title"
+          ></v-list-item>
+        </v-list-group>
       </v-list>
     </v-card>
 </div>
 <div class="Tobutton">
-    <v-card
-      class="mx-auto"
-      >
-      <v-list :opened="opento">  
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-            v-bind="props"
-            title="To"
-            ></v-list-item>
-          </template>
-          
+  <v-card
+    class="mx-auto"
+    >
+    <v-list :opened="opento">  
+      <v-list-group value="Users">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+          v-bind="props"
+          title="To"
+          ></v-list-item>
+        </template>
+        
           <v-list-item
           v-for="(title, i) in crudsto"
           :key="i"
@@ -48,39 +49,46 @@
         </v-list-group>
       </v-list>
     </v-card>
-</div>
-<div class="Anytimebutton">
-  <v-card
-  class="mx-auto"
-  >
-      <v-list :opened="openanytime">  
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-            v-bind="props"
-            title="Anytime"
-            ></v-list-item>
-          </template>
-          
-          <v-list-item
-          v-for="(title, i) in crudsanytime"
-          :key="i"
-          :value="title"
-          :title="title"
-          ></v-list-item>
-        </v-list-group>
-      </v-list>
-    </v-card>
   </div>
+  <div class="Anytimebutton">
+    <v-card
+    class="mx-auto"
+    >
+    <v-list :opened="openanytime">  
+      <v-list-group value="Users">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+          v-bind="props"
+          title="Anytime"
+          ></v-list-item>
+        </template>
+        
+        <v-list-item
+        v-for="(title, i) in crudsanytime"
+        :key="i"
+        :value="title"
+        :title="title"
+        ></v-list-item>
+      </v-list-group>
+    </v-list>
+  </v-card>
+</div>
 <button id="hasattachmentbutton" @click="changeColorhasattachment">Has attachment</button>
 <button id="isunreadbutton" @click="changeColorisunread">Is unread</button>
 </div>
-</div>
-  </template>
+</v-app-bar>
+</nav>
+<v-navigation-drawer v-model="drawer" class="indigo">
+  <SideBar/>
+</v-navigation-drawer>
+</template>
 
 <script>
+  import SideBar from  './SideBar.vue';
   export default {
+    components:{SideBar},
     data: () => ({
+      drawer:false,
       openfrom: [],
       adminsfrom: [
         ['Management'],
