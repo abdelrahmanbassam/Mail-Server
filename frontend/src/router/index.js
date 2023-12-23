@@ -11,7 +11,7 @@ const routes = [
     component: MailListView
   },
   {
-    path: '/mail/:id',
+    path: '/mail',
     name: 'mail-detail-view',
     component: MailDetailView
   },

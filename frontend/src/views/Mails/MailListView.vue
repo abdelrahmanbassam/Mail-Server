@@ -89,9 +89,4 @@ p{
     flex-direction: column;
     width: 100%;
 }
-.truncate {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 </style>
