@@ -24,21 +24,20 @@ public class ContactsService {
   // edit
   // search
   // sort
-  public UserModel addContact(ContactModel newContact, UserModel curUser) {
-
+  public UserModel addContact(ContactModel newContact) {
+    UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     curUser.setContacts(curContacts);
 
     curContacts.add(newContact);
+    sort();
     SystemFolders.updateUser(curUser);
     return curUser;
   }
 
-  public UserModel deleteContact(ContactModel contact, UserModel curUser) {
-
+  public UserModel deleteContact(ContactModel contact) {
+    UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
-
-    curUser.setContacts(curContacts);
 
     for (int i = 0; i < curContacts.size(); i++) {
 
@@ -55,16 +54,37 @@ public class ContactsService {
     return curUser;
     
   }
-
-  public List<ContactModel> searchContacts(String Name, UserModel curUser) {
+  public UserModel editContact(String oldName,ContactModel updatedContactModel){
+    UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
-    List<ContactModel> searched = curContacts.stream()
+    for(int i=0;i<curContacts.size();i++){
+      if(curContacts.get(i).getName().equalsIgnoreCase(oldName)){
+        curContacts.get(i).setName(updatedContactModel.getName());
+        curContacts.get(i).setEmailAddresses(updatedContactModel.getEmailAddresses());
+        curContacts.get(i).setPhoneNums(updatedContactModel.getPhoneNums());
+        curContacts.get(i).setImportance(updatedContactModel.getImportance());
+        break;
+      }
+    }
+    curUser.setContacts(curContacts);
+    sort();
+    SystemFolders.updateUser(curUser);
+    return curUser;
+
+
+  }
+  public List<ContactModel> searchContacts(String Name) {
+    UserModel curUser=SystemFolders.getCurUser();
+    List<ContactModel> curContacts =new ArrayList<>();
+    curContacts=curUser.getContacts();
+    return curContacts.stream()
         .filter(contact -> contact.getName().toLowerCase().contains(Name.toLowerCase()))
         .collect(Collectors.toList());
-    return searched;
   }
+  
 
-  public UserModel sort(UserModel curUser) {
+  public UserModel sort() {
+    UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     Collections.sort(curContacts, new Comparator<ContactModel>() {
       public int compare(ContactModel Contact1, ContactModel Contact2) {

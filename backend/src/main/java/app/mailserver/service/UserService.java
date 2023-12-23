@@ -35,11 +35,11 @@ public class UserService {
 
     }
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
 
-        UserService userService = new UserService();
-        UserModel x = userService.signUp("Osama el Azrak", "ahmed@gmail.com", "fat7y");
-        System.out.println("done");
+    //     UserService userService = new UserService();
+    //     UserModel x = userService.signUp("Osama el Azrak", "ahmed@gmail.com", "fat7y");
+    //     System.out.println("done");
 
-    }
+    // }
 }
