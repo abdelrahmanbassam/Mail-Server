@@ -3,46 +3,45 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <div class="Search">
-        <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
-  </div>
-  <div class="nav-bar">
-    <div class="Frombutton">
-      <v-card
-      class="mx-auto"
-      color="info"
-      >
-      <v-list :opened="openfrom">
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props" title="From"></v-list-item>
-          </template>
-          
-          <v-list-item
-          v-for="(title, i) in crudsfrom"
-          :key="i"
-          :value="title"
-          :title="title"
-          ></v-list-item>
-        </v-list-group>
-      </v-list>
-    </v-card>
-</div>
-<div class="Tobutton">
-  <v-card
-    class="mx-auto"
-    >
-    <v-list :opened="opento">  
-      <v-list-group value="Users">
-        <template v-slot:activator="{ props }">
-          <v-list-item
-          v-bind="props"
-          title="To"
-          ></v-list-item>
-        </template>
-        
-          <v-list-item
-          v-for="(title, i) in crudsto"
-          :key="i"
+      </div>
+      <div class="nav-bar">
+        <div class="Frombutton">
+          <v-card
+          class="mx-auto"
+          color="info"
+          >
+          <v-list :opened="openfrom">
+            <v-list-group value="Users">
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props" title="From"></v-list-item>
+              </template>
+              
+              <v-list-item
+              v-for="(title, i) in crudsfrom"
+              :key="i"
+              :value="title"
+              :title="title"
+              ></v-list-item>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </div>
+      <div class="Tobutton">
+        <v-card
+        class="mx-auto"
+        >
+        <v-list :opened="opento">  
+          <v-list-group value="Users">
+            <template v-slot:activator="{ props }">
+              <v-list-item
+              v-bind="props"
+              title="To"
+              ></v-list-item>
+            </template>
+            
+            <v-list-item
+            v-for="(title, i) in crudsto"
+            :key="i"
           :value="title"
           :title="title"
           ></v-list-item>
@@ -77,10 +76,11 @@
 <button id="isunreadbutton" @click="changeColorisunread">Is unread</button>
 </div>
 </v-app-bar>
-</nav>
-<v-navigation-drawer v-model="drawer" class="indigo">
+<input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
+<v-navigation-drawer v-model="drawer" app class="indigo">
   <SideBar/>
 </v-navigation-drawer>
+</nav>
 </template>
 
 <script>
@@ -88,7 +88,7 @@
   export default {
     components:{SideBar},
     data: () => ({
-      drawer:false,
+      drawer:true,
       openfrom: [],
       adminsfrom: [
         ['Management'],

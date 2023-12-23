@@ -1,30 +1,21 @@
 <template>
-    
-    <div class="home-view">
-        <!-- <SideBar :user="user"/> -->
-        <div class="mails-nav">
-            <v-list class="mail-list">
-                <div v-for="mail in user?.folders.inbox.emails" :key="mail" class="mail">
-                    <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
-                    <v-icon @click="toggleStar" size="27" color="rgb(239, 99, 68)">{{isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-                    <v-list-item value="">
-                        <div  class="bs">
-                            <p class="truncate">from: {{ mail.from }}</p>
-                            <p class="truncate">subject: {{ mail.subject }}</p>
-                            <p class="truncate">date: {{ mail.date }}</p>
-                        </div>
-                        </v-list-item>
+    <v-list class="mail-list">
+        <div v-for="mail in user?.folders.inbox.emails" :key="mail" class="mail">
+            <v-icon @click="toggleSelect" size="25" color="rgb(239, 99, 68)">{{isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
+            <v-icon @click="toggleStar" size="27" color="rgb(239, 99, 68)">{{isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
+            <v-list-item value="">
+                <div  class="bs">
+                    <p class="truncate">from: {{ mail.from }}</p>
+                    <p class="truncate">subject: {{ mail.subject }}</p>
+                    <p class="truncate">date: {{ mail.date }}</p>
                 </div>
-            </v-list>
+                </v-list-item>
         </div>
-    </div>
+    </v-list>
 </template>
 
 <script>
-import SideBar from '@/components/SideBar.vue';
-import NavBar from '@/components/NavBar.vue';
 export default {
-    components: {SideBar, NavBar},
     data() {
         return {
             user: null,
@@ -86,8 +77,8 @@ p{
 }
 .mail-list{
     z-index: 1;
-    margin-top: 2vh;
-    height: 78vh;
+    /* margin-top: 2vh; */
+    height: 87.5vh;
     overflow-y: auto;
 }
 .home-view {

@@ -77,6 +77,76 @@
               "date": "2023-12-27",
               "subject": "Upcoming Events",
               "body": "Stay tuned for exciting events in the coming weeks."
+            },
+            {
+              "from": "sender1@example.com",
+              "to": ["recipient1@example.com", "recipient2@example.com"],
+              "date": "2023-12-18",
+              "subject": "Meeting Invitation",
+              "body": "Please join us for an important meeting."
+            },
+            {
+              "from": "sender2@example.com",
+              "to": ["recipient3@example.com"],
+              "date": "2023-12-19",
+              "subject": "Project Update",
+              "body": "Here is the latest update on the project."
+            },
+            {
+              "from": "sender3@example.com",
+              "to": ["recipient1@example.com", "recipient4@example.com"],
+              "date": "2023-12-20",
+              "subject": "Holiday Greetings",
+              "body": "Wishing you a joyful holiday season!"
+            },
+            {
+              "from": "sender4@example.com",
+              "to": ["recipient2@example.com", "recipient5@example.com"],
+              "date": "2023-12-21",
+              "subject": "Important Update",
+              "body": "This is an important update. Please read carefully."
+            },
+            {
+              "from": "sender5@example.com",
+              "to": ["recipient1@example.com"],
+              "date": "2023-12-22",
+              "subject": "Urgent Notice",
+              "body": "This is an urgent notice. Take immediate action."
+            },
+            {
+              "from": "sender6@example.com",
+              "to": ["recipient3@example.com"],
+              "date": "2023-12-23",
+              "subject": "Feedback Request",
+              "body": "We would like to hear your feedback on our latest project."
+            },
+            {
+              "from": "sender7@example.com",
+              "to": ["recipient4@example.com"],
+              "date": "2023-12-24",
+              "subject": "Season's Greetings",
+              "body": "Wishing you a wonderful holiday season and a Happy New Year!"
+            },
+            {
+              "from": "sender8@example.com",
+              "to": ["recipient5@example.com"],
+              "date": "2023-12-25",
+              "subject": "Christmas Celebration",
+              "body": "Join us for a Christmas celebration on the 25th."
+            },
+            {
+              "from": "sender9@example.com",
+              "to": ["recipient1@example.com"],
+              "date": "2023-12-26",
+              "subject": "Year-End Party",
+              "body": "Celebrate the end of the year with us at the annual party."
+            },
+            {
+              "from": "sender10@example.com",
+              "to": ["recipient2@example.com"],
+              "date": "2023-12-27",
+              "subject": "Upcoming Events",
+              "body": "Stay tuned for exciting events in the coming weeks."
             }
           ],
           "subFolders": []

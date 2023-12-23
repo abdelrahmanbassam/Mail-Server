@@ -1,19 +1,17 @@
 <template>
   <v-app>
-    <!-- <SideBar/> -->
-    <v-toolbar-side-icon class="grey--text"  @click="drawer = !drawer"></v-toolbar-side-icon>
-
     <NavBar/>
-
-    <v-content>
+    <!-- <MailListView/> -->
+    <v-main>
       <router-view/>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 
 <script>
   import NavBar from './components/NavBar.vue';
+  // import MailListView from './views/mails/MailListView.vue';
   export default {
     components:{NavBar},
   }

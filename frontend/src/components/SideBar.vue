@@ -1,11 +1,7 @@
 <template>
     <div class="side-bar">
-        
-        
-        
-        <!-- <template>
-  <v-row justify="center"> -->
-    <v-dialog v-model="dialog" persistent width="auto">
+
+    <v-dialog v-model="dialog" persistent width="500">
     <template v-slot:activator="{ props }">
         <v-btn
         color="primary"
@@ -16,41 +12,43 @@
         </v-btn>
     </template>
 
-    <v-card class="mx-auto" max-width="400">
-    <span class="me-4">To</span>
-
-    <v-menu
-      v-model="menu"
-      location="top start"
-      origin="top start"
-      transition="scale-transition"
-    >
-    </v-menu>
-
+    <v-card class="mx-auto" width="600">
     <v-divider></v-divider>
-
     <div class="pa-3">
       <v-text-field
-        label="Subject"
-        model-value="Re: Vacation Request"
+        label="To"
         single-line
         variant="underlined"
       ></v-text-field>
-
+      <v-text-field
+        label="Subject"
+        single-line
+        variant="underlined"
+      ></v-text-field>
       <v-textarea label="Message" single-line variant="underlined"></v-textarea>
     </div>
+    <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue-darken-2"
+            variant="text"
+            @click="dialog = false"
+          >
+            close
+          </v-btn>
+          <v-btn
+            class="text-none ms-4 text-white"
+            color="blue-darken-2"
+            rounded="3"
+            variant="flat"
+            @click="dialog = false"
+        >
+            Send
+        </v-btn>
+        </v-card-actions>
   </v-card>
 
     </v-dialog>
-  <!-- </v-row>
-</template> -->
-
-
-
-
-        <!-- <v-btn class="compose" rounded="30" variant="tonal" stacked>
-            <h3>Compose</h3>
-        </v-btn> -->
 
         <v-list :value="activeButton">
         <v-list-item  
