@@ -26,7 +26,7 @@ public class MailService {
        SystemFolders.updateUser(curUser);
 
        //we can make it as a queue 
-       for(var x : newEmail.getReceivers()){
+       for(var x : newEmail.getTo()){
 
          if(SystemFolders.isUserExist(x)){
 

@@ -44,7 +44,7 @@ public class UserFoldersModel {
   
   }
   
-  public void deleteLabel(List<MailModel> emails,String from){
+  public void deleteLabel(String from){
     for(int i=0;i<labels.size();i++){
       if(labels.get(i).getName().equals(from)){
         labels.remove(i);

@@ -1,25 +1,25 @@
 package app.mailserver.models;
 
-import java.time.LocalDate;
+// import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import lombok.Builder;
+// import lombok.Builder;
 import java.util.Objects;
 
 public class MailModel {
-    private String sender="ahmed";
-    private List<String> receivers;//change it receivers reciver in all program 
+    private String from;
+    private List<String> to;//change it to reciver in all program 
     private String subject;
     private String body;
     private String Attachment;
     private String importance;
-    private String date=setDate();
+    private String date=new String();
     
     
-    public List<String> getReceivers() {
-        return receivers;
+    public List<String> getTo() {
+        return to;
     }
 
     public MailModel() {
@@ -27,9 +27,9 @@ public class MailModel {
     }
 
     // @Builder
-    // public MailModel(List<String> receivers, String sender, String subject,String body,String Attachment , String type) {
-    //     this.receivers=receivers;
-    //     this.sender=sender;
+    // public MailModel(List<String> to, String from, String subject,String body,String Attachment , String type) {
+    //     this.to=to;
+    //     this.from=from;
     //     this.subject = subject;
     //     this.body=body;
     //     this.Attachment=Attachment;
@@ -43,18 +43,18 @@ public class MailModel {
         this.Attachment = Attachment;
     }
 
-    public String getsender() {
-        return this.sender;
+    public String getfrom() {
+        return this.from;
     }
 
-    public void setsender(String sender) {
-        this.sender = sender;
+    public void setfrom(String from) {
+        this.from = from;
     }
 
     
 
-    public void setReceivers(List<String> receivers) {
-        this.receivers = receivers;
+    public void setto(List<String> to) {
+        this.to = to;
     }
 
     public String getsubject() {
@@ -77,9 +77,12 @@ public class MailModel {
         return date; 
     }
   
-    public String setDate() {
+    public void setDate(String date) {
+        this.date=date;
+    }
+    public void setnewDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return LocalDateTime.now().format(formatter);
+        date=LocalDateTime.now().format(formatter);
     }
 
   
@@ -94,10 +97,10 @@ public class MailModel {
 
  
 
-    // public MailModel(String Attachment, String sender, List<String> receivers, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
+    // public MailModel(String Attachment, String from, List<String> to, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
     //     this.Attachment = Attachment;
-    //     this.sender = sender;
-    //     this.receivers = receivers;
+    //     this.from = from;
+    //     this.to = to;
     //     this.subject = subject;
     //     this.body = body;
     //     this.date = date;
@@ -113,19 +116,19 @@ public class MailModel {
             return false;
         }
         MailModel mailModel = (MailModel) o;
-        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(sender, mailModel.sender) && Objects.equals(receivers, mailModel.receivers) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
+        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Attachment, sender, receivers, subject, body, date, importance);
+        return Objects.hash(Attachment, from, to, subject, body, date, importance);
     }
 
     @Override
     public String toString() {
         return "{" +
-        " sender='" + getsender() + "'" +
-        ", receivers='" + getReceivers() + "'" +
+        " from='" + getfrom() + "'" +
+        ", to='" + getTo() + "'" +
         ", subject='" + getsubject() + "'" +
         ", body='" + getBody() + "'" +
         ", Attachment='" + getAttachment() + "'" +

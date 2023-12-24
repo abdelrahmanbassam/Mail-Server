@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import app.mailserver.models.UserModel;
+import app.mailserver.models.RequestObject;
 import app.mailserver.models.RequestUser;
 import app.mailserver.service.UserService;
 
@@ -23,13 +24,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public UserModel login(@RequestBody RequestUser requestUser) {
-        return userService.login(requestUser.emailAddress, requestUser.password);
-        
+    public UserModel login(@RequestBody RequestObject params) {
+
+        // return userService.login(requestUser.emailAddress, requestUser.password);
+        return userService.login((String)params.getByKey("emailAddress"),(String)params.getByKey("password"));
+
     }
 
     @PostMapping("/signUp")
-    public UserModel signUp(@RequestBody RequestUser requestUser) {
-        return userService.signUp(requestUser.userName, requestUser.emailAddress,requestUser.password);
+    public UserModel signUp(@RequestBody RequestObject params) {
+
+        return userService.signUp((String)params.getByKey("userName"), (String)params.getByKey("emailAddress"),(String)params.getByKey("password"));
     }
+    
 }

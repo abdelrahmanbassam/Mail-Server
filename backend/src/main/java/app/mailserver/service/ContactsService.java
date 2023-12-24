@@ -1,21 +1,16 @@
 package app.mailserver.service;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.parsing.EmptyReaderEventListener;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.core.annotation.MergedAnnotations.Search;
+
 import org.springframework.stereotype.Service;
 
 import app.mailserver.models.ContactModel;
 import app.mailserver.models.UserModel;
-import app.mailserver.service.FoldersManagement.JsonFileHandler;
 import app.mailserver.service.FoldersManagement.SystemFolders;
 @Service
 public class ContactsService {
