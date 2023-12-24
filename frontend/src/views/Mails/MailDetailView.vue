@@ -1,7 +1,7 @@
 <template>
 <div class="show">
-    <SideBar/>
-    <div class="toolbar">
+  <NavBar />
+  <div class="toolbar">
   <v-toolbar>
     <template v-slot:prepend v-if="$vuetify.display.smAndUp">
         <router-link to="/">
@@ -96,7 +96,9 @@
 </template>
 
 <script>
-export default {
+  import NavBar from '../../components/NavBar.vue';
+  export default {
+    components:{NavBar},
 
 }
 </script>

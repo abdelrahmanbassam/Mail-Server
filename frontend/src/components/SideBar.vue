@@ -18,9 +18,9 @@
         ></v-list-item>
         <v-list-item 
         prepend-icon="mdi-star" 
-        title="Stared" 
-        value="stared"  
-        @click="navigateTo('stared')"
+        title="contacts" 
+        value="contacts"  
+        @click="navigateTo('contacts')"
         ></v-list-item>
         <v-list-item 
         prepend-icon="mdi-label-variant-outline" 
@@ -69,8 +69,9 @@ export default {
         }
     },
     methods: {
-        navigateTo(listMails){
-            this.$emit('navigateTo', listMails);
+        navigateTo(listName){
+            this.$emit('navigateTo', listName);
+            console.log(listName);
         }
     },
 }

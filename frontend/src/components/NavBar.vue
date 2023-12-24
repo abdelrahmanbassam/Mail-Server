@@ -1,10 +1,5 @@
 <template>
-  <nav>
-    <!-- <v-app-bar app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    </v-app-bar> -->
-      
-
+  <nav>      
     <v-app-bar flat app color="rgb(235, 235, 235)">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title class="text-uppercase">
@@ -101,7 +96,6 @@
 #hasattachmentbutton {
     margin-left: 30px; 
     background-color: rgb(178, 178, 178); 
-    /* padding: 10px; */
     border: none;
     border: 2px solid black;
     color: black;
