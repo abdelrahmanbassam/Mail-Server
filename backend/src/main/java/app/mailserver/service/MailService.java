@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
-import app.mailserver.service.FoldersManagement.SystemFolders;
+import app.mailserver.service.SystemManagement.SystemFolders;
 
 // import java.time.LocalDate;
 // import java.util.List;

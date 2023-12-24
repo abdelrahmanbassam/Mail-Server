@@ -1,4 +1,4 @@
-package app.mailserver.service.FoldersManagement;
+package app.mailserver.service.SystemManagement;
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
 

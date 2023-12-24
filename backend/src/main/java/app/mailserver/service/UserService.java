@@ -1,10 +1,9 @@
 package app.mailserver.service;
 
-import app.mailserver.service.FoldersManagement.SystemFolders;
-
 import org.springframework.stereotype.Service;
 
 import app.mailserver.models.UserModel;
+import app.mailserver.service.SystemManagement.SystemFolders;
 
 @Service
 public class UserService {

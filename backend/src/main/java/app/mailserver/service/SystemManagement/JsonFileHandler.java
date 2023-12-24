@@ -1,4 +1,4 @@
-package app.mailserver.service.FoldersManagement;
+package app.mailserver.service.SystemManagement;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;

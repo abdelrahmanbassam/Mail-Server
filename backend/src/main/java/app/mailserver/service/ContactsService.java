@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import app.mailserver.models.ContactModel;
 import app.mailserver.models.UserModel;
-import app.mailserver.service.FoldersManagement.SystemFolders;
+import app.mailserver.service.SystemManagement.SystemFolders;
 @Service
 public class ContactsService {
   // add
