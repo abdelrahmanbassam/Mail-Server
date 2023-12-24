@@ -11,6 +11,9 @@
         <span class="font-weight-light">Mail</span>
         <span>Server</span>
       </v-app-bar-title>
+      <div class="Search">
+        <input v-model="searchQuery" @input="searchEmails" placeholder="🔍 Search emails..." class="search-input">
+    </div>
       <v-spacer></v-spacer>
       <v-btn flat color="grey">
         <span>Sign Out </span>
@@ -135,12 +138,15 @@ height: 10vh;
     /* padding: 2vh 2vh  2vh 2vh; */
 }
 .Search {
-  margin-left: 25%;
-}
-.Search input {
-  padding: 5px;
-  width: 50%;
-  border: 2px solid aqua;
-}
+    margin-left: 10%;
+    margin-top: 10px; /* Adjust the margin-top as needed */
+    width: 50%;
+  }
 
+  .Search input {
+    padding: 5px;
+    width: 50%;
+    border: 2px solid white;
+    background-color: white;
+  }
 </style>

@@ -30,9 +30,9 @@ export default {
             // isStared: false,
         }
     },
-    mounted() {
-        this.fetchData();
-    },
+    // mounted() {
+    //     this.fetchData();
+    // },
     methods: {
         async fetchData(){
             try {
