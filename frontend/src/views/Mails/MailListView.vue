@@ -8,7 +8,7 @@
             :label="mail"
             :value="mail"
             ></v-checkbox> 
-            <v-list-item value=""  @click="df">
+            <v-list-item :value="mail"  @click="df">
                 <div  class="bs">
                     <p class="truncate">{{ mail.from }}</p>
                     <p class="truncate">{{ mail.subject }}</p>
