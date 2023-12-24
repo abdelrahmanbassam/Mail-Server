@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.mailserver.models.UserModel;
 import app.mailserver.models.RequestObject;
-import app.mailserver.models.RequestUser;
 import app.mailserver.service.UserService;
 
 

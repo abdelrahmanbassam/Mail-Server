@@ -26,7 +26,7 @@ public class SystemFolders {
 
     public static boolean loginChecker(String emailAddress,String password){
         fetchAllUsers();
-        List<UserModel> x=allUsers;
+        // List<UserModel> x=allUsers;
         if(!isUserExist(emailAddress)){
             //if we want to type message"user not found"
             return false;

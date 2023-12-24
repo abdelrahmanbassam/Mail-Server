@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,7 +73,7 @@ public class FolderController {
     // public UserModel searchFolder(@RequestParam String folderName, @RequestParam String searchLogic) {
     //     // implementation
     // }
-    public List<MailModel> toEmailList(RequestObject params){
+    public List<MailModel> toEmailList(RequestObject params)throws RuntimeException{
         List<Map<String, Object>> emailsParams = (List<Map<String, Object>>) params.getByKey("emails");
         List<MailModel> emails = new ArrayList<MailModel>();
         for (var x:emailsParams){
