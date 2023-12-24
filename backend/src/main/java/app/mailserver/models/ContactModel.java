@@ -7,9 +7,9 @@ public class ContactModel {
     private String name;
     private List<String> emailAddresses;
     private List<String> phoneNums;
-    private int importance;//we can change it to make string or what ever 
+    private String importance;//we can change it to make string or what ever 
    
-    public ContactModel(String name, List<String> emailAddresses, List<String> phoneNums, int importance) {
+    public ContactModel(String name, List<String> emailAddresses, List<String> phoneNums, String importance) {
         this.name = name;
         this.emailAddresses = emailAddresses;
         this.phoneNums = phoneNums;
@@ -40,11 +40,11 @@ public class ContactModel {
         this.phoneNums = phoneNums;
     }
 
-    public int getImportance() {
+    public String getImportance() {
         return importance;
     }
 
-    public void setImportance(int importance) {
+    public void setImportance(String importance) {
         this.importance = importance;
     }
 
