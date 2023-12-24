@@ -3,7 +3,6 @@ package app.mailserver.controller;
 import app.mailserver.models.*;
 import app.mailserver.service.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
