@@ -1,66 +1,7 @@
 <template>
     <div class="side-bar">
-
-    <v-dialog v-model="dialog" persistent width="500">
-    <template v-slot:activator="{ props }">
-        <v-btn
-        color="primary"
-        v-bind="props"
-        prepend-icon="mdi-pen"
-        >
-        Compose
-        </v-btn>
-    </template>
-
-    <v-card class="mx-auto" width="600">
-    <v-divider></v-divider>
-    <div class="pa-3">
-      <v-text-field
-        label="To"
-        single-line
-        variant="underlined"
-      ></v-text-field>
-      <v-text-field
-        label="Subject"
-        single-line
-        variant="underlined"
-      ></v-text-field>
-      <v-textarea label="Message" single-line variant="underlined"></v-textarea>
-    </div>
-
-    <v-card-actions>
-        <v-spacer></v-spacer>
-
-        <v-file-input
-        label="Attachment"
-        multiple
-        show-size
-        @click.prevent
-        >
-        </v-file-input>
-        <!-- <v-file-input multiple label="File input"></v-file-input> -->
-
-
-          <v-btn
-            color="blue-darken-2"
-            variant="text"
-            @click="dialog = false"
-          >
-            close
-          </v-btn>
-          <v-btn
-            class="text-none ms-4 text-white"
-            color="blue-darken-2"
-            rounded="3"
-            variant="flat"
-            @click="dialog = false"
-        >
-            Send
-        </v-btn>
-        </v-card-actions>
-  </v-card>
-
-    </v-dialog>
+        
+        <Compose />
 
         <v-list :value="activeButton">
         <v-list-item  
@@ -117,12 +58,14 @@
 </template>
 
 <script>
+import Compose from './Compose.vue'
 export default {
     name: 'SideBar',
-    props: ['user'],   
+    props: ['user'], 
+    components:{Compose},
     data(){
         return{
-            dialog: false
+            
         }
     },
     methods: {

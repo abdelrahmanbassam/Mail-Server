@@ -1,9 +1,14 @@
 <template>
     <v-list class="mail-list">
         <div v-for="mail in user?.folders.inbox.emails" :key="mail" class="mail">
-            <v-icon @click="toggleSelect(mail)" size="25" color="rgb(239, 99, 68)">{{mail.isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon>
-            <v-icon @click="toggleStar(mail)" size="27" color="rgb(239, 99, 68)">{{mail.isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-            <v-list-item value="">
+            <!-- <v-icon @click="toggleSelect(mail)" size="25" color="rgb(239, 99, 68)">{{mail.isSelected ? 'mdi-checkbox-marked' : 'mdi-checkbox-blank-outline'}}</v-icon> -->
+            <!-- <v-icon @click="toggleStar(mail)" size="27" color="rgb(239, 99, 68)">{{mail.isStared ? 'mdi-star' : 'mdi-star-outline'}}</v-icon> -->
+            <v-checkbox
+            v-model="selectedMails"
+            :label="mail"
+            :value="mail"
+            ></v-checkbox> 
+            <v-list-item value=""  @click="df">
                 <div  class="bs">
                     <p class="truncate">{{ mail.from }}</p>
                     <p class="truncate">{{ mail.subject }}</p>
@@ -18,10 +23,11 @@
 export default {
     data() {
         return {
+            selectedMails: [],
             user: null,
             currentList: null,
-            isSelected: false,
-            isStared: false,
+            // isSelected: false,
+            // isStared: false,
         }
     },
     mounted() {
@@ -41,12 +47,15 @@ export default {
                 console.error('Error fetching user data:', e.message);
             }
         },
-        toggleSelect(mail) {
-            mail.isSelected = !mail.isSelected;
-        },
-        toggleStar(mail) {
-            mail.isStared = !mail.isStared;
-        },
+        // toggleSelect(mail) {
+        //     mail.isSelected = !mail.isSelected;
+        // },
+        // toggleStar(mail) {
+        //     mail.isStared = !mail.isStared;
+        // },
+    },
+    updated(){
+        console.log(this.selectedMails);
     }
 }
 </script>
