@@ -29,7 +29,7 @@ public class MailController {
     @PostMapping("/sendEmail")
     public UserModel sendEmail(@RequestBody RequestObject params) {
         
-       Map<String, Object> emailParams = (Map<String, Object>) params.getByKey("email");
+       Map<String, Object> emailParams = (Map<String, Object>) params.get("email");
        MailModel newEmail = objectMapper.convertValue(emailParams, MailModel.class);
 
       newEmail.setnewDate();
@@ -42,7 +42,7 @@ public class MailController {
     @PostMapping("/toDraft")
     public UserModel draft(@RequestBody RequestObject params) {
 
-       Map<String, Object> emailParams = (Map<String, Object>) params.getByKey("email");
+       Map<String, Object> emailParams = (Map<String, Object>) params.get("email");
        MailModel newEmail = objectMapper.convertValue(emailParams, MailModel.class);
        
       newEmail.setnewDate();

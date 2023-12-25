@@ -27,28 +27,28 @@ public class ContactController {
     @PostMapping("/addContact")
     public UserModel addContact(@RequestBody RequestObject params) {
        
-        return contactService.addContact(convertParams(params));
+        return contactService.addContact(ToContactModel(params));
     }
 
     @PostMapping("/deleteContact")
     public UserModel deleteCotact(@RequestBody RequestObject params) {
-        return contactService.deleteContact(convertParams(params));
+        return contactService.deleteContact(ToContactModel(params));
     }
 
     @PostMapping("/searchContact")
     public List<ContactModel> search(@RequestBody RequestObject params) {
       
-        return contactService.searchContacts((String)params.getByKey("contactName"));
+        return contactService.searchContacts((String)params.get("contactName"));
     }
 
     @PostMapping("/editContact")
     public UserModel editContact(@RequestBody RequestObject params) {
 
-        return contactService.editContact((String)params.getByKey("oldName"),convertParams(params));
+        return contactService.editContact((String)params.get("oldName"),ToContactModel(params));
     }
 
-    public ContactModel convertParams(RequestObject params){
-       Map<String, Object> reqContact = (Map<String, Object>) params.getByKey("contact");
+    public ContactModel ToContactModel(RequestObject params){
+       Map<String, Object> reqContact = (Map<String, Object>) params.get("contact");
        return objectMapper.convertValue(reqContact, ContactModel.class);
     }
  }

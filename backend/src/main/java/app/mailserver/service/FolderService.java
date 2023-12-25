@@ -1,12 +1,22 @@
 package app.mailserver.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
+import app.mailserver.service.Sorting.ImportanceStrategy;
+import app.mailserver.service.Sorting.DateStrategy;
+import app.mailserver.service.Sorting.EmailSort;
+import app.mailserver.service.Sorting.SortingStrategy;
 import app.mailserver.service.SystemManagement.SystemFolders;
+import app.mailserver.service.Filter.Criteria;
+import app.mailserver.service.Filter.CriteriaSender;
+import app.mailserver.service.Filter.CriteriaSubject;
+import app.mailserver.service.Filter.EmailFilter;
+import app.mailserver.service.Filter.EmailSearch;
 
 
 @Service
@@ -48,14 +58,17 @@ public class FolderService {
        return curUserModel;
     }
     
-   //  public List<MailModel> sortEmails(String FolderName,String sortLogic){
-   //     if(sortLogic.equals("date"))
-   //      return sotring
-   //  }
+   public List<MailModel> getEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){
+   
+         List<MailModel> folderEmails=SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
+         
+         List<MailModel> filteredEmails =EmailFilter.filterEmails(folderEmails, subjectFilter, senderFilter);
+         
+         filteredEmails=EmailSearch.searchEmails(filteredEmails, searchWord);
 
-    // public UserModel filterFolder(String FolderName,String filterLogic){
-    // }
-
-    // public UserModel searchFolder(String FolderName,String searchLogic){
-    // }
+         filteredEmails=EmailSort.SortEmails(filteredEmails, sortLogic);
+      
+     return filteredEmails;
+   }
+  
 }

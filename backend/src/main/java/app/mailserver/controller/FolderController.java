@@ -33,34 +33,40 @@ public class FolderController {
     @PostMapping("/addLabel")
     public UserModel addLabel(@RequestBody RequestObject params) {
         
-        return folderService.addLabel((String)params.getByKey("labelName"));
+        return folderService.addLabel((String)params.get("labelName"));
+    }
+
+    @PostMapping("/getEmails")
+    public List<MailModel> getEmails(@RequestBody RequestObject params) {
+        
+        return folderService.getEmails((String)params.get("folderName") , (String)params.get("subjectFilter"),(String)params.get("senderFilter") , (String)params.get("sort"),(String)params.get("search"));
     }
 
     @PostMapping("/renameLabel")
     public UserModel renameLabel(@RequestBody RequestObject params) {
-        return folderService.renameLabel((String)params.getByKey("oldName"), (String)params.getByKey("newName"));
+        return folderService.renameLabel((String)params.get("oldName"), (String)params.get("newName"));
     }
 
     @DeleteMapping("/deleteLabel")
     public UserModel deleteLabel(@RequestBody RequestObject params) {
-        return folderService.deleteLabel((String)params.getByKey("labelName"));
+        return folderService.deleteLabel((String)params.get("labelName"));
     }
 
     @DeleteMapping("/deleteEmails")
     public UserModel deleteEmails(@RequestBody RequestObject params) {
 
-        return folderService.deleteEmails(toEmailList(params), (String)params.getByKey("from"));
+        return folderService.deleteEmails(toEmailList(params), (String)params.get("from"));
     }
 
     @PostMapping("/moveEmails")
     public UserModel moveEmailsFromTo(@RequestBody RequestObject params) {
-        return folderService.moveEmailsFromTo(toEmailList(params), (String)params.getByKey("from"), (String)params.getByKey("to"));
+        return folderService.moveEmailsFromTo(toEmailList(params), (String)params.get("from"), (String)params.get("to"));
     }
 
     // @PostMapping("/sortFolder")
     // public List<MailModel> sortEmails(@RequestBody RequestObject params) {
 
-    //     return folderService.sortEmails((String)params.getByKey("from"), (String)params.getByKey("sortLogic"));
+    //     return folderService.sortEmails((String)params.get("from"), (String)params.get("sortLogic"));
     // }
 
     // @GetMapping("/filterFolder")
@@ -73,7 +79,7 @@ public class FolderController {
     //     // implementation
     // }
     public List<MailModel> toEmailList(RequestObject params)throws RuntimeException{
-        List<Map<String, Object>> emailsParams = (List<Map<String, Object>>) params.getByKey("emails");
+        List<Map<String, Object>> emailsParams = (List<Map<String, Object>>) params.get("emails");
         List<MailModel> emails = new ArrayList<MailModel>();
         for (var x:emailsParams){
           emails.add(objectMapper.convertValue(x, MailModel.class));

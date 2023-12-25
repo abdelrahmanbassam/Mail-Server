@@ -11,8 +11,24 @@
         "to" : [ "bassam@email.com" ],
         "subject" : "Sample Subject",
         "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "importance" : "4",
+        "importance" : "very high",
         "date" : "2023-12-24 00:42:15",
+        "attachment" : null
+      }, {
+        "from" : "bassam@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject1",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "importance" : "high",
+        "date" : "2023-12-25 16:56:10",
+        "attachment" : null
+      }, {
+        "from" : "bassam@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "importance" : "high",
+        "date" : "2023-12-25 16:56:57",
         "attachment" : null
       } ],
       "subFolders" : [ ]
@@ -57,6 +73,22 @@
         "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
         "importance" : "4",
         "date" : "2023-12-24 00:42:15",
+        "attachment" : null
+      }, {
+        "from" : "bassam@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject1",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "importance" : "4",
+        "date" : "2023-12-25 16:56:10",
+        "attachment" : null
+      }, {
+        "from" : "bassam@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "importance" : "4",
+        "date" : "2023-12-25 16:56:57",
         "attachment" : null
       } ],
       "subFolders" : [ ]

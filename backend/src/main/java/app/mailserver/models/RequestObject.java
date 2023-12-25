@@ -19,7 +19,7 @@ public class RequestObject {
     public void setparams(Map<String,Object> params) {
         this.params = params;
     }
-    public Object getByKey(String key){
+    public Object get(String key){
       return params.get(key);
     }
 

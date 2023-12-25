@@ -26,14 +26,14 @@ public class UserController {
     public UserModel login(@RequestBody RequestObject params) {
 
         // return userService.login(requestUser.emailAddress, requestUser.password);
-        return userService.login((String)params.getByKey("emailAddress"),(String)params.getByKey("password"));
+        return userService.login((String)params.get("emailAddress"),(String)params.get("password"));
 
     }
 
     @PostMapping("/signUp")
     public UserModel signUp(@RequestBody RequestObject params) {
 
-        return userService.signUp((String)params.getByKey("userName"), (String)params.getByKey("emailAddress"),(String)params.getByKey("password"));
+        return userService.signUp((String)params.get("userName"), (String)params.get("emailAddress"),(String)params.get("password"));
     }
     
 }
