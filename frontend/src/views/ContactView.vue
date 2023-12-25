@@ -1,0 +1,177 @@
+<template>
+  <!-- show the contacts as a list with a pgination and and make it available to show the contacts details and add a new contacts. besides, edit the contact[rename it, add or delete contact, add or delete emails and add or delete phones of the contact ]  -->
+    <div>
+
+      <div v-for="contact in contacts" :key="contact.name" class="contact">
+        <v-list-item @click="openContactDialog(contact)">
+          <div class="bs">
+            <p class="truncate">{{ contact.name }}</p>
+            <p class="truncate">{{ contact.emails[0] }}</p>
+            <p class="truncate">{{ contact.phones[0] }}</p>
+          </div>
+        </v-list-item>
+        
+        <v-dialog v-model="contactDialog" max-width="700px">
+          <v-card>
+            <v-card-title>Edit Contact</v-card-title>
+            <v-card-text>
+              <v-text-field v-model="editingContact.name" label="Name"></v-text-field>
+
+        <v-list >
+          <v-divider></v-divider>
+          
+          <v-list-item class="mb-3">
+              <v-chip
+              v-for="(email, index) in editingContact.emails"
+              :key="email"
+              closable
+              @click:close="deleteEmail(index)"
+              >
+              {{ email }}
+            </v-chip>
+            
+            <v-btn icon @click="addEmailDialog = true">
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </v-list-item>
+          <v-divider></v-divider>
+          
+
+
+          <v-list-item class="mb-3">
+            <v-chip
+            v-for="(phone, index) in editingContact.phones"
+            :key="phone"
+            closable
+            @click:close="deletePhone(index)"
+            >
+          {{ phone }}
+        </v-chip>
+        <v-btn icon @click="addPhoneDialog = true">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-list-item>
+      <v-divider></v-divider>
+
+  </v-list>
+  
+  <v-dialog v-model="addEmailDialog" max-width="300px">
+    <v-card>
+      <v-card-title>Add Email</v-card-title>
+      <v-card-text>
+        <v-text-field v-model="newEmail" label="Email"></v-text-field>
+      </v-card-text>
+    <v-card-actions>
+      <v-btn color="blue darken-1" text @click="addEmail">Add</v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
+
+<v-dialog v-model="addPhoneDialog" max-width="300px">
+  <v-card>
+    <v-card-title>Add Phone</v-card-title>
+    <v-card-text>
+      <v-text-field v-model="newPhone" label="Phone"></v-text-field>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="blue darken-1" text @click="addPhone">Add</v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
+
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="blue darken-1" text @click="saveContact">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="deleteContact">Delete</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</div>
+  
+</template>
+
+<script>
+export default {
+  data(){
+    return{
+      contacts:[],
+      searchQuery: null,
+      sortKey: null,
+      filterKey: null,
+
+
+      
+      addEmailDialog: false,
+      newEmail: '',
+      addPhoneDialog: false,
+      newPhone: '',
+            contactDialog: false,
+      editingContact: {
+        name: '',
+        emails:[],
+        phones:[],
+      },
+        }
+    },
+    methods:{
+        //send a post request to the server to change to contacts and recieve them
+        async fetchContacts(){
+            await fetch('http://localhost:3000/contacts')
+            .then(response => response.json())
+            .then(data => {
+                this.contacts = data;
+                // this.currentFolder = folderName;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        },
+
+    openContactDialog(contact) {
+      this.contactDialog = true;
+      this.editingContact = { ...contact };
+    },
+    saveContact() {
+      // Your code to save the edited contact
+      this.contactDialog = false;
+    },
+    deleteContact() {
+      // Your code to delete the contact
+      this.contactDialog = false;
+    },
+    addContact() {
+      // Your code to add a new contact
+      this.contactDialog = false;
+    },
+    addPhone() {
+      this.editingContact.phones.push(this.newPhone);
+    },
+    addEmail(){
+      this.editingContact.emails.push(this.newEmail);
+    },
+    deletePhone(index) {
+      this.editingContact.phones.splice(index, 1);
+    },
+    deleteEmail(index) {
+      this.editingContact.emails.splice(index, 1);
+    },
+
+
+    },
+    mounted(){
+        this.fetchContacts();
+        console.log('sssmsmsm');
+    }
+}
+</script>
+
+<style>
+
+  .no-overflow {
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+</style>

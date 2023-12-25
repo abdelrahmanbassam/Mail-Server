@@ -1,8 +1,15 @@
 <template>
     <div class="side-bar">
-        
-        <Compose />
 
+        <Compose />
+        
+        <v-btn
+        prepend-icon="mdi-account"
+        color="teal" 
+        @click="navigateTo('contacts')"
+        class="mt-3"
+        >Contacts</v-btn>
+        
         <v-list :value="activeButton">
         <v-list-item  
         prepend-icon="mdi-inbox" 
@@ -15,12 +22,6 @@
         title="Send" 
         value="send" 
         @click="navigateTo('sent')"
-        ></v-list-item>
-        <v-list-item 
-        prepend-icon="mdi-star" 
-        title="contacts" 
-        value="contacts"  
-        @click="navigateTo('contacts')"
         ></v-list-item>
         <v-list-item 
         prepend-icon="mdi-label-variant-outline" 
@@ -48,9 +49,9 @@
                 title="Labels"
                 ></v-list-item>
             </template>
-            <v-list-item v-for="label in user?.folders.labels" :key="label.name" :title="label.name" 
-            :value="label.name"  
-            @click="navigateTo(label.name)"
+            <v-list-item v-for="label in labels" :key="label" :title="label" 
+            :value="label"  
+            @click="navigateTo(label)"
             ></v-list-item>
         </v-list-group>
     </v-list>
@@ -65,15 +66,29 @@ export default {
     components:{Compose},
     data(){
         return{
-            
+            labels:[],
+
         }
     },
     methods: {
-        navigateTo(listName){
-            this.$emit('navigateTo', listName);
-            console.log(listName);
+        navigateTo(folderName){
+            this.$emit('navigateTo', folderName);
+            // console.log(folderName);
+        },
+        //fetch the labels from the server
+        async fetchLabels(){
+            fetch('http://localhost:3000/labels')
+            .then(response => response.json())
+            .then(data => {
+                this.labels = data;
+            })
+            .catch(error => console.log(error));
         }
+
     },
+    mounted(){
+        this.fetchLabels();
+    }
 }
 </script>
 

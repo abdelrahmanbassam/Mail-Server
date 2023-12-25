@@ -6,17 +6,13 @@
         <span class="font-weight-light">Mail</span>
         <span>Server</span>
       </v-app-bar-title>
-      <div class="Search">
-        <input v-model="searchQuery" @input="searchEmails" placeholder="🔍 Search emails..." class="search-input">
-    </div>
-      <v-spacer></v-spacer>
       <v-btn flat color="grey">
         <span>Sign Out </span>
         <v-icon>mdi-logout-variant</v-icon>
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app class="indigo">
-      <SideBar/>
+      <SideBar @navigateTo="changeList" />
     </v-navigation-drawer>
 </nav>
 </template>
@@ -27,53 +23,14 @@
     components:{SideBar},
     data: () => ({
       drawer:true,
-      openfrom: [],
-      crudsfrom: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
-      opento: [],
-      crudsto: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
-      openanytime: [],
-      crudsanytime: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
     }),
     methods: {
-      searchEmails() {
-      // Implement your logic to filter emails based on the search query
-      // You may want to filter the emails in openfrom, opento, or openanytime arrays
-      // For example, if you have an 'emails' array, you can filter it like this:
-      this.openfrom = this.filterEmails(this.openfrom);
-      this.opento = this.filterEmails(this.opento);
-      this.openanytime = this.filterEmails(this.openanytime);
+       changeList(folderName){
+        // this.$router.push({name:folderName});
+        // console.log(folderName);
+        this.$emit('navigateTo', folderName);
+      },
     },
-    filterEmails(emailArray) {
-      // Use the Array.filter method to filter emails based on the search query
-      return emailArray.filter(email => {
-        // Modify this condition based on your email structure and search criteria
-        return email.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
-    },
-    changeColorhasattachment() {
-      var button = document.getElementById("hasattachmentbutton");
-      button.classList.toggle("blue");
-    },
-    changeColorisunread() {
-      var button = document.getElementById("isunreadbutton");
-      button.classList.toggle("blue");
-    },
-  },
   }
 </script>
 
