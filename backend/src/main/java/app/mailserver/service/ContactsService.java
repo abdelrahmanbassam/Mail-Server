@@ -20,18 +20,17 @@ public class ContactsService {
   // edit
   // search
   // sort
-  public UserModel addContact(ContactModel newContact) {
+  public List<ContactModel> addContact(ContactModel newContact) {
     UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     curUser.setContacts(curContacts);
-
     curContacts.add(newContact);
     sort();
     SystemFolders.updateUser(curUser);
-    return curUser;
+    return curUser.getContacts();
   }
 
-  public UserModel deleteContact(ContactModel contact) {
+  public List<ContactModel> deleteContact(ContactModel contact) {
     UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
 
@@ -47,10 +46,10 @@ public class ContactsService {
     }
     curUser.setContacts(curContacts);
     SystemFolders.updateUser(curUser);
-    return curUser;
+    return curUser.getContacts();
     
   }
-  public UserModel editContact(String oldName,ContactModel updatedContactModel){
+  public List<ContactModel> editContact(String oldName,ContactModel updatedContactModel){
     UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     for(int i=0;i<curContacts.size();i++){
@@ -65,7 +64,7 @@ public class ContactsService {
     curUser.setContacts(curContacts);
     sort();
     SystemFolders.updateUser(curUser);
-    return curUser;
+    return curUser.getContacts();
 
 
   }
@@ -79,7 +78,7 @@ public class ContactsService {
   }
   
 
-  public UserModel sort() {
+  public List<ContactModel> sort() {
     UserModel curUser=SystemFolders.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     Collections.sort(curContacts, new Comparator<ContactModel>() {
@@ -88,7 +87,12 @@ public class ContactsService {
       }
     });
     SystemFolders.updateUser(curUser);
-    return curUser;
+    return curUser.getContacts();
+  }
+
+  public static List<ContactModel> getContacts(){
+     UserModel curUser=SystemFolders.getCurUser();
+     return curUser.getContacts();
   }
 
 }

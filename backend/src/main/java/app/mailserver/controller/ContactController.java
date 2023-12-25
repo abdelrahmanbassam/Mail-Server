@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +26,16 @@ public class ContactController {
     private ObjectMapper objectMapper;
     
     @PostMapping("/addContact")
-    public UserModel addContact(@RequestBody RequestObject params) {
+    public List<ContactModel> addContact(@RequestBody RequestObject params) {
        
         return contactService.addContact(ToContactModel(params));
     }
 
     @PostMapping("/deleteContact")
-    public UserModel deleteCotact(@RequestBody RequestObject params) {
+
+    public List<ContactModel> deleteCotact(@RequestBody RequestObject params) {
         return contactService.deleteContact(ToContactModel(params));
+
     }
 
     @PostMapping("/searchContact")
@@ -42,9 +45,13 @@ public class ContactController {
     }
 
     @PostMapping("/editContact")
-    public UserModel editContact(@RequestBody RequestObject params) {
+    public List<ContactModel> editContact(@RequestBody RequestObject params) {
 
         return contactService.editContact((String)params.get("oldName"),ToContactModel(params));
+    }
+    @GetMapping("/getContacts")
+    public List<ContactModel> getContacts(){
+        return ContactsService.getContacts();
     }
 
     public ContactModel ToContactModel(RequestObject params){
