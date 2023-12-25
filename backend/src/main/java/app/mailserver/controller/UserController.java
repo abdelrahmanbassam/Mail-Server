@@ -1,6 +1,8 @@
 package app.mailserver.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public UserModel signUp(@RequestBody RequestObject params) {
+    public UserModel signUp(@RequestBody RequestObject params) throws IOException {
 
         return userService.signUp((String)params.get("userName"), (String)params.get("emailAddress"),(String)params.get("password"));
     }

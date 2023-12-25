@@ -1,6 +1,7 @@
 package app.mailserver.controller;
 
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class MailController {
     private ObjectMapper objectMapper;
 
     @PutMapping("/sendEmail")
-    public String sendEmail(@RequestBody RequestObject params) {
+    public String sendEmail(@RequestBody RequestObject params) throws IOException {
         
        Map<String, Object> emailParams = (Map<String, Object>) params.get("email");
        MailModel newEmail = objectMapper.convertValue(emailParams, MailModel.class);

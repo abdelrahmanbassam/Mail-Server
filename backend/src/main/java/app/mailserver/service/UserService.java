@@ -1,5 +1,7 @@
 package app.mailserver.service;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Service;
 
 import app.mailserver.models.UserModel;
@@ -19,7 +21,7 @@ public class UserService {
         return null;
     }
 
-    public UserModel signUp(String name, String emailAddress, String password) {
+    public UserModel signUp(String name, String emailAddress, String password) throws IOException {
         if (SystemFolders.signUp(name, emailAddress, password) != null) {
 
             curUser = SystemFolders.getCurUser();

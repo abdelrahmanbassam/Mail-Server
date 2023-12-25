@@ -1,5 +1,9 @@
 package app.mailserver.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import app.mailserver.models.MailModel;
@@ -19,7 +23,7 @@ public class MailService {
   
   
 
-   public UserModel sendEmail(MailModel newEmail){
+   public UserModel sendEmail(MailModel newEmail) throws IOException{
 
        UserModel curUser=SystemFolders.getCurUser();
        curUser.getFolders().addEmailTo("sentEmails",newEmail);
@@ -29,12 +33,14 @@ public class MailService {
        for(var x : newEmail.getTo()){
 
          if(SystemFolders.isUserExist(x)){
-
-           UserModel receiver=SystemFolders.getUser(x);
-           receiver.getFolders().addEmailTo("inbox", newEmail);
-
-           SystemFolders.updateUser(receiver);
-         }
+            List<String>singleReceiver=new ArrayList<>();
+            singleReceiver.add(x);
+            MailModel sentMail=new MailModel();
+            sentMail =newEmail;
+            sentMail.setTo(singleReceiver);
+            
+            SystemFolders.sendEmailTo(sentMail, x);
+          }
 
        }
         return curUser;
@@ -42,7 +48,6 @@ public class MailService {
 
    public UserModel addToDraft(MailModel newEmail){
        UserModel curUser=SystemFolders.getCurUser();
-       System.out.println(newEmail.toString());
        curUser.getFolders().addEmailTo("draft",newEmail);
        SystemFolders.updateUser(curUser);
       return curUser; 

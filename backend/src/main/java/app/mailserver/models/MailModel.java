@@ -53,7 +53,7 @@ public class MailModel {
 
     
 
-    public void setto(List<String> to) {
+    public void setTo(List<String> to) {
         this.to = to;
     }
 
