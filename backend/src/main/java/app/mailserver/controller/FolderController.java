@@ -54,14 +54,13 @@ public class FolderController {
 
     @PostMapping("/moveEmails")
     public UserModel moveEmailsFromTo(@RequestBody RequestObject params) {
-        System.out.println(6);
         return folderService.moveEmailsFromTo(toEmailList(params), (String)params.getByKey("from"), (String)params.getByKey("to"));
     }
 
-    // Uncomment and implement these methods as needed
-    // @GetMapping("/sortFolder")
-    // public UserModel sortFolder(@RequestParam String folderName, @RequestParam String sortLogic) {
-    //     // implementation
+    // @PostMapping("/sortFolder")
+    // public List<MailModel> sortEmails(@RequestBody RequestObject params) {
+
+    //     return folderService.sortEmails((String)params.getByKey("from"), (String)params.getByKey("sortLogic"));
     // }
 
     // @GetMapping("/filterFolder")

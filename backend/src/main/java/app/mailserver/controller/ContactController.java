@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-class updateRequest {
-    
+
 @RestController
 @CrossOrigin
 @RequestMapping
@@ -53,4 +52,4 @@ public class ContactController {
        return objectMapper.convertValue(reqContact, ContactModel.class);
     }
  }
-}
+

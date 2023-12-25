@@ -48,8 +48,10 @@ public class FolderService {
        return curUserModel;
     }
     
-    // public UserModel sortFolder(String FolderName,String sortLogic){
-    // }
+   //  public List<MailModel> sortEmails(String FolderName,String sortLogic){
+   //     if(sortLogic.equals("date"))
+   //      return sotring
+   //  }
 
     // public UserModel filterFolder(String FolderName,String filterLogic){
     // }
