@@ -3,7 +3,8 @@ import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,42 +17,97 @@ public class SystemFolders {
             return curUser;
         }
 
-    public static UserModel signUp(String name,String emailAddress, String password) throws IOException{
-    
+    public static Map<String, Object> signUp(String name,String emailAddress, String password) throws IOException{
+       
+        Map<String, Object> response = new HashMap<String, Object>();
+        response.put("isValid",false);
+        response.put("message","done");
+
+
+
         if(JsonFileHandler.isUserExist(emailAddress)){
-            //throw error then return 
+            response.put("message","email address is already registered!");
+                return response;
         }
-        if(!isValidEmail(emailAddress)){
-            //throw error (invalid email format )then return
+        else if(!isValidEmail(emailAddress)){
+            response.put("message","email format is not valid!");
+             return response;
         }
-        if(password.length()<6){
-            //throw error (password is too short )then return
+        else if(password.length()<6){
+        response.put("message","password is too short! (enter at least 6 chars)");
+                return response;
         }
-        
+        else{
+        response.put("isValid",true);
         UserModel newUser=new UserModel(name,emailAddress,password);
      
         curUser=newUser;
         JsonFileHandler.writeUserModel(curUser);
-
-        return curUser; 
         
+        return response; 
+        }
     }
 
-    public static boolean loginChecker(String emailAddress,String password){
+    public static Map<String, Object> loginChecker(String emailAddress,String password){
         
+        Map<String, Object> response = new HashMap<String, Object>();
+        response.put("isValid",false);
+        response.put("message","done");
+
         if(!JsonFileHandler.isUserExist(emailAddress)){
-            //if we want to type message"user not found"
-            return false;
+         response.put("message","user not found!");
+            return response;
         }
         else{
             UserModel tempUser= JsonFileHandler.fetchUser(emailAddress);
              if(tempUser.getPassword().equals(password)){
                 curUser= tempUser;
-                return true;
+                response.put("isValid",true);
+                 return response;
+             }
+             else{
+               response.put("message","password is not correct!");
+               return response;
              }
         }
-     return false;
+    
     }
+    // public static UserModel signUp(String name,String emailAddress, String password) throws IOException{
+    
+    //     if(JsonFileHandler.isUserExist(emailAddress)){
+    //         //throw error then return 
+    //     }
+    //     if(!isValidEmail(emailAddress)){
+    //         //throw error (invalid email format )then return
+    //     }
+    //     if(password.length()<6){
+    //         //throw error (password is too short )then return
+    //     }
+        
+    //     UserModel newUser=new UserModel(name,emailAddress,password);
+     
+    //     curUser=newUser;
+    //     JsonFileHandler.writeUserModel(curUser);
+
+    //     return curUser; 
+        
+    // }
+
+    // public static boolean loginChecker(String emailAddress,String password){
+        
+    //     if(!JsonFileHandler.isUserExist(emailAddress)){
+    //         //if we want to type message"user not found"
+    //         return false;
+    //     }
+    //     else{
+    //         UserModel tempUser= JsonFileHandler.fetchUser(emailAddress);
+    //          if(tempUser.getPassword().equals(password)){
+    //             curUser= tempUser;
+    //             return true;
+    //          }
+    //     }
+    //  return false;
+    // }
 
     public static void updateUser(UserModel changedUser) {
        try {

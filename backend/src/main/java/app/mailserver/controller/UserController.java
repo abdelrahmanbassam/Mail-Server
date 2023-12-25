@@ -2,6 +2,7 @@ package app.mailserver.controller;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public UserModel login(@RequestBody RequestObject params) {
+    public Map<String, Object> login(@RequestBody RequestObject params) {
 
         // return userService.login(requestUser.emailAddress, requestUser.password);
         return userService.login((String)params.get("emailAddress"),(String)params.get("password"));
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public UserModel signUp(@RequestBody RequestObject params) throws IOException {
+    public Map<String, Object> signUp(@RequestBody RequestObject params) throws IOException {
 
         return userService.signUp((String)params.get("userName"), (String)params.get("emailAddress"),(String)params.get("password"));
     }
