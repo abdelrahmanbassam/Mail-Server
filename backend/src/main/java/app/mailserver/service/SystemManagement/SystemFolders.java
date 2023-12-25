@@ -24,8 +24,11 @@ public class SystemFolders {
         response.put("message","done");
 
 
-
-        if(JsonFileHandler.isUserExist(emailAddress)){
+        if(name.equals("")){
+            response.put("message","please enter user name!");
+                return response;
+        }   
+        else if(JsonFileHandler.isUserExist(emailAddress)){
             response.put("message","email address is already registered!");
                 return response;
         }
