@@ -1,20 +1,10 @@
 package app.mailserver.service;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
-import app.mailserver.service.Sorting.ImportanceStrategy;
-import app.mailserver.service.Sorting.DateStrategy;
 import app.mailserver.service.Sorting.EmailSort;
-import app.mailserver.service.Sorting.SortingStrategy;
 import app.mailserver.service.SystemManagement.SystemFolders;
-import app.mailserver.service.Filter.Criteria;
-import app.mailserver.service.Filter.CriteriaSender;
-import app.mailserver.service.Filter.CriteriaSubject;
 import app.mailserver.service.Filter.EmailFilter;
 import app.mailserver.service.Filter.EmailSearch;
 
@@ -43,19 +33,19 @@ public class FolderService {
        return curUserModel;
     } 
    
-    public UserModel deleteEmails(List<MailModel> emails,String from){
+    public List<MailModel> deleteEmails(List<MailModel> emails,String from){
        
-        UserModel curUserModel=SystemFolders.getCurUser();
-       curUserModel.getFolders().deleteEmails(emails,from);
-       SystemFolders.updateUser(curUserModel);
-       return curUserModel;
+      UserModel curUserModel=SystemFolders.getCurUser();
+      curUserModel.getFolders().deleteEmails(emails,from);
+      SystemFolders.updateUser(curUserModel);
+      return curUserModel.getFolders().findFolder(from).getEmails();
     } 
     
-    public UserModel moveEmailsFromTo(List<MailModel> emails,String from,String to){
-       UserModel curUserModel=SystemFolders.getCurUser();
-       curUserModel.getFolders().moveEmailsFromTo(emails, from, to);
-       SystemFolders.updateUser(curUserModel);
-       return curUserModel;
+    public List<MailModel> moveEmailsFromTo(List<MailModel> emails,String from,String to){
+      UserModel curUserModel=SystemFolders.getCurUser();
+      curUserModel.getFolders().moveEmailsFromTo(emails, from, to);
+      SystemFolders.updateUser(curUserModel);
+      return curUserModel.getFolders().findFolder(from).getEmails();
     }
     
    public List<MailModel> getEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){

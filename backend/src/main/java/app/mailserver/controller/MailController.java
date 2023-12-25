@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,28 +27,28 @@ public class MailController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @PostMapping("/sendEmail")
-    public UserModel sendEmail(@RequestBody RequestObject params) {
+    @PutMapping("/sendEmail")
+    public String sendEmail(@RequestBody RequestObject params) {
         
        Map<String, Object> emailParams = (Map<String, Object>) params.get("email");
        MailModel newEmail = objectMapper.convertValue(emailParams, MailModel.class);
 
       newEmail.setnewDate();
-
-      return mailService.sendEmail(newEmail);
+      mailService.sendEmail(newEmail);
+      return "done";
         
     }
     
 
-    @PostMapping("/toDraft")
-    public UserModel draft(@RequestBody RequestObject params) {
+    @PutMapping("/toDraft")
+    public String draft(@RequestBody RequestObject params) {
 
        Map<String, Object> emailParams = (Map<String, Object>) params.get("email");
        MailModel newEmail = objectMapper.convertValue(emailParams, MailModel.class);
        
       newEmail.setnewDate();
-
-      return mailService.addToDraft(newEmail);
+      mailService.addToDraft(newEmail);
+     return "done"; 
         
     }
 }

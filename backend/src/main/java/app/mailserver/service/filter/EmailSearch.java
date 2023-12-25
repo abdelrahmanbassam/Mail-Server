@@ -8,9 +8,6 @@ import app.mailserver.models.MailModel;
 public class EmailSearch {
 
     public static List<MailModel> searchEmails(List<MailModel> emails, String searchWord) {
-        if(searchWord.equals("")){
-           return emails;
-        } 
         List<MailModel> matchedEmails = new ArrayList<>();
         String searchWordLower = searchWord.toLowerCase();
 
