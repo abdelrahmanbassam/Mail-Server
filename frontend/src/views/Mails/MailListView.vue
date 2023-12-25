@@ -71,7 +71,8 @@
     components:{NavBar, ContactView},
     data() {
         return {
-            sortKey: null,
+            sort: null,
+            search:null,
             filterKey: null,
             user: null,
             currentFolder: '',
@@ -89,7 +90,7 @@
     methods: {
         async fetchData(){
             try {
-                fetch('http://localhost:3000/user')
+                fetch('http://localhost:8081/getEmails')
                 .then(response => response.json())
                 .then(data => {
                     this.user = data;

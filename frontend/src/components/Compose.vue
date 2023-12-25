@@ -181,14 +181,46 @@ export default {
         },
         // validate the input of the compose form to send the email
         valid(){
-            if (this.$refs.form.validate()) this.send();
+            // if (this.$refs.form.validate()) this.send();
+            this.send();
         },
         
         send(){this.clear();
-        this.dialog = false;}
+        this.dialog = false;},
         //send a post request the data email to the server
         // async send(){},
-        
+        async send() {
+      try {
+        // Simulate sending data to a server
+        const response = await fetch('http://localhost:3000', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: this.to,
+            priority: this.priorety,
+            subject: this.subject,
+            body: this.body,
+            attachments: this.uploadedFiles,
+          }),
+        });
+
+        if (response.ok) {
+          // Email sent successfully, you can handle the response accordingly
+          console.log('Email sent successfully!');
+        } else {
+          // Email sending failed, handle the error
+          console.error('Failed to send email:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error sending email:', error);
+      } finally {
+        // Clear the form and close the dialog
+        this.clear();
+        this.dialog = false;
+      }
+    },   
         
         
         

@@ -118,7 +118,6 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 5vh 2vh  2vh 2vh;
-    height: 91vh;
 }
 .compose{
     display: flex;
