@@ -11,7 +11,7 @@
         >Contacts</v-btn>
         
         <v-list :value="activeButton">
-        <v-list-item  
+        <v-list-item 
         prepend-icon="mdi-inbox" 
         title="Inbox" 
         value="inbox"
@@ -41,32 +41,39 @@
         value="trash" 
         @click="navigateTo('trash')"
         ></v-list-item>
-        <v-list-group value="Labels" >
-            <template v-slot:activator="{ props }">
-                <v-list-item
-                v-bind="props"
-                prepend-icon="mdi-folder"
-                title="Labels"
-                ></v-list-item>
-            </template>
-            <v-list-item v-for="label in labels" :key="label" :title="label" 
-            :value="label"  
-            @click="navigateTo(label)"
-            ></v-list-item>
-        </v-list-group>
-    </v-list>
-    </div>
+        <v-list-group value="Labels">
+      <template v-slot:activator="{ props }">
+        <v-list-item v-bind="props"  title="Labels">
+          <!-- Add input for adding new label -->
+          <v-text-field v-model="newLabel" @input="onNewLabelInput" placeholder="New Label"></v-text-field>
+          <v-btn @click="addNewLabel" icon>
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-list-item>
+      </template>
+
+      <!-- Display existing labels -->
+      <v-list-item v-for="label in labels" :key="label" :title="label" :value="label" @click="navigateTo(label)">
+        <!-- Add button for deleting label -->
+        <v-btn @click="deleteLabel(label)" icon>
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-list-item>
+    </v-list-group>
+  </v-list>
+  </div>
 </template>
 
 <script>
 import Compose from './Compose.vue'
 export default {
     name: 'SideBar',
-    props: ['user'], 
+     props: ['user'], 
     components:{Compose},
     data(){
         return{
-            labels:[],
+             labels: [],
+             newLabel: '',
 
         }
     },
@@ -83,7 +90,21 @@ export default {
                 this.labels = data;
             })
             .catch(error => console.log(error));
-        }
+        },
+        addNewLabel() {
+      if (this.newLabel.trim() !== '') {
+        this.labels.push(this.newLabel.trim());
+        this.newLabel = ''; // Clear the input field
+      }
+    },
+
+    // Delete a label
+    deleteLabel(label) {
+      const index = this.labels.indexOf(label);
+      if (index !== -1) {
+        this.labels.splice(index, 1);
+      }
+    },
 
     },
     mounted(){

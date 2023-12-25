@@ -17,9 +17,7 @@
         ></v-text-field>
         <v-btn @click="signIn" type="submit" block class="mt-2" color="blue">Sign In</v-btn>
         <h3 class="sentence">If you do not have account</h3>
-        <!-- <router-link to="signup"> -->
-            <v-btn @click="signUp" type="submit" block class="mt-2" color="red">Sign Up</v-btn>
-            <!-- </router-link> -->
+            <v-btn @click="signUp" type="submit" block class="mt-2" color="red">Sign Up</v-btn> 
       </v-form>
     </v-sheet>
     </div>
@@ -44,15 +42,11 @@
    }),
    methods: {
      signIn() {
-       // Check email and password against rules
        const isEmailValid = this.emailRules[0](this.email) === true;
        const isPasswordValid = this.passwordRules[0](this.password) === true;
- 
-       // If both email and password are valid, navigate to "/list" route
        if (isEmailValid && isPasswordValid) {
          this.$router.push('/list');
        } else {
-         // Handle incorrect credentials, show error message, etc.
          console.log('Incorrect email or password');
        }
      },
@@ -73,3 +67,4 @@
     margin-top: 10%;
    }
     </style>
+      
