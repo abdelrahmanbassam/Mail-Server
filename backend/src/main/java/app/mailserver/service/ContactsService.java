@@ -12,28 +12,28 @@ import org.springframework.stereotype.Service;
 
 import app.mailserver.models.ContactModel;
 import app.mailserver.models.UserModel;
-import app.mailserver.service.SystemManagement.SystemFolders;
+import app.mailserver.service.SystemManagement.SystemManager;
 @Service
 public class ContactsService {
 
-  private SystemFolders systemFolders; // Field to store the singleton instance
+  private SystemManager systemManager; // Field to store the singleton instance
 
   public ContactsService() {
-      this.systemFolders = SystemFolders.getInstance(); // Initialize the singleton instance
+      this.systemManager = SystemManager.getInstance(); // Initialize the singleton instance
   }
  
   public List<ContactModel> addContact(ContactModel newContact) {
-    UserModel curUser=systemFolders.getCurUser();
+    UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     curUser.setContacts(curContacts);
     curContacts.add(newContact);
     sort();
-    systemFolders.updateUser(curUser);
+    systemManager.updateUser(curUser);
     return curUser.getContacts();
   }
 
   public List<ContactModel> deleteContact(ContactModel contact) {
-    UserModel curUser=systemFolders.getCurUser();
+    UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
 
     for (int i = 0; i < curContacts.size(); i++) {
@@ -47,12 +47,12 @@ public class ContactsService {
       }
     }
     curUser.setContacts(curContacts);
-    systemFolders.updateUser(curUser);
+    systemManager.updateUser(curUser);
     return curUser.getContacts();
     
   }
   public List<ContactModel> editContact(String oldName,ContactModel updatedContactModel){
-    UserModel curUser=systemFolders.getCurUser();
+    UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     for(int i=0;i<curContacts.size();i++){
       if(curContacts.get(i).getName().equalsIgnoreCase(oldName)){
@@ -65,13 +65,13 @@ public class ContactsService {
     }
     curUser.setContacts(curContacts);
     sort();
-    systemFolders.updateUser(curUser);
+    systemManager.updateUser(curUser);
     return curUser.getContacts();
 
 
   }
   public List<ContactModel> searchContacts(String Name) {
-    UserModel curUser=systemFolders.getCurUser();
+    UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts =new ArrayList<>();
     curContacts=curUser.getContacts();
     return curContacts.stream()
@@ -81,19 +81,19 @@ public class ContactsService {
   
 
   public List<ContactModel> sort() {
-    UserModel curUser=systemFolders.getCurUser();
+    UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     Collections.sort(curContacts, new Comparator<ContactModel>() {
       public int compare(ContactModel Contact1, ContactModel Contact2) {
         return Contact1.getName().toLowerCase().compareTo(Contact2.getName().toLowerCase());
       }
     });
-    systemFolders.updateUser(curUser);
+    systemManager.updateUser(curUser);
     return curUser.getContacts();
   }
 
   public  List<ContactModel> getContacts(){
-     UserModel curUser=systemFolders.getCurUser();
+     UserModel curUser=systemManager.getCurUser();
      return curUser.getContacts();
   }
 

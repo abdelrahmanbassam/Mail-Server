@@ -9,16 +9,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class SystemFolders {
-    private static SystemFolders instance; 
+public class SystemManager {
+    private static SystemManager instance; 
     private static  UserModel curUser;
 
 
-    private SystemFolders() {}
+    private SystemManager() {}
 
-    public static  SystemFolders getInstance() {
+    public static  SystemManager getInstance() {
         if (instance == null) {
-            instance = new SystemFolders();
+            instance = new SystemManager();
         }
         return instance;
     }
