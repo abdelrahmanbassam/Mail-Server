@@ -6,10 +6,10 @@
         <span class="font-weight-light">Mail</span>
         <span>Server</span>
       </v-app-bar-title>
-      <v-btn flat color="grey">
-        <span>Sign Out </span>
-        <v-icon>mdi-logout-variant</v-icon>
-      </v-btn>
+      <router-link to="/">
+          <span>Sign Out </span>
+          <v-icon>mdi-logout-variant</v-icon>
+        </router-link>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app class="indigo">
       <SideBar @navigateTo="changeList" />

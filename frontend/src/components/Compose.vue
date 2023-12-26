@@ -175,6 +175,7 @@ export default {
         },
         close(){
             this.dialog = false;
+            console.log(JSON.stringify(this.uploadedFiles, null, 2));
             // if (this.$refs.form.validate()) this.clear();
 
             this.clear();
