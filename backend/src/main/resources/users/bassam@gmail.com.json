@@ -24,9 +24,33 @@
       "emails" : [ ],
       "subFolders" : [ ]
     },
-    "sentEmails" : {
-      "name" : "sentEmails",
-      "emails" : [ ],
+    "send" : {
+      "name" : "send",
+      "emails" : [ {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "grafdbdfsbdgph",
+        "body" : "nodes nddddfhdfhdfbdfdddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:06:38"
+      }, {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "graph",
+        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:06:31"
+      }, {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "graph",
+        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:04:52"
+      } ],
       "subFolders" : [ ]
     },
     "trash" : {
@@ -34,6 +58,10 @@
       "emails" : [ ],
       "subFolders" : [ ]
     },
-    "labels" : [ ]
+    "labels" : [ {
+      "name" : "7doby",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
   }
 }
