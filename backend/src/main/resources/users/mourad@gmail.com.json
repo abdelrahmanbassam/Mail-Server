@@ -1,0 +1,47 @@
+{
+  "name" : "mourad",
+  "emailAddress" : "mourad@gmail.com",
+  "password" : "123456",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "sentEmails" : {
+      "name" : "sentEmails",
+      "emails" : [ {
+        "from" : "mourad@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "graph",
+        "body" : "nodes nodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 20:42:52"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}
