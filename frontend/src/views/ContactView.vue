@@ -1,19 +1,23 @@
 <template>
-  <!-- show the contacts as a list with a pgination and and make it available to show the contacts details and add a new contacts. besides, edit the contact[rename it, add or delete contact, add or delete emails and add or delete phones of the contact ]  -->
+  <!-- show the contacts as a list with a pgination and and make it available to show the contacts details and add a new contacts. besides, edit the contact[rename it, add or delete contact, add or delete emailAddresses and add or delete phoneNums of the contact ]  -->
     <div>
-
+      <v-btn color="orange"  @click="createContact">
+        Add contacts
+       </v-btn>
       <div v-for="contact in contacts" :key="contact.name" class="contact">
         <v-list-item @click="openContactDialog(contact)">
           <div class="bs">
             <p class="truncate">{{ contact.name }}</p>
-            <p class="truncate">{{ contact.emails[0] }}</p>
-            <p class="truncate">{{ contact.phones[0] }}</p>
+            <p class="truncate">{{ contact.emailAddresses[0] }}</p>
+            <p class="truncate">{{ contact.phoneNums[0] }}</p>
           </div>
         </v-list-item>
         
         <v-dialog v-model="contactDialog" max-width="700px">
           <v-card>
-            <v-card-title>Edit Contact</v-card-title>
+            <v-card-title>
+      {{ editingContact.name ? 'Edit Contact' : 'Create New Contact' }}
+    </v-card-title>
             <v-card-text>
               <v-text-field v-model="editingContact.name" label="Name"></v-text-field>
 
@@ -22,7 +26,7 @@
           
           <v-list-item class="mb-3">
               <v-chip
-              v-for="(email, index) in editingContact.emails"
+              v-for="(email, index) in editingContact.emailAddresses"
               :key="email"
               closable
               @click:close="deleteEmail(index)"
@@ -40,7 +44,7 @@
 
           <v-list-item class="mb-3">
             <v-chip
-            v-for="(phone, index) in editingContact.phones"
+            v-for="(phone, index) in editingContact.phoneNums"
             :key="phone"
             closable
             @click:close="deletePhone(index)"
@@ -83,7 +87,7 @@
 
         </v-card-text>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click="saveContact">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="changeContacts">Save</v-btn>
           <v-btn color="blue darken-1" text @click="deleteContact">Delete</v-btn>
         </v-card-actions>
       </v-card>
@@ -111,8 +115,9 @@ export default {
             contactDialog: false,
       editingContact: {
         name: '',
-        emails:[],
-        phones:[],
+        emailAddresses:[],
+        phoneNums:[],
+        importance:'',
       },
         }
     },
@@ -129,6 +134,61 @@ export default {
                 console.error('Error:', error);
             });
         },
+        async changeContacts(){
+
+let x = {
+params:
+{
+  contact:
+  {
+    name: this.editingContact.name,
+    emailAddresses: this.editingContact.emailAddresses,
+    phoneNums: this.editingContact.phoneNums,
+    importance: this.editingContact.importance
+  }
+}
+
+};
+console.log(JSON.stringify(x, null, 2));
+await fetch('http://localhost:8081/addContact', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify(x),
+})
+.then(response => response.json())
+.then(data => {
+  // console.log("moura")
+this.contacts = data;
+
+console.log(JSON.stringify(this.contacts, null, 2));
+// console.log("moura")
+
+// if (this.y.isValid) {
+//   // Redirect to the list page after successful signup
+//   this.$router.push('/list');
+// } else {
+//   console.error('Error during signup:', this.y.error);
+// }
+})
+
+
+
+
+},
+
+    
+createContact() {
+  this.editingContact = {
+    name: '',
+    emailAddresses: [],
+    phoneNums: [],
+    importance:'1',
+  };
+  this.contactDialog = true;
+},
+
 
     openContactDialog(contact) {
       this.contactDialog = true;
@@ -147,16 +207,16 @@ export default {
       this.contactDialog = false;
     },
     addPhone() {
-      this.editingContact.phones.push(this.newPhone);
+      this.editingContact.phoneNums.push(this.newPhone);
     },
     addEmail(){
-      this.editingContact.emails.push(this.newEmail);
+      this.editingContact.emailAddresses.push(this.newEmail);
     },
     deletePhone(index) {
-      this.editingContact.phones.splice(index, 1);
+      this.editingContact.phoneNums.splice(index, 1);
     },
     deleteEmail(index) {
-      this.editingContact.emails.splice(index, 1);
+      this.editingContact.emailAddresses.splice(index, 1);
     },
 
 

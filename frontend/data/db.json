@@ -325,17 +325,20 @@
     {
       "name": "Bassam",
       "emailAddresses": ["ncnc@email.com", "mourad@email.com"],
-      "phoneNums": ["01000000000", "01111111111"]
+      "phoneNums": ["01000000000", "01111111111"],
+      "importance": "1"
     },
     {
       "name": "Joe",
       "emailAddresses": ["joe@email.com", "jdhjdhdj@email.com"],
-      "phoneNums": ["01222222222", "01333333333"]
+      "phoneNums": ["01222222222", "01333333333"],
+      "importance": "1"
     },
     {
       "name": "Domiaty",
       "emailAddresses": ["mourad@email.com", "mourad@email.com"],
-      "phoneNums": ["01444444444", "01555555555"]
+      "phoneNums": ["01444444444", "01555555555"],
+      "importance": "1"
     }
   ]
 }
