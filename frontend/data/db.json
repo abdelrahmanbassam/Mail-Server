@@ -324,18 +324,18 @@
   "contacts": [
     {
       "name": "Bassam",
-      "emails": ["ncnc@email.com", "mourad@email.com"],
-      "phones": ["01000000000", "01111111111"]
+      "emailAddresses": ["ncnc@email.com", "mourad@email.com"],
+      "phoneNums": ["01000000000", "01111111111"]
     },
     {
       "name": "Joe",
-      "emails": ["joe@email.com", "jdhjdhdj@email.com"],
-      "phones": ["01222222222", "01333333333"]
+      "emailAddresses": ["joe@email.com", "jdhjdhdj@email.com"],
+      "phoneNums": ["01222222222", "01333333333"]
     },
     {
       "name": "Domiaty",
-      "emails": ["mourad@email.com", "mourad@email.com"],
-      "phones": ["01444444444", "01555555555"]
+      "emailAddresses": ["mourad@email.com", "mourad@email.com"],
+      "phoneNums": ["01444444444", "01555555555"]
     }
   ]
 }
