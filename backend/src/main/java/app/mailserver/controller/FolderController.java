@@ -56,18 +56,18 @@ public class FolderController {
     }
 
     @PostMapping("/addLabel")
-    public UserModel addLabel(@RequestBody RequestObject params) {
+    public List<String> addLabel(@RequestBody RequestObject params) {
         
         return folderService.addLabel((String)params.get("labelName"));
     }
     
     @PostMapping("/renameLabel")
-    public UserModel renameLabel(@RequestBody RequestObject params) {
+    public List<String> renameLabel(@RequestBody RequestObject params) {
         return folderService.renameLabel((String)params.get("oldName"), (String)params.get("newName"));
     }
     
     @DeleteMapping("/deleteLabel")
-    public UserModel deleteLabel(@RequestBody RequestObject params) {
+    public List<String> deleteLabel(@RequestBody RequestObject params) {
         return folderService.deleteLabel((String)params.get("labelName"));
     }
    
