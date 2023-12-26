@@ -64,7 +64,8 @@
 
         if (this.y.isValid) {
           // Redirect to the list page after successful signup
-          this.$router.push('/list');
+          this.$router.push('/list/inbox');
+          localStorage.setItem('user', JSON.stringify(x));
         } else {
           console.error('Error during signup:', this.y.error);
         }

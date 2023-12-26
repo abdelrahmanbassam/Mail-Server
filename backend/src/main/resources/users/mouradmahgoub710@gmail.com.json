@@ -1,6 +1,6 @@
 {
-  "name" : "bassam",
-  "emailAddress" : "bassam@gmail.com",
+  "name" : "mourad",
+  "emailAddress" : "mouradmahgoub710@gmail.com",
   "password" : "123456",
   "contacts" : [ ],
   "folders" : {
@@ -35,7 +35,11 @@
       "subFolders" : [ ]
     },
     "labels" : [ {
-      "name" : null,
+      "name" : "mora",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    }, {
+      "name" : "sks",
       "emails" : [ ],
       "subFolders" : [ ]
     } ]
