@@ -26,21 +26,21 @@ public class FolderService {
        curUserModel.getFolders().addLabel(labelName);
 
        systemManager.updateUser(curUserModel);
-       return getlabelsNames(curUserModel.getFolders().getLabels());
+       return getlabelsNames();
     } 
     
     public Map<String, List<String>> renameLabel(String oldName,String newName){
        UserModel curUserModel=systemManager.getCurUser();
        curUserModel.getFolders().renameLabel(oldName, newName);
        systemManager.updateUser(curUserModel);
-       return getlabelsNames(curUserModel.getFolders().getLabels());
+       return getlabelsNames();
     }
     
     public Map<String, List<String>> deleteLabel(String labelName){
        UserModel curUserModel=systemManager.getCurUser();
        curUserModel.getFolders().deleteLabel(labelName);
        systemManager.updateUser(curUserModel);
-       return getlabelsNames(curUserModel.getFolders().getLabels());
+       return getlabelsNames();
     } 
    
     public List<MailModel> deleteEmails(List<MailModel> emails,String from){
@@ -75,7 +75,8 @@ public class FolderService {
       return systemManager.getCurUser().getFolders().findFolder(folderName).getEmails();
    }
    
-   public Map<String, List<String>> getlabelsNames(List<FolderModel> labels) {
+   public Map<String, List<String>> getlabelsNames() {
+      List<FolderModel> labels=systemManager.getCurUser().getFolders().getLabels();
       Map<String, List<String>> labelsNames = new HashMap<>();
       List<String> namesList = new ArrayList<>();
       
