@@ -40,7 +40,7 @@ public class FolderModel {
     }
 
     public void addEmail(MailModel newEmail){
-        emails.add(newEmail);
+        emails.add(0, newEmail);
     }
 
     public void deleteEmail( MailModel deletedEmail){

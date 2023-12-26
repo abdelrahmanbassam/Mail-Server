@@ -1,0 +1,95 @@
+{
+  "name" : "mariam",
+  "emailAddress" : "mariam@email.com",
+  "password" : "123123123",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:26:51"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:26:49"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:26:49"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:26:48"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:25:52"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:25:51"
+      }, {
+        "from" : "mariam@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 18:25:50"
+      } ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "sentEmails" : {
+      "name" : "sentEmails",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}
