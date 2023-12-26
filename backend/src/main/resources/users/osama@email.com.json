@@ -2,7 +2,12 @@
   "name" : "osama",
   "emailAddress" : "osama@email.com",
   "password" : "123123123",
-  "contacts" : [ ],
+  "contacts" : [ {
+    "name" : "ali",
+    "emailAddresses" : [ "Osama.hosny", "samy@gmail.com" ],
+    "phoneNums" : [ "01000612029", "8878714355" ],
+    "importance" : "3"
+  } ],
   "folders" : {
     "inbox" : {
       "name" : "inbox",

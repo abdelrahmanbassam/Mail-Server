@@ -58,7 +58,7 @@ public class FolderService {
     public List<MailModel> filterEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){
    
          List<MailModel> folderEmails=SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
-         System.out.println("we are here");
+        
          List<MailModel> filteredEmails =EmailFilter.filterEmails(folderEmails, subjectFilter, senderFilter);
          
          filteredEmails=EmailSearch.searchEmails(filteredEmails, searchWord);
