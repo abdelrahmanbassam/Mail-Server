@@ -1,130 +1,36 @@
 <template>
-  <div class="Search">
-      <input v-model="searchQuery" type="text" placeholder="Search emails" @input="searchEmails" />
-    </div>
-    <div class="nav-bar">
-    <div class="Frombutton">
-    <v-card
-      class="mx-auto"
-      color="info"
-    >
-      <v-list :opened="openfrom">
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props" title="From"></v-list-item>
-          </template>
-
-            <v-list-item
-              v-for="(title, i) in crudsfrom"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
-      </v-list>
-    </v-card>
-</div>
-<div class="Tobutton">
-    <v-card
-      class="mx-auto"
-    >
-      <v-list :opened="opento">  
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="To"
-            ></v-list-item>
-          </template>
-
-            <v-list-item
-              v-for="(title, i) in crudsto"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
-      </v-list>
-    </v-card>
-</div>
-<div class="Anytimebutton">
-    <v-card
-      class="mx-auto"
-    >
-      <v-list :opened="openanytime">  
-        <v-list-group value="Users">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Anytime"
-            ></v-list-item>
-          </template>
-        
-            <v-list-item
-              v-for="(title, i) in crudsanytime"
-              :key="i"
-              :value="title"
-              :title="title"
-            ></v-list-item>
-          </v-list-group>
-      </v-list>
-    </v-card>
-</div>
-<button id="hasattachmentbutton" @click="changeColorhasattachment">Has attachment</button>
-<button id="isunreadbutton" @click="changeColorisunread">Is unread</button>
-</div>
-  </template>
+  <nav>      
+    <v-app-bar flat app color="rgb(235, 235, 235)">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-title class="text-uppercase">
+        <span class="font-weight-light">Mail</span>
+        <span>Server</span>
+      </v-app-bar-title>
+      <v-btn flat color="grey">
+        <span>Sign Out </span>
+        <v-icon>mdi-logout-variant</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" app class="indigo">
+      <SideBar @navigateTo="changeList" />
+    </v-navigation-drawer>
+</nav>
+</template>
 
 <script>
+  import SideBar from  './SideBar.vue';
   export default {
+    components:{SideBar},
     data: () => ({
-      openfrom: [],
-      crudsfrom: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
-      opento: [],
-      crudsto: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
-      openanytime: [],
-      crudsanytime: [
-        ['Create'],
-        ['Read'],
-        ['Update'],
-        ['Delete'],
-      ],
+      drawer:true,
     }),
     methods: {
-      searchEmails() {
-      // Implement your logic to filter emails based on the search query
-      // You may want to filter the emails in openfrom, opento, or openanytime arrays
-      // For example, if you have an 'emails' array, you can filter it like this:
-      this.openfrom = this.filterEmails(this.openfrom);
-      this.opento = this.filterEmails(this.opento);
-      this.openanytime = this.filterEmails(this.openanytime);
+       changeList(folderName){
+        // this.$router.push({name:folderName});
+        // console.log(folderName);
+        this.$emit('navigateTo', folderName);
+      },
     },
-    filterEmails(emailArray) {
-      // Use the Array.filter method to filter emails based on the search query
-      return emailArray.filter(email => {
-        // Modify this condition based on your email structure and search criteria
-        return email.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
-    },
-    changeColorhasattachment() {
-      var button = document.getElementById("hasattachmentbutton");
-      button.classList.toggle("blue");
-    },
-    changeColorisunread() {
-      var button = document.getElementById("isunreadbutton");
-      button.classList.toggle("blue");
-    },
-  },
   }
 </script>
 
@@ -149,8 +55,7 @@
 
 #hasattachmentbutton {
     margin-left: 30px; 
-    background-color: white; 
-    /* padding: 10px; */
+    background-color: rgb(178, 178, 178); 
     border: none;
     border: 2px solid black;
     color: black;
@@ -184,12 +89,15 @@ height: 10vh;
     /* padding: 2vh 2vh  2vh 2vh; */
 }
 .Search {
-  margin-left: 25%;
-}
-.Search input {
-  padding: 5px;
-  width: 50%;
-  border: 2px solid aqua;
-}
+    margin-left: 10%;
+    margin-top: 10px; /* Adjust the margin-top as needed */
+    width: 50%;
+  }
 
+  .Search input {
+    padding: 5px;
+    width: 50%;
+    border: 2px solid white;
+    background-color: white;
+  }
 </style>
