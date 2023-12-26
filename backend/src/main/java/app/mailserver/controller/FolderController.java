@@ -42,7 +42,7 @@ public class FolderController {
         
         return folderService.getEmails((String)params.get("folderName") );
     }
-    
+  
     @DeleteMapping("/deleteEmails")
     public List<MailModel> deleteEmails(@RequestBody RequestObject params) {
         
