@@ -1,4 +1,5 @@
 package app.mailserver.models;
+import java.util.ArrayList;
 import java.util.List; 
 import java.util.Objects;
 
@@ -8,7 +9,11 @@ public class ContactModel {
     private List<String> emailAddresses;
     private List<String> phoneNums;
     private String importance;//we can change it to make string or what ever 
-   
+    
+    public ContactModel(){
+        emailAddresses=new ArrayList<>();
+        phoneNums=new ArrayList<>();
+    }   
     public ContactModel(String name, List<String> emailAddresses, List<String> phoneNums, String importance) {
         this.name = name;
         this.emailAddresses = emailAddresses;
