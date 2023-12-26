@@ -1,8 +1,7 @@
 <template>
     <div class="side-bar">
-
+      <h1>{{  }}</h1>
         <Compose />
-        
         <v-btn
         prepend-icon="mdi-account"
         color="teal" 
@@ -53,12 +52,22 @@
       </template>
 
       <!-- Display existing labels -->
-      <v-list-item v-for="label in labels" :key="label" :title="label" :value="label" @click="navigateTo(label)">
-        <!-- Add button for deleting label -->
-        <v-btn @click="deleteLabel(label)" icon>
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </v-list-item>
+      <v-span v-for="label in labels" :key="label" :value="label">
+        <div class="label">
+
+          <v-btn @click="navigateTo(label)">
+            {{ label }}
+          </v-btn>
+          
+          <!-- <v-list-item-action> -->
+            <v-btn icon @click="deleteLabel(label)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          <!-- </v-list-item-action> -->
+        </div>
+
+      </v-span>
+        
     </v-list-group>
   </v-list>
   </div>
@@ -68,7 +77,6 @@
 import Compose from './Compose.vue'
 export default {
     name: 'SideBar',
-     props: ['user'], 
     components:{Compose},
     data(){
         return{
@@ -80,31 +88,61 @@ export default {
     methods: {
         navigateTo(folderName){
           this.$router.push({ name:  'mail-list-view', params: { name: folderName } });
-            // this.$emit('navigateTo', folderName);
-            // console.log(folderName);
         },
-        //fetch the labels from the server
         async fetchLabels(){
-            fetch('http://localhost:3000/labels')
+            fetch('http://localhost:8081/labelsNames')
             .then(response => response.json())
             .then(data => {
-                this.labels = data;
+                this.labels = data.labelsNames;
             })
             .catch(error => console.log(error));
         },
-        addNewLabel() {
-      if (this.newLabel.trim() !== '') {
-        this.labels.push(this.newLabel.trim());
-        this.newLabel = ''; // Clear the input field
-      }
-    },
-
+        async addNewLabel() {
+            if (this.newLabel.trim() !== '') {
+              // this.labels.push(this.newLabel.trim());
+              await fetch('http://localhost:8081/addLabel', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  params:{
+                    labelName: this.newLabel.trim(),
+                  }
+                }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                this.labels = data.labelsNames;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+            }
+            this.newLabel = ''; // Clear the input field
+          },
+          
     // Delete a label
     deleteLabel(label) {
-      const index = this.labels.indexOf(label);
-      if (index !== -1) {
-        this.labels.splice(index, 1);
-      }
+      // this.labels.splice(this.labels.indexOf(label), 1);
+      fetch('http://localhost:8081/deleteLabel', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          params:{
+            labelName: label,
+          }
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.labels = data.labelsNames;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     },
 
     },
@@ -115,6 +153,11 @@ export default {
 </script>
 
 <style scoped>
+.label{
+    display: flex;
+    justify-content: space-between;
+
+}
 .side-bar{
     display: flex;
     flex-direction: column;

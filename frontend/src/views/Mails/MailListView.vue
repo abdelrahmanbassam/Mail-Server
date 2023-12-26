@@ -55,22 +55,29 @@
             <v-icon>mdi-delete</v-icon>
             Delete
         </v-btn>
-            <v-icon>mdi-folder-move</v-icon>
         <v-select
-            v-model="selectedFolders"
-            :items="folders"
-            label="Move to"
-            class="mx-2"
-            multiple
-            clearable
+        v-model="selectedFolder"
+        :items="labels"
+        label="Move to"
+        class="mx-2"
+        clearable
         ></v-select>
+        <v-btn
+        color="primary"
+        @click="moveSelectedMails"
+        >
+        move
+            <v-icon>mdi-folder-move</v-icon>
+        </v-btn>
+        
+        
         </v-toolbar>
 
         <div v-show="showContacts">
-            <ContactView />
+            <!-- <ContactView /> -->
         </div>
         <div v-show="!showContacts">
-            {{ currentList }}
+            {{ labels }}
             <v-list class="mail-list">
                 <div v-for="mail in currentList" :key="mail" class="mail">
                     <v-checkbox
@@ -111,9 +118,11 @@
             currentFolder: '',
             selectedMails: [],
             currentList: null,
-            selectedFolders: [],
+            selectedFolder: '',
             showContacts: false,
             contacts:[],
+
+            labels:[]
         }
     },
     
@@ -124,6 +133,8 @@
     
     mounted() {
         // this.changeList();
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user);
         this.changeList('inbox');
     },
 
@@ -131,12 +142,21 @@
     watch: {
         '$route'(to, from) {
             this.changeList(to.params.name);
-            console.log("heloooooooo" + to.params.name);
-            }
+            this.getLabels();
+        }
     },
 
 
     methods: {
+        async getLabels(){
+            await fetch('http://localhost:8081/labelsNames')
+            .then(response => response.json())
+            .then(data => {
+                this.labels = data.labelsNames;
+                console.log("labels :   " + data);
+            })
+            .catch(error => console.log(error));
+        },
         //send a post request to the server to change the current folder and recievve a new list to show
         async changeList(folderName){
             if(folderName === 'contacts'){
@@ -213,7 +233,10 @@
         },
        //send a post request to the server to move the selected mails to the selected folders
         async moveSelectedMails() {
-                await fetch('http://localhost:3000/user', {
+            console.log(this.selectedMails);
+            console.log(this.currentFolder);
+            console.log(this.selectedFolder);
+                await fetch('http://localhost:8081/moveEmails', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -222,13 +245,14 @@
                         params:{
                             emails: this.selectedMails,
                             from: this.currentFolder,
-                            to: this.selectedFolders,
+                            to: this.selectedFolder,
                         }
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    console.log(data);
                 })
                 .catch(error => console.error('Error moving selected mails:', error));
         },

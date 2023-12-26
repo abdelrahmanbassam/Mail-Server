@@ -1,6 +1,6 @@
 {
   "name" : "mourad",
-  "emailAddress" : "mouradmahgoub@gmail.com",
+  "emailAddress" : "mouradmahgoub710@gmail.com",
   "password" : "123456",
   "contacts" : [ ],
   "folders" : {
@@ -24,8 +24,8 @@
       "emails" : [ ],
       "subFolders" : [ ]
     },
-    "sentEmails" : {
-      "name" : "sentEmails",
+    "send" : {
+      "name" : "send",
       "emails" : [ ],
       "subFolders" : [ ]
     },
@@ -34,6 +34,14 @@
       "emails" : [ ],
       "subFolders" : [ ]
     },
-    "labels" : [ ]
+    "labels" : [ {
+      "name" : "mora",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    }, {
+      "name" : "sks",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
   }
 }
