@@ -36,27 +36,7 @@ public class UserService {
         }
         return response;
     }
-    // public UserModel login(String emailAddress, String password) {
-
-    //     if (SystemFolders.loginChecker(emailAddress, password)) {
-
-    //         this.curUser = SystemFolders.getCurUser();
-    //         return curUser;
-    //     }
-    //     return null;
-    // }
-
-    // public UserModel signUp(String name, String emailAddress, String password) throws IOException {
-    //     if (SystemFolders.signUp(name, emailAddress, password) != null) {
-
-    //         curUser = SystemFolders.getCurUser();
-
-    //         return curUser;
-    //     }
-    //     return null;
-    // }
-
-
+   
     public void logOut() {
 
     }

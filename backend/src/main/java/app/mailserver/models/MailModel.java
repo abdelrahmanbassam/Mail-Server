@@ -1,14 +1,14 @@
 package app.mailserver.models;
 
-// import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-// import lombok.Builder;
+import lombok.Builder;
 import java.util.Objects;
 
-public class MailModel {
+
+public class MailModel implements Cloneable {
     private String from;
     private List<String> to;//change it to reciver in all program 
     private String subject;
@@ -26,15 +26,25 @@ public class MailModel {
       
     }
 
-    // @Builder
-    // public MailModel(List<String> to, String from, String subject,String body,String Attachment , String type) {
-    //     this.to=to;
-    //     this.from=from;
-    //     this.subject = subject;
-    //     this.body=body;
-    //     this.Attachment=Attachment;
-    //     this.date = date.now();
-    // }
+    @Builder
+    public MailModel(List<String> to, String from, String subject, String body, String Attachment, String importance, String date) {
+        this.to = to;
+        this.from = from;
+        this.subject = subject;
+        this.body = body;
+        this.Attachment = Attachment;
+        this.importance = importance;
+        this.date = date;
+    }
+
+    @Override
+    public MailModel clone() {
+        try {
+            return (MailModel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); 
+        }
+    }
     public String getAttachment() {
         return this.Attachment;
     }

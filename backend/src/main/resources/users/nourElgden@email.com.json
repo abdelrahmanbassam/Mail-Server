@@ -1,0 +1,47 @@
+{
+  "name" : "nour",
+  "emailAddress" : "nourElgden@email.com",
+  "password" : "123123123",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ {
+        "from" : "yomna@email.com",
+        "to" : [ "nourElgden@email.com" ],
+        "subject" : "family",
+        "body" : "i ate your food  .",
+        "importance" : "very high",
+        "date" : "2023-12-26 14:12:33",
+        "attachment" : null
+      } ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "sentEmails" : {
+      "name" : "sentEmails",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}

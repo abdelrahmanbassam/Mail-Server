@@ -35,8 +35,7 @@ public class MailService {
          if(SystemFolders.isUserExist(x)){
             List<String>singleReceiver=new ArrayList<>();
             singleReceiver.add(x);
-            MailModel sentMail=new MailModel();
-            sentMail =newEmail;
+            MailModel sentMail=newEmail.clone();
             sentMail.setTo(singleReceiver);
             
             SystemFolders.sendEmailTo(sentMail, x);
