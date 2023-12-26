@@ -18,6 +18,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.mailserver.models.MailModel;
 import app.mailserver.models.RequestObject;
 import app.mailserver.service.FolderService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin
@@ -31,6 +34,10 @@ public class FolderController {
     private ObjectMapper objectMapper;
  
 
+    @GetMapping("/labelsNames")
+    public Map<String, List<String>> getlabelsNames() {
+        return folderService.getlabelsNames();
+    }
     
     @PostMapping("/filterEmails")
     public List<MailModel> filterEmails(@RequestBody RequestObject params) {
@@ -69,7 +76,7 @@ public class FolderController {
     public Map<String, List<String>> deleteLabel(@RequestBody RequestObject params) {
         return folderService.deleteLabel((String)params.get("labelName"));
     }
-   
+    
     public List<MailModel> toEmailList(RequestObject params)throws RuntimeException{
         List<Map<String, Object>> emailsParams = (List<Map<String, Object>>) params.get("emails");
         List<MailModel> emails = new ArrayList<MailModel>();

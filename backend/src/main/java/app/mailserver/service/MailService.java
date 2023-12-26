@@ -20,7 +20,7 @@ public class MailService {
    public UserModel sendEmail(MailModel newEmail) throws IOException{
 
        UserModel curUser=systemManager.getCurUser();
-       curUser.getFolders().addEmailTo("sentEmails",newEmail);
+       curUser.getFolders().addEmailTo("send",newEmail);
        systemManager.updateUser(curUser);
 
        //we can make it as a queue 
