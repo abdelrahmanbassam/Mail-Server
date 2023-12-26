@@ -52,7 +52,7 @@ public class ContactController {
     }
     @GetMapping("/getContacts")
     public List<ContactModel> getContacts(){
-        return ContactsService.getContacts();
+        return contactService.getContacts();
     }
 
     public ContactModel ToContactModel(RequestObject params){

@@ -3,9 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Service;
-
 import app.mailserver.models.FolderModel;
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
@@ -17,47 +15,52 @@ import app.mailserver.service.Filter.EmailSearch;
 
 @Service
 public class FolderService {
-     
+   private SystemFolders systemFolders; // Field to store the singleton instance
+
+   public FolderService() {
+       this.systemFolders = SystemFolders.getInstance(); // Initialize the singleton instance
+   }
+  
     public Map<String, List<String>> addLabel(String labelName){
-       UserModel curUserModel=SystemFolders.getCurUser();
+       UserModel curUserModel=systemFolders.getCurUser();
        curUserModel.getFolders().addLabel(labelName);
 
-       SystemFolders.updateUser(curUserModel);
+       systemFolders.updateUser(curUserModel);
        return getlabelsNames(curUserModel.getFolders().getLabels());
     } 
     
     public Map<String, List<String>> renameLabel(String oldName,String newName){
-       UserModel curUserModel=SystemFolders.getCurUser();
+       UserModel curUserModel=systemFolders.getCurUser();
        curUserModel.getFolders().renameLabel(oldName, newName);
-       SystemFolders.updateUser(curUserModel);
+       systemFolders.updateUser(curUserModel);
        return getlabelsNames(curUserModel.getFolders().getLabels());
     }
     
     public Map<String, List<String>> deleteLabel(String labelName){
-       UserModel curUserModel=SystemFolders.getCurUser();
+       UserModel curUserModel=systemFolders.getCurUser();
        curUserModel.getFolders().deleteLabel(labelName);
-       SystemFolders.updateUser(curUserModel);
+       systemFolders.updateUser(curUserModel);
        return getlabelsNames(curUserModel.getFolders().getLabels());
     } 
    
     public List<MailModel> deleteEmails(List<MailModel> emails,String from){
        
-      UserModel curUserModel=SystemFolders.getCurUser();
+      UserModel curUserModel=systemFolders.getCurUser();
       curUserModel.getFolders().deleteEmails(emails,from);
-      SystemFolders.updateUser(curUserModel);
+      systemFolders.updateUser(curUserModel);
       return curUserModel.getFolders().findFolder(from).getEmails();
     } 
     
     public List<MailModel> moveEmailsFromTo(List<MailModel> emails,String from,String to){
-      UserModel curUserModel=SystemFolders.getCurUser();
+      UserModel curUserModel=systemFolders.getCurUser();
       curUserModel.getFolders().moveEmailsFromTo(emails, from, to);
-      SystemFolders.updateUser(curUserModel);
+      systemFolders.updateUser(curUserModel);
       return curUserModel.getFolders().findFolder(from).getEmails();
     }
     
     public List<MailModel> filterEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){
    
-         List<MailModel> folderEmails=SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
+         List<MailModel> folderEmails=systemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
         
          List<MailModel> filteredEmails =EmailFilter.filterEmails(folderEmails, subjectFilter, senderFilter);
          
@@ -69,7 +72,7 @@ public class FolderService {
    }
    
     public List<MailModel> getEmails(String folderName){
-      return SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
+      return systemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
    }
    
    public Map<String, List<String>> getlabelsNames(List<FolderModel> labels) {

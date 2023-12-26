@@ -44,7 +44,8 @@ public class FolderModel {
     }
 
     public void deleteEmail( MailModel deletedEmail){
-       emails.remove(deletedEmail);
+       System.out.println(deletedEmail);
+        emails.remove(deletedEmail);
     }
     
     @Override

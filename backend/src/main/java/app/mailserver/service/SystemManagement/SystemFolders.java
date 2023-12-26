@@ -10,14 +10,24 @@ import java.util.regex.Pattern;
 
 
 public class SystemFolders {
-    // private static List<UserModel> allUsers;
+    private static SystemFolders instance; 
     private static  UserModel curUser;
 
-    public static UserModel getCurUser() {
+
+    private SystemFolders() {}
+
+    public static  SystemFolders getInstance() {
+        if (instance == null) {
+            instance = new SystemFolders();
+        }
+        return instance;
+    }
+
+    public  UserModel getCurUser() {
             return curUser;
         }
 
-    public static Map<String, Object> signUp(String name,String emailAddress, String password) throws IOException{
+    public  Map<String, Object> signUp(String name,String emailAddress, String password) throws IOException{
        
         Map<String, Object> response = new HashMap<String, Object>();
         response.put("isValid",false);
@@ -51,7 +61,7 @@ public class SystemFolders {
         }
     }
 
-    public static Map<String, Object> loginChecker(String emailAddress,String password){
+    public  Map<String, Object> loginChecker(String emailAddress,String password){
         
         Map<String, Object> response = new HashMap<String, Object>();
         response.put("isValid",false);
@@ -76,7 +86,7 @@ public class SystemFolders {
     
     }
     
-    public static void updateUser(UserModel changedUser) {
+    public  void updateUser(UserModel changedUser) {
        try {
            JsonFileHandler.writeUserModel(changedUser);
        } catch (Exception e) {
@@ -84,18 +94,18 @@ public class SystemFolders {
        }
     }
    
-    public static boolean isUserExist(String emailAddress) {
+    public  boolean isUserExist(String emailAddress) {
         return JsonFileHandler.isUserExist(emailAddress);
     }
     
-    public static void sendEmailTo(MailModel email ,String receiverAddress) throws IOException{
+    public  void sendEmailTo(MailModel email ,String receiverAddress) throws IOException{
            
           UserModel receiver= JsonFileHandler.fetchUser(receiverAddress);
           receiver.getFolders().addEmailTo("inbox", email); 
           JsonFileHandler.writeUserModel(receiver);
     }
 
-    public static boolean isValidEmail(String email) {
+    public  boolean isValidEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+\\.com)$";
         
         Pattern pattern = Pattern.compile(regex);

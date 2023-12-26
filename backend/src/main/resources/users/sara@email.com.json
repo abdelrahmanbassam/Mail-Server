@@ -1,0 +1,130 @@
+{
+  "name" : "sara",
+  "emailAddress" : "sara@email.com",
+  "password" : "123123123",
+  "contacts" : [ {
+    "name" : "iojudhsi",
+    "emailAddresses" : [ "ijsadhu" ],
+    "phoneNums" : [ "siajdlhkg" ],
+    "importance" : "1"
+  }, {
+    "name" : "iojudhsi",
+    "emailAddresses" : [ "ijsadhu" ],
+    "phoneNums" : [ "siajdlhkg" ],
+    "importance" : "1"
+  }, {
+    "name" : "iojudhsi",
+    "emailAddresses" : [ "ijsadhu" ],
+    "phoneNums" : [ "siajdlhkg" ],
+    "importance" : "1"
+  } ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ {
+        "from" : "sara@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 17:09:16"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "koke@gmail.com", "shesha@mail.com" ],
+        "subject" : "Sample Subject",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-26 17:55:48"
+      } ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "sentEmails" : {
+      "name" : "sentEmails",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "sceince",
+        "body" : "metoconria .",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:00"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "graph",
+        "body" : "nodes nodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:14"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "sceince",
+        "body" : "metoconria .",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:00"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "graph",
+        "body" : "nodes nodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:14"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "sceince",
+        "body" : "metoconria .",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:00"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "graph",
+        "body" : "nodes nodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:14"
+      }, {
+        "from" : "sara@email.com",
+        "to" : [ "ahmed@email.com" ],
+        "subject" : "sceince",
+        "body" : "metoconria .",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 17:10:00"
+      } ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ {
+      "name" : "7oby",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
+  }
+}

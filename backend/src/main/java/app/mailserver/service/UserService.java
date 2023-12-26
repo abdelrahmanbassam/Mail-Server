@@ -13,14 +13,20 @@ import app.mailserver.service.SystemManagement.SystemFolders;
 public class UserService {
     private UserModel curUser;
 
+    private SystemFolders systemFolders; // Field to store the singleton instance
+
+    public UserService() {
+        this.systemFolders = SystemFolders.getInstance(); // Initialize the singleton instance
+    }
+
     public Map<String, Object> login(String emailAddress, String password) {
        
         Map<String, Object> response = new HashMap<String, Object>();
-        response=SystemFolders.loginChecker(emailAddress, password);
+        response=systemFolders.loginChecker(emailAddress, password);
 
         if ((boolean)response.get("isValid")) {
 
-            this.curUser = SystemFolders.getCurUser();
+            this.curUser = systemFolders.getCurUser();
             return response;
         }
         return response;
@@ -28,11 +34,11 @@ public class UserService {
 
     public Map<String, Object> signUp(String name, String emailAddress, String password) throws IOException {
         Map<String, Object> response = new HashMap<String, Object>();
-        response=SystemFolders.signUp(name, emailAddress, password);
+        response=systemFolders.signUp(name, emailAddress, password);
 
         if ((boolean)response.get("isValid")) {
 
-            curUser = SystemFolders.getCurUser();
+            curUser = systemFolders.getCurUser();
         }
         return response;
     }
