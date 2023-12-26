@@ -70,6 +70,7 @@
             <ContactView />
         </div>
         <div v-show="!showContacts">
+            {{ currentList }}
             <v-list class="mail-list">
                 <div v-for="mail in currentList" :key="mail" class="mail">
                     <v-checkbox
@@ -147,22 +148,19 @@
             this.selectedMails = [];
             this.selectedFolders = [];
             this.showContacts = false;
-            await fetch('http://localhost:3000/getEmails'
-            // , {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         params:{
-            //             to: folderName,
-            //             sortKey: this.sortKey,
-            //             searchKey: this.searchKey,
-            //             filterKeys: this.filterKeys,
-            //             filterValue: this.filterValue,
-            //         }
-            //     })
-            // }
+            
+            await fetch('http://localhost:8081/getEmails'
+            , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    params:{
+                        folderName: folderName,
+                    }
+                })
+            }
             )
             .then(response => response.json())
             .then(data => {
@@ -172,16 +170,16 @@
         },
 
         async applyFilters(){
-            await fetch('http://localhost:3000/getEmails', {
+            await fetch('http://localhost:3000/filterEmails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     params:{
-                        to: this.currentFolder,
-                        sortKey: this.sortKey,
-                        searchKey: this.searchKey,
+                        folderName: this.currentFolder,
+                        sort: this.sortKey,
+                        search: this.searchKey,
                         filterKeys: this.filterKeys,
                         filterValue: this.filterValue,
                     }
@@ -245,7 +243,7 @@
     color: white !important;
 }
 .filter{
-    width: 30vh;
+    width: 50vh;
 }
 
 nav {

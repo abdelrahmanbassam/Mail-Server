@@ -53,7 +53,7 @@
 
            this.y=data;
           if(this.y.isValid){
-          this.$router.push('/list');
+          this.$router.push('/list/inbox');
         }
       })
      },
