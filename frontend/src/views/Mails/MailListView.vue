@@ -2,23 +2,40 @@
     <div>
         <NavBar @navigateTo="changeList"/>
         
+        <v-btn 
+        v-if="searchKey || sortKey || (filterKey && filterValue)"
+        @click="applyFilters"
+        color="primary"
+        block
+        >
+        Apply
+        </v-btn>
         <v-toolbar>
-      <v-text-field v-model="searchQuery" label="Search" class="mx-2"></v-text-field>
+            
+
+
+      <v-text-field v-model="searchKey" label="Search" class="mx-2"></v-text-field>
       <v-select
-        v-model="sortKey"
-        :items="showContacts? ['alphabetical'] : ['importance', 'date']"
-        label="Sort by"
-        class="mx-2"
-        clearable
-      ></v-select>
-      <v-select
+      v-model="sortKey"
+      :items="showContacts? ['alphabetical'] : ['importance', 'date']"
+          label="Sort by"
+          class="mx-2"
+          clearable
+          ></v-select>
+        
+        <v-select
         v-show="!showContacts"
         v-model="filterKey"
         :items="['from', 'subject']"
         label="flter by"
         class="mx-2"
         clearable
-      ></v-select>
+        ></v-select>
+        <v-text-field
+        v-show="!showContacts && filterKey"
+        v-model="filterValue"
+        class="mx-2"
+        ></v-text-field>
     </v-toolbar>
 
         <v-toolbar v-if="selectedMails.length > 0">
@@ -43,7 +60,7 @@
         </div>
         <div v-show="!showContacts">
             <v-list class="mail-list">
-                <div v-for="mail in user?.folders.inbox.emails" :key="mail"     class="mail">
+                <div v-for="mail in currentList" :key="mail"     class="mail">
                     <v-checkbox
                     v-model="selectedMails"
                     :label="mail"
@@ -71,13 +88,15 @@
     components:{NavBar, ContactView},
     data() {
         return {
-            sort: null,
-            search:null,
-            filterKey: null,
             user: null,
+            // mailsControll:{
+                sortKey: null,
+                searchKey:null,
+                filterKey: null,
+                filterValue: null,
+            // },
             currentFolder: '',
             selectedMails: [],
-            // selectedFolder: [],
             currentList: [],
             selectedFolders: [],
             showContacts: false,
@@ -85,39 +104,28 @@
         }
     },
     mounted() {
-        this.fetchData();
+        this.changeList('inbox');
     },
     methods: {
-        async fetchData(){
-            try {
-                fetch('http://localhost:8081/getEmails')
-                .then(response => response.json())
-                .then(data => {
-                    this.user = data;
-                    console.log(this.user.name);
-                });
-                
-            }catch(e) {
-                console.error('Error fetching user data:', e.message);
-            }
-        },
         //send a post request to the server to change the current folder and recievve a new list to show
         async changeList(folderName){
-            console.log(folderName);
+                this.sortKey = null;
+                this.searchKe = null;
+                this.filterKey = null;
+                this.filterValue = null;
+
             if(folderName === 'contacts'){
                 this.showContacts = true;
-                console.log(this.showContacts);
             }else{
-                console.log(this.showContacts);
                 this.showContacts = false;
-                await fetch('http://localhost:3000/user', {
+                await fetch('http://localhost:3000/getEmails', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                     params:{
-                        to: folderName,
+                        to: this.folderName,
                     }
                 })
                 })
@@ -128,6 +136,29 @@
                 })
                 .catch(error => console.error('Error changing list:', error));
             }
+        },
+
+        async applyFilters(){
+            await fetch('http://localhost:3000/getEmails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    params:{
+                        to: this.currentFolder,
+                        sortKey: this.sortKey,
+                        searchKey: this.searchKey,
+                        filterKey: this.filterKey,
+                        filterValue: this.filterValue,
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.currentList = data;
+            })
+            .catch(error => console.error('Error applying filters:', error));
         },
 
         async deleteSelectedMails() {
@@ -201,8 +232,7 @@ p{
 }
 .mail-list{
     z-index: 1;
-    /* margin-top: 2vh; */
-    height: 87.5vh;
+    height: 85vh;
     overflow-y: auto;
 }
 .home-view {
