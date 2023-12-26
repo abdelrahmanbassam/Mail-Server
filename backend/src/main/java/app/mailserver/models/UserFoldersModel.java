@@ -10,7 +10,7 @@ public class UserFoldersModel {
   private  FolderModel draft;
   private  FolderModel starred;
   private  FolderModel important;
-  private  FolderModel sentEmails;
+  private  FolderModel send;
   private  FolderModel trash;
   private  List<FolderModel>labels;
     
@@ -19,7 +19,7 @@ public class UserFoldersModel {
       this.draft= new FolderModel("draft", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.starred=new FolderModel("starred", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.important=new FolderModel("important", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
-      this.sentEmails=new FolderModel("sentEmails", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.send=new FolderModel("send", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.trash=new FolderModel("trash", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.labels=new ArrayList<>();
       labels=new ArrayList<>();
@@ -88,11 +88,12 @@ public class UserFoldersModel {
         return starred;
       case "important":
         return important;
-      case "sentEmails":
-        return sentEmails;
+      case "send":
+        return send;
       case "draft":
         return draft;
-
+      case "trash":
+        return trash;
       default:
         break;
     }
@@ -108,12 +109,12 @@ public class UserFoldersModel {
     findFolder(folderName).addEmail(newEmail);
   }
 
-  public UserFoldersModel(FolderModel inbox, FolderModel draft, FolderModel starred, FolderModel important, FolderModel sentEmails, FolderModel trash, List<FolderModel> labels) {
+  public UserFoldersModel(FolderModel inbox, FolderModel draft, FolderModel starred, FolderModel important, FolderModel send, FolderModel trash, List<FolderModel> labels) {
     this.inbox = inbox;
     this.draft = draft;
     this.starred = starred;
     this.important = important;
-    this.sentEmails = sentEmails;
+    this.send = send;
     this.trash = trash;
     this.labels = labels;
   }
@@ -150,12 +151,12 @@ public class UserFoldersModel {
     this.important = important;
   }
 
-  public FolderModel getSentEmails() {
-    return this.sentEmails;
+  public FolderModel getSend() {
+    return this.send;
   }
 
-  public void setSentEmails(FolderModel sentEmails) {
-    this.sentEmails = sentEmails;
+  public void setSend(FolderModel send) {
+    this.send = send;
   }
 
   public FolderModel getTrash() {
@@ -181,12 +182,12 @@ public class UserFoldersModel {
             return false;
         }
         UserFoldersModel userFoldersModel = (UserFoldersModel) o;
-        return Objects.equals(inbox, userFoldersModel.inbox) && Objects.equals(draft, userFoldersModel.draft) && Objects.equals(starred, userFoldersModel.starred) && Objects.equals(important, userFoldersModel.important) && Objects.equals(sentEmails, userFoldersModel.sentEmails) && Objects.equals(trash, userFoldersModel.trash) && Objects.equals(labels, userFoldersModel.labels);
+        return Objects.equals(inbox, userFoldersModel.inbox) && Objects.equals(draft, userFoldersModel.draft) && Objects.equals(starred, userFoldersModel.starred) && Objects.equals(important, userFoldersModel.important) && Objects.equals(send, userFoldersModel.send) && Objects.equals(trash, userFoldersModel.trash) && Objects.equals(labels, userFoldersModel.labels);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inbox, draft, starred, important, sentEmails, trash, labels);
+    return Objects.hash(inbox, draft, starred, important, send, trash, labels);
   }
 
   @Override
@@ -196,7 +197,7 @@ public class UserFoldersModel {
       ", draft='" + getDraft() + "'" +
       ", starred='" + getStarred() + "'" +
       ", important='" + getImportant() + "'" +
-      ", sentEmails='" + getSentEmails() + "'" +
+      ", send='" + getSend() + "'" +
       ", trash='" + getTrash() + "'" +
       ", labels='" + getLabels() + "'" +
       "}";
