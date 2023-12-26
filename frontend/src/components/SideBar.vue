@@ -21,7 +21,7 @@
         prepend-icon="mdi-send" 
         title="Send" 
         value="send" 
-        @click="navigateTo('sent')"
+        @click="navigateTo('send')"
         ></v-list-item>
         <v-list-item 
         prepend-icon="mdi-label-variant-outline" 

@@ -170,7 +170,7 @@
         },
 
         async applyFilters(){
-            await fetch('http://localhost:3000/filterEmails', {
+            await fetch('http://localhost:8081/filterEmails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
