@@ -26,6 +26,9 @@ public class ContactsService {
     UserModel curUser=systemManager.getCurUser();
     List<ContactModel> curContacts = curUser.getContacts();
     curUser.setContacts(curContacts);
+    if(newContact.getName()==null){
+      return curUser.getContacts();
+    }
     curContacts.add(newContact);
     sort();
     systemManager.updateUser(curUser);
@@ -38,8 +41,7 @@ public class ContactsService {
 
     for (int i = 0; i < curContacts.size(); i++) {
 
-      if (curContacts.get(i).getPhoneNums().get(0).equals(contact.getPhoneNums().get(0))
-          && curContacts.get(i).getName().toLowerCase().equals(contact.getName().toLowerCase())) {
+      if (curContacts.get(i).getName().toLowerCase().equals(contact.getName().toLowerCase())) {
 
         curContacts.remove(i);
         break;

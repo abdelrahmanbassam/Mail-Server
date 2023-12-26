@@ -18,6 +18,7 @@ public class UserModel {
     
     public UserModel(){
         this.folders=new UserFoldersModel();
+        contacts=new ArrayList<>();
     }
     public UserModel(String name, String emailAddress,String password) {
         this.name = name;

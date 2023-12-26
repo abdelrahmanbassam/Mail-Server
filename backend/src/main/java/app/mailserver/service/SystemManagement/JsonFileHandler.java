@@ -24,7 +24,7 @@ public class JsonFileHandler {
       ObjectMapper objectmapper=new ObjectMapper();
       try{
           File file=new File(userfile);
-        UserModel usersData=objectmapper.readValue(file, new TypeReference<UserModel>(){});
+        UserModel usersData=objectmapper.readValue(file,UserModel.class);
         
         return usersData;
       }
