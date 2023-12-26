@@ -14,15 +14,15 @@
             
 
 
-      <v-text-field v-model="searchKey" label="Search" class="mx-2"></v-text-field>
-      <v-select
-      v-model="sortKey"
-      :items="showContacts? ['alphabetical'] : ['importance', 'date']"
-          label="Sort by"
-          class="mx-2"
-          clearable
-          ></v-select>
-        
+        <v-text-field v-model="searchKey" label="Search" class="mx-2"></v-text-field>
+        <v-select
+        v-model="sortKey"
+        :items="showContacts? ['alphabetical'] : ['importance', 'date']"
+        label="Sort by"
+        class="mx-2"
+        clearable
+        ></v-select>
+    
         <v-select
         v-show="!showContacts"
         v-model="filterKey"
@@ -60,7 +60,7 @@
         </div>
         <div v-show="!showContacts">
             <v-list class="mail-list">
-                <div v-for="mail in currentList" :key="mail"     class="mail">
+                <div v-for="mail in currentList" :key="mail" class="mail">
                     <v-checkbox
                     v-model="selectedMails"
                     :label="mail"
@@ -105,6 +105,7 @@
     },
     mounted() {
         this.changeList('inbox');
+        // this.fetchData();
     },
     methods: {
         //send a post request to the server to change the current folder and recievve a new list to show
@@ -118,20 +119,25 @@
                 this.showContacts = true;
             }else{
                 this.showContacts = false;
-                await fetch('http://localhost:3000/getEmails', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                    params:{
-                        to: this.folderName,
-                    }
-                })
-                })
+                await fetch('http://localhost:3000/getEmails'
+                // , {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //     params:{
+                //         to: this.folderName,
+                //     }
+                // })
+                // }
+                )
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    console.log("current list is");
+                    console.log(this.currentList);
+
                     this.currentFolder = folderName;
                 })
                 .catch(error => console.error('Error changing list:', error));
