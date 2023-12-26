@@ -2,34 +2,11 @@
   "name" : "osama",
   "emailAddress" : "osama@email.com",
   "password" : "123123123",
-  "contacts" : [ {
-    "name" : "joeeeeeeeeeeeee",
-    "emailAddresses" : [ ],
-    "phoneNums" : [ ],
-    "importance" : ""
-  }, {
-    "name" : "t2ala",
-    "emailAddresses" : [ ],
-    "phoneNums" : [ ],
-    "importance" : ""
-  }, {
-    "name" : "t2alaT2ala",
-    "emailAddresses" : [ ],
-    "phoneNums" : [ ],
-    "importance" : ""
-  } ],
+  "contacts" : [ ],
   "folders" : {
     "inbox" : {
       "name" : "inbox",
-      "emails" : [ {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "importance" : "very high",
-        "date" : "2023-12-26 03:17:44",
-        "attachment" : null
-      } ],
+      "emails" : [ ],
       "subFolders" : [ ]
     },
     "draft" : {
@@ -49,31 +26,7 @@
     },
     "sentEmails" : {
       "name" : "sentEmails",
-      "emails" : [ {
-        "from" : "osama@email.com",
-        "to" : [ "bassam@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "importance" : "very high",
-        "date" : "2023-12-26 03:17:35",
-        "attachment" : null
-      }, {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "importance" : "very high",
-        "date" : "2023-12-26 03:17:43",
-        "attachment" : null
-      }, {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "importance" : "very high",
-        "date" : "2023-12-26 03:17:44",
-        "attachment" : null
-      } ],
+      "emails" : [ ],
       "subFolders" : [ ]
     },
     "trash" : {

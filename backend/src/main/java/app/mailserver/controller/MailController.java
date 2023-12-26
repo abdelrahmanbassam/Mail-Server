@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.mailserver.models.MailModel;
 import app.mailserver.models.RequestObject;
-import app.mailserver.models.UserModel;
 import app.mailserver.service.MailService;
 
 @RestController

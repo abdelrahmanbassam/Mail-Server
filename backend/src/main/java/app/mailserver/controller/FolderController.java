@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.mailserver.models.MailModel;
 import app.mailserver.models.RequestObject;
-import app.mailserver.models.UserModel;
 import app.mailserver.service.FolderService;
 
 @RestController
@@ -56,18 +55,18 @@ public class FolderController {
     }
 
     @PostMapping("/addLabel")
-    public List<String> addLabel(@RequestBody RequestObject params) {
+    public Map<String, List<String>> addLabel(@RequestBody RequestObject params) {
         
         return folderService.addLabel((String)params.get("labelName"));
     }
     
     @PostMapping("/renameLabel")
-    public List<String> renameLabel(@RequestBody RequestObject params) {
+    public Map<String, List<String>> renameLabel(@RequestBody RequestObject params) {
         return folderService.renameLabel((String)params.get("oldName"), (String)params.get("newName"));
     }
     
     @DeleteMapping("/deleteLabel")
-    public List<String> deleteLabel(@RequestBody RequestObject params) {
+    public Map<String, List<String>> deleteLabel(@RequestBody RequestObject params) {
         return folderService.deleteLabel((String)params.get("labelName"));
     }
    
