@@ -13,7 +13,7 @@ public class MailModel implements Cloneable {
     private List<String> to;//change it to reciver in all program 
     private String subject;
     private String body;
-    private String Attachment;
+    private String attachment;
     private String importance;
     private String date=new String();
     
@@ -27,12 +27,12 @@ public class MailModel implements Cloneable {
     }
 
     @Builder
-    public MailModel(List<String> to, String from, String subject, String body, String Attachment, String importance, String date) {
+    public MailModel(List<String> to, String from, String subject, String body, String attachment, String importance, String date) {
         this.to = to;
         this.from = from;
         this.subject = subject;
         this.body = body;
-        this.Attachment = Attachment;
+        this.attachment = attachment;
         this.importance = importance;
         this.date = date;
     }
@@ -46,11 +46,11 @@ public class MailModel implements Cloneable {
         }
     }
     public String getAttachment() {
-        return this.Attachment;
+        return this.attachment;
     }
 
-    public void setAttachment(String Attachment) {
-        this.Attachment = Attachment;
+    public void setattachment(String attachment) {
+        this.attachment = attachment;
     }
 
     public String getfrom() {
@@ -107,8 +107,8 @@ public class MailModel implements Cloneable {
 
  
 
-    // public MailModel(String Attachment, String from, List<String> to, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
-    //     this.Attachment = Attachment;
+    // public MailModel(String attachment, String from, List<String> to, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
+    //     this.attachment = attachment;
     //     this.from = from;
     //     this.to = to;
     //     this.subject = subject;
@@ -126,12 +126,12 @@ public class MailModel implements Cloneable {
             return false;
         }
         MailModel mailModel = (MailModel) o;
-        return Objects.equals(Attachment, mailModel.Attachment) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
+        return Objects.equals(attachment, mailModel.attachment) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Attachment, from, to, subject, body, date, importance);
+        return Objects.hash(attachment, from, to, subject, body, date, importance);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class MailModel implements Cloneable {
         ", to='" + getTo() + "'" +
         ", subject='" + getsubject() + "'" +
         ", body='" + getBody() + "'" +
-        ", Attachment='" + getAttachment() + "'" +
+        ", attachment='" + getAttachment() + "'" +
         ", importance='" + getImportance() + "'" +
         ", date='" + getDate() + "'" +
             "}";
