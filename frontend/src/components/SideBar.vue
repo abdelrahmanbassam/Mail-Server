@@ -72,14 +72,15 @@ export default {
     components:{Compose},
     data(){
         return{
-             labels: [],
+             labels: null,
              newLabel: '',
 
         }
     },
     methods: {
         navigateTo(folderName){
-            this.$emit('navigateTo', folderName);
+          this.$router.push({ name:  'mail-list-view', params: { name: folderName } });
+            // this.$emit('navigateTo', folderName);
             // console.log(folderName);
         },
         //fetch the labels from the server

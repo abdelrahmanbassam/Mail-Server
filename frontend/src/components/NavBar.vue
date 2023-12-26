@@ -12,7 +12,7 @@
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app class="indigo">
-      <SideBar @navigateTo="changeList" />
+      <SideBar />
     </v-navigation-drawer>
 </nav>
 </template>
@@ -24,13 +24,13 @@
     data: () => ({
       drawer:true,
     }),
-    methods: {
-       changeList(folderName){
-        // this.$router.push({name:folderName});
-        // console.log(folderName);
-        this.$emit('navigateTo', folderName);
-      },
-    },
+  //   methods: {
+  //      changeList(folderName){
+  //       // this.$router.push({name:folderName});
+  //       console.log(folderName + "naaaaaaaaaaaV");
+  //       this.$emit('navigateTo', folderName);
+  //     },
+  //   },
   }
 </script>
 
