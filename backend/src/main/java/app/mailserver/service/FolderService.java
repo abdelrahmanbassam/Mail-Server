@@ -48,7 +48,7 @@ public class FolderService {
       return curUserModel.getFolders().findFolder(from).getEmails();
     }
     
-   public List<MailModel> getEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){
+   public List<MailModel> filterEmails(String folderName,String subjectFilter,String senderFilter,String sortLogic,String searchWord){
    
          List<MailModel> folderEmails=SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
          
@@ -59,6 +59,9 @@ public class FolderService {
          filteredEmails=EmailSort.SortEmails(filteredEmails, sortLogic);
       
      return filteredEmails;
+   }
+   public List<MailModel> getEmails(String folderName){
+      return SystemFolders.getCurUser().getFolders().findFolder(folderName).getEmails();
    }
   
 }

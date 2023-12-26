@@ -33,10 +33,15 @@ public class FolderController {
  
 
     
+    @PostMapping("/filterEmails")
+    public List<MailModel> filterEmails(@RequestBody RequestObject params) {
+        
+        return folderService.filterEmails((String)params.get("folderName") , (String)params.get("subjectFilter"),(String)params.get("senderFilter") , (String)params.get("sort"),(String)params.get("search"));
+    }
     @PostMapping("/getEmails")
     public List<MailModel> getEmails(@RequestBody RequestObject params) {
         
-        return folderService.getEmails((String)params.get("folderName") , (String)params.get("subjectFilter"),(String)params.get("senderFilter") , (String)params.get("sort"),(String)params.get("search"));
+        return folderService.getEmails((String)params.get("folderName") );
     }
     
     @DeleteMapping("/deleteEmails")
