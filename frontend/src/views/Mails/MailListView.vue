@@ -1,55 +1,90 @@
 <template>
     <div>
-        <NavBar @navigateTo="changeList"/>
+        <NavBar/>
         
         <v-toolbar>
-      <v-text-field v-model="searchQuery" label="Search" class="mx-2"></v-text-field>
-      <v-select
-        v-model="sortKey"
-        :items="showContacts? ['alphabetical'] : ['importance', 'date']"
-        label="Sort by"
-        class="mx-2"
-        clearable
-      ></v-select>
-      <v-select
-        v-show="!showContacts"
-        v-model="filterKey"
-        :items="['from', 'subject']"
-        label="flter by"
-        class="mx-2"
-        clearable
-      ></v-select>
-    </v-toolbar>
+            
+            <div class="filter">
+                <v-text-field 
+                v-model="searchKey"
+                label="Search" 
+                class="mx-2"
+                ></v-text-field>
+            </div>
+            
+            <div class="filter">
+            <v-select
+            v-model="sortKey"
+            :items="showContacts? ['alphabetical'] : ['importance', 'date']"
+            label="Sort by"
+            class="mx-2"
+            clearable
+            ></v-select>
+        </div>
+        
+        <div class="filter">
+            <v-select
+            v-show="!showContacts"
+            v-model="filterKeys"
+            :items="['from', 'subject']"
+            label="flter by"
+            class="mx-2"
+            multiple
+            ></v-select>
+        </div>
+        <div class="filter">
+            <v-text-field
+            v-show="!showContacts && filterKeys?.length > 0"
+            v-model="filterValue"
+            class="mx-2"
+            ></v-text-field>
+        </div>
+        
+        <v-btn 
+        v-if="searchKey || sortKey || (filterKeys?.length > 0 && filterValue)"
+        @click="applyFilters"
+        class="bt"
+        >
+        Apply
+        </v-btn>
+
+</v-toolbar>
 
         <v-toolbar v-if="selectedMails.length > 0">
         <v-btn color="error" @click="deleteSelectedMails">
             <v-icon>mdi-delete</v-icon>
             Delete
         </v-btn>
-            <v-icon>mdi-folder-move</v-icon>
         <v-select
-            v-model="selectedFolders"
-            :items="folders"
-            label="Move to"
-            class="mx-2"
-            multiple
-            clearable
+        v-model="selectedFolder"
+        :items="labels"
+        label="Move to"
+        class="mx-2"
+        clearable
         ></v-select>
-
+        <v-btn
+        color="primary"
+        @click="moveSelectedMails"
+        >
+        move
+            <v-icon>mdi-folder-move</v-icon>
+        </v-btn>
+        
+        
         </v-toolbar>
 
         <div v-show="showContacts">
-            <ContactView />
+            <!-- <ContactView /> -->
         </div>
         <div v-show="!showContacts">
+            {{ labels }}
             <v-list class="mail-list">
-                <div v-for="mail in user?.folders.inbox.emails" :key="mail"     class="mail">
+                <div v-for="mail in currentList" :key="mail" class="mail">
                     <v-checkbox
                     v-model="selectedMails"
-                    :label="mail"
                     :value="mail"
                     ></v-checkbox> 
-                    <v-list-item :value="mail"  @click="df">
+                    <v-list-item :value="mail"  @click="EmailDialog = true">
                         <div  class="bs">
                             <p class="truncate">{{ mail.from }}</p>
                             <p class="truncate">{{ mail.subject }}</p>
@@ -68,66 +103,113 @@
   import NavBar from '../../components/NavBar.vue';
   import ContactView from '../ContactView.vue';
   export default {
+    // props: ['name'],
     components:{NavBar, ContactView},
     data() {
         return {
-            sort: null,
-            search:null,
-            filterKey: null,
+            // name: 'inbox',
             user: null,
+            // mailsControll:{
+                sortKey: null,
+                searchKey:null,
+                filterKeys: [],
+                filterValue: null,
+            // },
             currentFolder: '',
             selectedMails: [],
-            // selectedFolder: [],
-            currentList: [],
-            selectedFolders: [],
+            currentList: null,
+            selectedFolder: '',
             showContacts: false,
             contacts:[],
+
+            labels:[]
         }
     },
-    mounted() {
-        // this.fetchData();
+    
+    created() {
+        const listName = this.$route.params.name;
+        console.log(listName);
     },
+    
+    mounted() {
+        // this.changeList();
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user);
+        this.changeList('inbox');
+    },
+
+
+    watch: {
+        '$route'(to, from) {
+            this.changeList(to.params.name);
+            this.getLabels();
+        }
+    },
+
+
     methods: {
-        async fetchData(){
-            try {
-                fetch('http://localhost:3000/user')
-                .then(response => response.json())
-                .then(data => {
-                    this.user = data;
-                    console.log(this.user.name);
-                });
-                
-            }catch(e) {
-                console.error('Error fetching user data:', e.message);
-            }
+        async getLabels(){
+            await fetch('http://localhost:8081/labelsNames')
+            .then(response => response.json())
+            .then(data => {
+                this.labels = data.labelsNames;
+                console.log("labels :   " + data);
+            })
+            .catch(error => console.log(error));
         },
         //send a post request to the server to change the current folder and recievve a new list to show
         async changeList(folderName){
-            console.log(folderName);
             if(folderName === 'contacts'){
                 this.showContacts = true;
-                console.log(this.showContacts);
-            }else{
-                console.log(this.showContacts);
-                this.showContacts = false;
-                await fetch('http://localhost:3000/user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
+                console.log(folderName);
+                return;
+            }
+            this.currentFolder = folderName;
+            this.selectedMails = [];
+            this.selectedFolders = [];
+            this.showContacts = false;
+            
+            await fetch('http://localhost:8081/getEmails'
+            , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     params:{
-                        to: folderName,
+                        folderName: folderName,
                     }
                 })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    this.currentList = data;
-                    this.currentFolder = folderName;
-                })
-                .catch(error => console.error('Error changing list:', error));
             }
+            )
+            .then(response => response.json())
+            .then(data => {
+                this.currentList = data;
+            })
+            .catch(error => console.error('Error changing list:', error));
+        },
+
+        async applyFilters(){
+            await fetch('http://localhost:8081/filterEmails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    params:{
+                        folderName: this.currentFolder,
+                        sort: this.sortKey,
+                        search: this.searchKey,
+                        filterKeys: this.filterKeys,
+                        filterValue: this.filterValue,
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                this.currentList = data;
+            })
+            .catch(error => console.error('Error applying filters:', error));
         },
 
         async deleteSelectedMails() {
@@ -148,10 +230,13 @@
                     this.currentList = data;
                 })
                 .catch(error => console.error('Error deleting selected mails:', error));
-      },
+        },
        //send a post request to the server to move the selected mails to the selected folders
         async moveSelectedMails() {
-                await fetch('http://localhost:3000/user', {
+            console.log(this.selectedMails);
+            console.log(this.currentFolder);
+            console.log(this.selectedFolder);
+                await fetch('http://localhost:8081/moveEmails', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -160,13 +245,14 @@
                         params:{
                             emails: this.selectedMails,
                             from: this.currentFolder,
-                            to: this.selectedFolders,
+                            to: this.selectedFolder,
                         }
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    console.log(data);
                 })
                 .catch(error => console.error('Error moving selected mails:', error));
         },
@@ -176,6 +262,14 @@
 </script>
 
 <style scoped>
+.bt {
+    background-color: rgb(27, 154, 185) !important;
+    color: white !important;
+}
+.filter{
+    width: 50vh;
+}
+
 nav {
     z-index: 2;
 }
@@ -201,8 +295,7 @@ p{
 }
 .mail-list{
     z-index: 1;
-    /* margin-top: 2vh; */
-    height: 87.5vh;
+    height: 85vh;
     overflow-y: auto;
 }
 .home-view {

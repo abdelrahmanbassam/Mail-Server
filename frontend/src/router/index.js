@@ -17,7 +17,7 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/list',
+    path: '/list/:name',
     name: 'mail-list-view',
     component: MailListView
   },
