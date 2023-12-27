@@ -19,14 +19,14 @@
             <v-icon right @click="close">mdi-close</v-icon>
         </v-row>
         <v-col>
-            <v-autocomplete
+            <v-combobox
             v-model="to"
             label="To"
             :rules="toRules"
             :items="contacts"
             required
             multiple
-            ></v-autocomplete>
+            ></v-combobox>
             <v-select
             v-model="priorety"
             :items="prioretyList"
@@ -103,7 +103,7 @@ export default {
                 return 'Please specify at least one recipient'
                 }
             ],
-            from: 'moraaaaaaaaaaa',
+            from: '',
             contacts:['djd', 'cnmcn', 'djhjd'],
             prioretyList:['very high', 'high',  'medium', 'low','very low'],
             dialog: false,
@@ -177,9 +177,6 @@ export default {
         },
         close(){
             this.dialog = false;
-            console.log(JSON.stringify(this.uploadedFiles, null, 2));
-            // if (this.$refs.form.validate()) this.clear();
-
             this.clear();
         },
         // validate the input of the compose form to send the email
@@ -187,59 +184,28 @@ export default {
             // if (this.$refs.form.validate()) this.send();
             this.send();
         },
-        
-        send(){this.clear();
-        this.dialog = false;},
-        //send a post request the data email to the server
-        // async send(){},
         async send() {
-            try {
-
-              let x = {
-                params:{
-                  email:{
-                    from: this.from,
-                    to: this.to,
-                    date: new Date().toLocaleString(),
-                    importance: this.priorety,
-                    subject: this.subject,
-                    body: this.body,
-                    attachment: '',
-                  }
-              }
+        console.log(JSON.parse(localStorage.getItem('user')));
+        try {
+      await fetch('http://localhost:8081/sendEmail', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          params:{
+            email:{
+              from: JSON.parse(localStorage.getItem('user'))?.emailAddress,
+              to: this.to,
+              date: new Date().toLocaleString(),
+              importance: this.priorety,
+              subject: this.subject,
+              body: this.body,
+              attachment: this.uploadedFiles,
             }
-
-            //print x in json fromat in the console
-            console.log(JSON.stringify(x, null, 2));
-
-              // Simulate sending data to a server
-              const response = await fetch('http://localhost:8081/sendEmail', {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  params:{
-                    email:{
-                      from: this.from,
-                      to: this.to,
-                      date: new Date().toLocaleString(),
-                      importance: this.priorety,
-                      subject: this.subject,
-                      body: this.body,
-                      attachment: '',
-                    }
-                  }
-                }),
-              });
-        //       // console.log();
-        // if (response.ok) {
-        //   // Email sent successfully, you can handle the response accordingly
-        //   console.log('Email sent successfully!');
-        // } else {
-        //   // Email sending failed, handle the error
-        //   console.error('Failed to send email:', response.statusText);
-        // }
+          }
+        }),
+      });
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
