@@ -232,20 +232,21 @@ export default {
                   }
                 }),
               });
-              // console.log();
-        if (response.ok) {
-          // Email sent successfully, you can handle the response accordingly
-          console.log('Email sent successfully!');
-        } else {
-          // Email sending failed, handle the error
-          console.error('Failed to send email:', response.statusText);
-        }
+        //       // console.log();
+        // if (response.ok) {
+        //   // Email sent successfully, you can handle the response accordingly
+        //   console.log('Email sent successfully!');
+        // } else {
+        //   // Email sending failed, handle the error
+        //   console.error('Failed to send email:', response.statusText);
+        // }
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
         // Clear the form and close the dialog
         this.clear();
         this.dialog = false;
+        this.$router.push('/list/send');
       }
     },   
         

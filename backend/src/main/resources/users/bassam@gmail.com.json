@@ -2,7 +2,17 @@
   "name" : "bassam",
   "emailAddress" : "bassam@gmail.com",
   "password" : "123456",
-  "contacts" : [ ],
+  "contacts" : [ {
+    "name" : "Mourad Mahgoub",
+    "emailAddresses" : [ "mouradmahgoub710@gmail.com" ],
+    "phoneNums" : [ "01013056720" ],
+    "importance" : "1"
+  }, {
+    "name" : "ةيةية",
+    "emailAddresses" : [ "jfjfh" ],
+    "phoneNums" : [ "2222" ],
+    "importance" : "1"
+  } ],
   "folders" : {
     "inbox" : {
       "name" : "inbox",
@@ -28,12 +38,49 @@
       "name" : "send",
       "emails" : [ {
         "from" : "moraaaaaaaaaaa",
-        "to" : [ "", "djd", "cnmcn" ],
-        "subject" : "nmdnnmd",
-        "body" : "nmdsnmnds",
+        "to" : [ ],
+        "subject" : "",
+        "body" : "dnmd",
         "attachment" : "",
         "importance" : "low",
-        "date" : "2023-12-27 03:59:26"
+        "date" : "2023-12-27 04:33:44"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 03:23:18"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 03:43:59"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "ndmndf" ],
+        "subject" : "dnbnd",
+        "body" : "bnnbbnbn",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 03:48:55"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ ],
+        "subject" : "",
+        "body" : "",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 03:54:59"
       }, {
         "from" : "moraaaaaaaaaaa",
         "to" : [ "djd", "cnmcn", "djhjd" ],
@@ -52,21 +99,18 @@
         "date" : "2023-12-27 03:54:59"
       }, {
         "from" : "moraaaaaaaaaaa",
-        "to" : [ "ndmndf" ],
-        "subject" : "dnbnd",
-        "body" : "bnnbbnbn",
+        "to" : [ "djd", "cnmcn", "djhjd" ],
+        "subject" : "nene",
+        "body" : "enmemnmne",
         "attachment" : "",
         "importance" : "low",
-        "date" : "2023-12-27 03:48:55"
-      }, {
-        "from" : "moraaaaaaaaaaa",
-        "to" : [ "ndmndf" ],
-        "subject" : "dnbnd",
-        "body" : "bnnbbnbn",
-        "attachment" : "",
-        "importance" : "low",
-        "date" : "2023-12-27 03:48:54"
-      }, {
+        "date" : "2023-12-27 03:58:40"
+      } ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ {
+      "name" : "moraaa",
+      "emails" : [ {
         "from" : "osama@email.com",
         "to" : [ "osama@email.com" ],
         "subject" : "subject2",
@@ -75,24 +119,14 @@
         "importance" : "very high",
         "date" : "2023-12-27 03:43:59"
       }, {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-27 03:23:18"
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "ndmndf" ],
+        "subject" : "dnbnd",
+        "body" : "bnnbbnbn",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 03:48:54"
       } ],
-      "subFolders" : [ ]
-    },
-    "trash" : {
-      "name" : "trash",
-      "emails" : [ ],
-      "subFolders" : [ ]
-    },
-    "labels" : [ {
-      "name" : "moraaa",
-      "emails" : [ ],
       "subFolders" : [ ]
     } ]
   }
