@@ -55,17 +55,34 @@
       <v-span v-for="label in labels" :key="label" :value="label">
         <div class="label">
 
-          <v-btn @click="navigateTo(label)">
-            {{ label }}
+          <template v-if="isEdited !== label">
+            <!-- <span v-show="!isEdited" class="label"> -->
+              <v-btn  
+              @click="navigateTo(label)" @dblclick="startEditLabel(label)">
+              {{ label }}
+              </v-btn>
+          <v-btn icon @click="startEditLabel(label)">
+            <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          
-          <!-- <v-list-item-action> -->
-            <v-btn icon @click="deleteLabel(label)">
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          <!-- </v-list-item-action> -->
-        </div>
-
+          <v-btn icon @click="deleteLabel(label)">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+          </template>
+          <!-- </span> -->
+          <template v-else>
+          <!-- <v-span v-show="isEdited" class="label"> -->
+              <v-text-field v-model="editedLabel" placeholder="Edit Label"></v-text-field>
+              <v-btn icon @click="saveEditLabel(label)">
+                <v-icon>mdi-content-save</v-icon>
+              </v-btn>
+              <v-btn icon @click="cancelEditLabel()">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <!-- </v-span> -->
+            </template>
+          </div>
+            
+            
       </v-span>
         
     </v-list-group>
@@ -80,12 +97,47 @@ export default {
     components:{Compose},
     data(){
         return{
-             labels: null,
-             newLabel: '',
-
+            labels: null,
+            newLabel: null,
+            isEdited:false,
+            editedLabel:null,
         }
     },
     methods: {
+
+        startEditLabel(label){
+          this.isEdited = label;
+          this.editedLabel = label;
+        },
+
+        saveEditLabel(label){
+          this.isEdited = false;
+          fetch('http://localhost:8081/renameLabel', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              params:{
+                oldName: label,
+                newName: this.editedLabel,
+              }
+            }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.labels = data.labelsNames;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        },
+
+        cancelEditLabel(){
+          this.isEdited = false;
+          this.editedLabel = null;
+        },
+
         navigateTo(folderName){
           this.$router.push({ name:  'mail-list-view', params: { name: folderName } });
         },

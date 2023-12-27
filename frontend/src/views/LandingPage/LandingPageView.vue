@@ -41,7 +41,7 @@
 
         };
         console.log(JSON.stringify(x, null, 2));
-        fetch('http://localhost:8085/login',{
+        fetch('http://localhost:8081/login',{
           method:'POST',
           headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@
            this.y=data;
           if(this.y.isValid){
           this.$router.push('/list/inbox');
-          localStorage.setItem('user', JSON.stringify(x));
+          localStorage.setItem('user', JSON.stringify(x.params));
         }
       })
      },

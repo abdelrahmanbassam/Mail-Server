@@ -19,12 +19,14 @@
             <v-icon right @click="close">mdi-close</v-icon>
         </v-row>
         <v-col>
-            <v-text-field
+            <v-combobox
             v-model="to"
             label="To"
             :rules="toRules"
+            :items="contacts"
             required
-            ></v-text-field>
+            multiple
+            ></v-combobox>
             <v-select
             v-model="priorety"
             :items="prioretyList"
@@ -101,15 +103,15 @@ export default {
                 return 'Please specify at least one recipient'
                 }
             ],
-
+            from: '',
             contacts:['djd', 'cnmcn', 'djhjd'],
             prioretyList:['very high', 'high',  'medium', 'low','very low'],
             dialog: false,
             priorety: 'low',
-            to:'',
+            to:[],
             subject:'',
             body:'',
-            attachments:[],
+            // attachments:[],
         }
     },
     methods:{
@@ -164,7 +166,7 @@ export default {
           deleteFile(index) {
             this.uploadedFiles.splice(index, 1);
           },
-        clear(){
+          clear(){
             this.dialog = false;
             this.priorety= 'low';
             this.to='';
@@ -175,9 +177,6 @@ export default {
         },
         close(){
             this.dialog = false;
-            console.log(JSON.stringify(this.uploadedFiles, null, 2));
-            // if (this.$refs.form.validate()) this.clear();
-
             this.clear();
         },
         // validate the input of the compose form to send the email
@@ -185,49 +184,41 @@ export default {
             // if (this.$refs.form.validate()) this.send();
             this.send();
         },
-        
-        send(){this.clear();
-        this.dialog = false;},
-        //send a post request the data email to the server
-        // async send(){},
         async send() {
-      try {
-        // Simulate sending data to a server
-        const response = await fetch('http://localhost:3000', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            to: this.to,
-            priority: this.priorety,
-            subject: this.subject,
-            body: this.body,
-            attachments: this.uploadedFiles,
-          }),
-        });
-
-        if (response.ok) {
-          // Email sent successfully, you can handle the response accordingly
-          console.log('Email sent successfully!');
-        } else {
-          // Email sending failed, handle the error
-          console.error('Failed to send email:', response.statusText);
-        }
+        console.log(JSON.parse(localStorage.getItem('user')));
+        try {
+      await fetch('http://localhost:8081/sendEmail', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          params:{
+            email:{
+              from: JSON.parse(localStorage.getItem('user'))?.emailAddress,
+              to: this.to,
+              date: new Date().toLocaleString(),
+              importance: this.priorety,
+              subject: this.subject,
+              body: this.body,
+              attachment: this.uploadedFiles,
+            }
+          }
+        }),
+      });
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
-        // Clear the form and close the dialog
         this.clear();
         this.dialog = false;
+        this.$router.push('/list/send');
       }
     },   
         
-        
-        
     },
-    updated(){
-    }
+        
+        
+    
 
 }
 </script>
