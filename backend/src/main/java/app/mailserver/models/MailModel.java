@@ -2,6 +2,7 @@ package app.mailserver.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Builder;
@@ -23,7 +24,7 @@ public class MailModel implements Cloneable {
     }
 
     public MailModel() {
-      
+        this.attachments=new ArrayList<>();
     }
 
     @Builder
