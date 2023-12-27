@@ -44,7 +44,7 @@ public class trashModel extends FolderModel {
     }
     public void Checkdelete(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String toDelete=LocalDateTime.now().minusSeconds(20).format(formatter);
+        String toDelete=LocalDateTime.now().minusMinutes(5).format(formatter);
         Iterator<Map.Entry<String, MailModel>> iterator = deletedmMails.entrySet().iterator();
         while (iterator.hasNext()) {
         Map.Entry<String, MailModel> entry = iterator.next();
