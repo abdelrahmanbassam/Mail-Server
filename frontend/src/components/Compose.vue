@@ -209,7 +209,6 @@ export default {
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
-        // Clear the form and close the dialog
         this.clear();
         this.dialog = false;
         this.$router.push('/list/send');
