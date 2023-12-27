@@ -1,0 +1,69 @@
+{
+  "name" : "osama",
+  "emailAddress" : "osama@email.com",
+  "password" : "your_password_here",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 04:21:21"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 03:22:08"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 02:43:21"
+      } ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : null,
+      "subFolders" : [ ],
+      "deletedmMails" : { },
+      "email" : [ ]
+    },
+    "labels" : [ {
+      "name" : "go3",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
+  }
+}
