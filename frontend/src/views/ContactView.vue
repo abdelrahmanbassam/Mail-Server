@@ -284,7 +284,7 @@ export default {
     methods:{
         //send a post request to the server to change to contacts and recieve them
         async fetchContacts(){
-            await fetch('http://localhost:8085/getContacts')
+            await fetch('http://localhost:8081/getContacts')
             .then(response => response.json())
             .then(data => {
                 this.contacts = data;
