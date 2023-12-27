@@ -11,7 +11,7 @@ public class UserFoldersModel {
   private  FolderModel starred;
   private  FolderModel important;
   private  FolderModel send;
-  private  FolderModel trash;
+  private  trashModel trash;
   private  List<FolderModel>labels;
     
   public UserFoldersModel(){
@@ -20,7 +20,7 @@ public class UserFoldersModel {
       this.starred=new FolderModel("starred", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.important=new FolderModel("important", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.send=new FolderModel("send", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
-      this.trash=new FolderModel("trash", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
+      this.trash=new trashModel();
       this.labels=new ArrayList<>();
       labels=new ArrayList<>();
     }
@@ -37,6 +37,7 @@ public class UserFoldersModel {
   //dont forget to move it to trash 
   public void deleteEmails(List<MailModel> emails,String from){
     FolderModel source=findFolder(from);
+    trash.toMap(emails);
     for(var email:emails){
       trash.addEmail(email);
       source.deleteEmail(email);
@@ -109,7 +110,7 @@ public class UserFoldersModel {
     findFolder(folderName).addEmail(newEmail);
   }
 
-  public UserFoldersModel(FolderModel inbox, FolderModel draft, FolderModel starred, FolderModel important, FolderModel send, FolderModel trash, List<FolderModel> labels) {
+  public UserFoldersModel(FolderModel inbox, FolderModel draft, FolderModel starred, FolderModel important, FolderModel send, trashModel trash, List<FolderModel> labels) {
     this.inbox = inbox;
     this.draft = draft;
     this.starred = starred;
@@ -159,11 +160,11 @@ public class UserFoldersModel {
     this.send = send;
   }
 
-  public FolderModel getTrash() {
+  public trashModel getTrash() {
     return this.trash;
   }
 
-  public void setTrash(FolderModel trash) {
+  public void setTrash(trashModel trash) {
     this.trash = trash;
   }
 
