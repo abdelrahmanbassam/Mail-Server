@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import app.mailserver.models.FolderModel;
 import app.mailserver.models.MailModel;
 import app.mailserver.models.UserModel;
+import app.mailserver.models.trashModel;
 import app.mailserver.service.Sorting.EmailSort;
 import app.mailserver.service.SystemManagement.SystemManager;
 import app.mailserver.service.Filter.EmailFilter;
@@ -72,7 +73,12 @@ public class FolderService {
    }
    
     public List<MailModel> getEmails(String folderName){
-      return systemManager.getCurUser().getFolders().findFolder(folderName).getEmails();
+     List<MailModel> emails=systemManager.getCurUser().getFolders().findFolder(folderName).getEmails();
+     if(folderName.equals("trash")){
+      systemManager.updateUser(systemManager.getCurUser());
+     }
+     
+     return emails;
    }
    
    public Map<String, List<String>> getlabelsNames() {

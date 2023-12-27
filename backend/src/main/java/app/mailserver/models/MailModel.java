@@ -2,6 +2,7 @@ package app.mailserver.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Builder;
@@ -13,7 +14,7 @@ public class MailModel implements Cloneable {
     private List<String> to;//change it to reciver in all program 
     private String subject;
     private String body;
-    private String attachment;
+    private List<AttachmentModel> attachments;
     private String importance;
     private String date=new String();
     
@@ -23,16 +24,16 @@ public class MailModel implements Cloneable {
     }
 
     public MailModel() {
-      
+        this.attachments=new ArrayList<>();
     }
 
     @Builder
-    public MailModel(List<String> to, String from, String subject, String body, String attachment, String importance, String date) {
+    public MailModel(List<String> to, String from, String subject, String body, List<AttachmentModel> attachments, String importance, String date) {
         this.to = to;
         this.from = from;
         this.subject = subject;
         this.body = body;
-        this.attachment = attachment;
+        this.attachments = attachments;
         this.importance = importance;
         this.date = date;
     }
@@ -45,12 +46,12 @@ public class MailModel implements Cloneable {
             throw new AssertionError(); 
         }
     }
-    public String getAttachment() {
-        return this.attachment;
+    public List<AttachmentModel> getAttachments() {
+        return this.attachments;
     }
 
-    public void setattachment(String attachment) {
-        this.attachment = attachment;
+    public void setattachments(List<AttachmentModel> attachments) {
+        this.attachments = attachments;
     }
 
     public String getfrom() {
@@ -107,8 +108,8 @@ public class MailModel implements Cloneable {
 
  
 
-    // public MailModel(String attachment, String from, List<String> to, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
-    //     this.attachment = attachment;
+    // public MailModel(String attachments, String from, List<String> to, List<String> recivers, String subject, String body, LocalDateTime date, String type, String importance) {
+    //     this.attachments = attachments;
     //     this.from = from;
     //     this.to = to;
     //     this.subject = subject;
@@ -126,12 +127,12 @@ public class MailModel implements Cloneable {
             return false;
         }
         MailModel mailModel = (MailModel) o;
-        return Objects.equals(attachment, mailModel.attachment) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
+        return Objects.equals(attachments, mailModel.attachments) && Objects.equals(from, mailModel.from) && Objects.equals(to, mailModel.to) &&  Objects.equals(subject, mailModel.subject) && Objects.equals(body, mailModel.body) && Objects.equals(date, mailModel.date) && Objects.equals(importance, mailModel.importance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(attachment, from, to, subject, body, date, importance);
+        return Objects.hash(attachments, from, to, subject, body, date, importance);
     }
 
     @Override
@@ -141,7 +142,7 @@ public class MailModel implements Cloneable {
         ", to='" + getTo() + "'" +
         ", subject='" + getsubject() + "'" +
         ", body='" + getBody() + "'" +
-        ", attachment='" + getAttachment() + "'" +
+        ", attachments='" + getAttachments() + "'" +
         ", importance='" + getImportance() + "'" +
         ", date='" + getDate() + "'" +
             "}";
