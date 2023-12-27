@@ -110,6 +110,7 @@ export default {
             priorety: 'low',
             to:[],
             subject:'',
+            preview:'',
             body:'',
             // attachments:[],
         }
@@ -204,7 +205,7 @@ export default {
                     importance: this.priorety,
                     subject: this.subject,
                     body: this.body,
-                    attachment: '',
+                    attachments: this.uploadedFiles,
                   }
               }
             }
@@ -213,40 +214,22 @@ export default {
             console.log(JSON.stringify(x, null, 2));
 
               // Simulate sending data to a server
-              const response = await fetch('http://localhost:8081/sendEmail', {
+              await fetch('http://localhost:8085/sendEmail', {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                  params:{
-                    email:{
-                      from: this.from,
-                      to: this.to,
-                      date: new Date().toLocaleString(),
-                      importance: this.priorety,
-                      subject: this.subject,
-                      body: this.body,
-                      attachment: '',
-                    }
-                  }
-                }),
+                body: JSON.stringify(x),
               });
-        //       // console.log();
-        // if (response.ok) {
-        //   // Email sent successfully, you can handle the response accordingly
-        //   console.log('Email sent successfully!');
-        // } else {
-        //   // Email sending failed, handle the error
-        //   console.error('Failed to send email:', response.statusText);
-        // }
+              console.log(JSON.stringify(this.uploadedFiles, null, 2));
+              // console.log(JSON.stringify(this., null, 2));
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
         // Clear the form and close the dialog
-        this.clear();
+        // this.clear();
         this.dialog = false;
-        this.$router.push('/list/send');
+        // this.$router.push('/list/send');
       }
     },   
         

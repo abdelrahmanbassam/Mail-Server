@@ -96,7 +96,7 @@
                     :value="mail"
                     ></v-checkbox> 
                     <v-list-item :value="mail"  @click="EmailDialog = true">
-                        <div  class="bs">
+                        <div  class="bs" v-on:click="showEmail(mail)">
                             <p class="truncate">{{ mail.from }}</p>
                             <p class="truncate">{{ mail.subject }}</p>
                             <p class="truncate">{{ mail.date }}</p>
@@ -108,6 +108,25 @@
 
 
 </div>
+<v-dialog v-model="showEmailDialog" max-width="700px">
+    {{ selectedEmail }}
+<v-card>
+    <h3>To:</h3>
+    {{ selectedEmail?.to }}
+    <h3>Subject:</h3>
+    {{ selectedEmail?.subject }}
+<h3>Body:</h3>
+    {{ selectedEmail?.body }}
+    <h3>Attachment:</h3>
+    {{ selectedEmail?.attachments}}
+    <h3>importance:</h3>
+    {{ selectedEmail?.importance }}
+
+    <h3>Date:</h3>
+    {{ selectedEmail?.date }}
+</v-card>
+
+</v-dialog>
 </template>
 
 <script>
@@ -126,6 +145,8 @@
             currentFolder: '',
             selectedMails: [],
             currentList: [],
+            showEmailDialog:false,
+            selectedEmail:null,
             selectedFolder: null,
             showContacts: false,
             contacts:[],
@@ -153,8 +174,12 @@
 
 
     methods: {
+        showEmail(mail){
+            this.showEmailDialog=true,
+            this.selectedEmail=mail
+        },
         async getLabels(){
-            await fetch('http://localhost:8081/labelsNames')
+            await fetch('http://localhost:8085/labelsNames')
             .then(response => response.json())
             .then(data => {
                 this.labels = data.labelsNames;
@@ -173,7 +198,7 @@
             this.selectedFolders = [];
             this.showContacts = false;
             
-            await fetch('http://localhost:8081/getEmails'
+            await fetch('http://localhost:8085/getEmails'
             , {
                 method: 'POST',
                 headers: {
@@ -194,7 +219,7 @@
         },
 
         async applyFilters(){
-            await fetch('http://localhost:8081/filterEmails', {
+            await fetch('http://localhost:8085/filterEmails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -217,7 +242,7 @@
         },
 
         async deleteSelectedMails() {
-                await fetch('http://localhost:8081/deleteEmails', {
+                await fetch('http://localhost:8085/deleteEmails', {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
@@ -236,7 +261,7 @@
                 .catch(error => console.error('Error deleting selected mails:', error));
         },
         async moveSelectedMails() {
-                await fetch('http://localhost:8081/moveEmails', {
+                await fetch('http://localhost:8085/moveEmails', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
