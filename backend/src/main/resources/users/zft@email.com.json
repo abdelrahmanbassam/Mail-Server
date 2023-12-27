@@ -1,0 +1,153 @@
+{
+  "name" : "zft",
+  "emailAddress" : "zft@email.com",
+  "password" : "123123123",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ {
+        "from" : "coke@email.com",
+        "to" : [ "zft@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 06:20:35"
+      }, {
+        "from" : "coke@email.com",
+        "to" : [ "zft@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 06:20:34"
+      }, {
+        "from" : "coke@email.com",
+        "to" : [ "zft@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 06:20:20"
+      } ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ {
+        "from" : "zft@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 05:45:46"
+      }, {
+        "from" : "zft@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 05:44:38"
+      }, {
+        "from" : "zft@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 05:44:35"
+      }, {
+        "from" : "zft@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-27 05:44:34"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ],
+      "deletedmMails" : { },
+      "emailsFromMap" : [ ]
+    },
+    "labels" : [ ]
+  }
+}

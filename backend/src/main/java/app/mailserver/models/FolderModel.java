@@ -6,9 +6,13 @@ import java.util.Objects;
 
 public class FolderModel {
 
-    private String name;
-    private List <MailModel> emails=new ArrayList<>();
-    private List<FolderModel> subFolders=new ArrayList<>();
+    protected String name;
+    protected List <MailModel> emails=new ArrayList<>();
+    public void setEmails(List<MailModel> emails) {
+        this.emails = emails;
+    }
+
+    protected List<FolderModel> subFolders=new ArrayList<>();
     
     
     public List<FolderModel> getSubFolders() {
@@ -45,7 +49,6 @@ public class FolderModel {
     }
 
     public void deleteEmail( MailModel deletedEmail){
-       System.out.println(deletedEmail);
         emails.remove(deletedEmail);
     }
     

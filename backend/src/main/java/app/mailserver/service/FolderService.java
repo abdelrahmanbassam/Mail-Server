@@ -73,11 +73,12 @@ public class FolderService {
    }
    
     public List<MailModel> getEmails(String folderName){
-      if(folderName.equals("trash")){
-         trashModel s=systemManager.getCurUser().getFolders().getTrash();
-         return s.getEmail();
-      }
-      return systemManager.getCurUser().getFolders().findFolder(folderName).getEmails();
+     List<MailModel> emails=systemManager.getCurUser().getFolders().findFolder(folderName).getEmails();
+     if(folderName.equals("trash")){
+      systemManager.updateUser(systemManager.getCurUser());
+     }
+     
+     return emails;
    }
    
    public Map<String, List<String>> getlabelsNames() {

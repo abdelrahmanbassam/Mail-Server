@@ -20,7 +20,7 @@ public class UserFoldersModel {
       this.starred=new FolderModel("starred", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.important=new FolderModel("important", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.send=new FolderModel("send", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
-      this.trash=new trashModel();
+      this.trash=new trashModel("trash", new ArrayList<MailModel>(), new ArrayList<FolderModel>());
       this.labels=new ArrayList<>();
       labels=new ArrayList<>();
     }
@@ -37,7 +37,7 @@ public class UserFoldersModel {
   //dont forget to move it to trash 
   public void deleteEmails(List<MailModel> emails,String from){
     FolderModel source=findFolder(from);
-    trash.toMap(emails);
+    
     for(var email:emails){
       trash.addEmail(email);
       source.deleteEmail(email);
