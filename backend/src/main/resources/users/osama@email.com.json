@@ -6,31 +6,7 @@
   "folders" : {
     "inbox" : {
       "name" : "inbox",
-      "emails" : [ {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-27 04:21:21"
-      }, {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-27 03:22:08"
-      }, {
-        "from" : "osama@email.com",
-        "to" : [ "osama@email.com" ],
-        "subject" : "subject2",
-        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-27 02:43:21"
-      } ],
+      "emails" : [ ],
       "subFolders" : [ ]
     },
     "draft" : {
@@ -50,20 +26,99 @@
     },
     "send" : {
       "name" : "send",
-      "emails" : [ ],
+      "emails" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:13"
+      } ],
       "subFolders" : [ ]
     },
     "trash" : {
       "name" : "trash",
-      "emails" : null,
+      "emails" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject23",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      } ],
       "subFolders" : [ ],
-      "deletedmMails" : { },
-      "email" : [ ]
+      "deletedmMails" : {
+        "2023-12-27 05:21:06" : {
+          "from" : "osama@email.com",
+          "to" : [ "osama@email.com" ],
+          "subject" : "subject2",
+          "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+          "attachment" : "file.txt",
+          "importance" : "very high",
+          "date" : "2023-12-27 05:14:22"
+        },
+        "2023-12-27 05:21:20" : {
+          "from" : "osama@email.com",
+          "to" : [ "osama@email.com" ],
+          "subject" : "subject23",
+          "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+          "attachment" : "file.txt",
+          "importance" : "very high",
+          "date" : "2023-12-27 05:14:22"
+        }
+      },
+      "email" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject23",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 05:14:22"
+      } ]
     },
-    "labels" : [ {
-      "name" : "go3",
-      "emails" : [ ],
-      "subFolders" : [ ]
-    } ]
+    "labels" : [ ]
   }
 }
