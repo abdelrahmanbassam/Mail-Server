@@ -118,7 +118,17 @@
 <h3>Body:</h3>
     {{ selectedEmail?.body }}
     <h3>Attachment:</h3>
-    {{ selectedEmail?.attachments}}
+    <div>
+           <ul>
+            <li v-for="(attachment, index) in selectedEmail.attachments" :key="index">
+               <span>
+                 <a href="#" @click.prevent="openAttachment(attachment)">
+                   {{ attachment.name }}
+                 </a>
+               </span>
+             </li>
+           </ul>
+         </div>
     <h3>importance:</h3>
     {{ selectedEmail?.importance }}
 
@@ -174,6 +184,38 @@
 
 
     methods: {
+        openAttachment(file) {
+            const pdfUrl = file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+              ? `https://docs.google.com/gview?url=${encodeURIComponent(file.url)}&embedded=true`
+              : file.type === 'application/pdf'
+                ? file.url
+                : '';
+      
+            const newTabContent = `
+              <html>
+                <head>
+                  <title>${file.name}</title>
+                </head>
+                <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+                  ${
+                    file.type.startsWith('image')
+                      ? `<img src="${file.url}" alt="${file.name}" style="max-width: 100%; max-height: 100%;">`
+                      : file.type === 'application/pdf' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                      ? `<iframe src="${pdfUrl}" style="width: 100%; height: 100%;" frameborder="0"></iframe>`
+                      : file.type.startsWith('video')
+                      ? `<video controls style="max-width: 100%; max-height: 100%;">
+                          <source src="${file.url}" type="${file.type}">
+                        </video>`
+                      : ''
+                  }
+                </body>
+              </html>
+            `;
+      
+            const newTab = window.open('', '_blank');
+            newTab.document.write(newTabContent);
+            newTab.document.close();
+          },
         showEmail(mail){
             this.showEmailDialog=true,
             this.selectedEmail=mail
