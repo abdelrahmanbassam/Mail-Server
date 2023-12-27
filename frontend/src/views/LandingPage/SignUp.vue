@@ -33,12 +33,6 @@
     },
     methods: {
       signUp() {
-        // Add your signup logic here
-        // You can access this.username, this.email, and this.password
-        // Use this data to send a signup request to your server or perform client-side validation
-        // console.log('Username:', this.username);
-        // console.log('Email:', this.email);
-        // console.log('Password:', this.password);
         let x = {
           params:
           {
@@ -48,7 +42,6 @@
         }
 
         };
-         console.log(JSON.stringify(x, null, 2));
         fetch('http://localhost:8081/signUp', {
         method: 'POST',
         headers: {
@@ -63,21 +56,18 @@
         console.log(JSON.stringify(this.y, null, 2));
 
         if (this.y.isValid) {
-          // Redirect to the list page after successful signup
-          this.$router.push('/list');
+          this.$router.push('/list/inbox');
+          localStorage.setItem('user', JSON.stringify(x.params));
         } else {
           console.error('Error during signup:', this.y.error);
         }
       })
-        // After successful signup, you may want to redirect the user to another page
-        // Example: this.$router.push('/login');
       },
     },
   };
   </script>
   
   <style scoped>
-    /* Add scoped styles if needed */
     .ShowError{
       color: red;
       margin-top: 1%;
