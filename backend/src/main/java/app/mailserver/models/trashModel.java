@@ -3,36 +3,40 @@ package app.mailserver.models;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Map.Entry;
+
+import app.mailserver.service.SystemManagement.SystemManager;
 
 public class trashModel extends FolderModel {
-    Map <LocalDateTime,MailModel> deletedmMails=new HashMap<LocalDateTime,MailModel>();
+    Map <String,MailModel> deletedmMails=new HashMap<String,MailModel>();
     public trashModel(){
         SetName("trash");
     }
     public void toMap(List <MailModel> Deleted){
         for(var x:Deleted){
-        deletedmMails.put(LocalDateTime.now(),x);
+    deletedmMails.put(setbeginDate(),x);
         }
-    }
-    public void addEmail(MailModel newEmail){
-        getEmails().add(0, newEmail);
     }
     
     public void Checkdelete(){
-        LocalDateTime toDelete=LocalDateTime.now().minusMinutes(5);
-        System.out.println(toDelete);
-        for(Map.Entry<LocalDateTime, MailModel> x:deletedmMails.entrySet()){
-            if(x.getKey().isBefore(toDelete)){
-                deletedmMails.remove(toDelete);
-            }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String toDelete=LocalDateTime.now().minusSeconds(20).format(formatter);
+        Iterator<Map.Entry<String, MailModel>> iterator = deletedmMails.entrySet().iterator();
+        while (iterator.hasNext()) {
+        Map.Entry<String, MailModel> entry = iterator.next();
+        String key = entry.getKey();
+        
+        if (key.compareTo(toDelete) <= 0) {
+            // Remove the entry if the key is older than or equal to the threshold
+            iterator.remove();
         }
     }
+}
+    
     public String setbeginDate() {
         String ddate=new String();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -47,20 +51,20 @@ public class trashModel extends FolderModel {
        List<MailModel>Mails=new ArrayList<>(deletedmMails.values());     
        return Mails;
     }
-    public trashModel(Map<LocalDateTime,MailModel> deletedmMails) {
+    public trashModel(Map<String,MailModel> deletedmMails) {
         SetName("trash");
         this.deletedmMails = deletedmMails;
     }
 
-    public Map<LocalDateTime,MailModel> getDeletedmMails() {
+    public Map<String,MailModel> getDeletedmMails() {
         return this.deletedmMails;
     }
 
-    public void setDeletedmMails(Map<LocalDateTime,MailModel> deletedmMails) {
+    public void setDeletedmMails(Map<String,MailModel> deletedmMails) {
         this.deletedmMails = deletedmMails;
     }
 
-    public trashModel deletedmMails(Map<LocalDateTime,MailModel> deletedmMails) {
+    public trashModel deletedmMails(Map<String,MailModel> deletedmMails) {
         setDeletedmMails(deletedmMails);
         return this;
     }

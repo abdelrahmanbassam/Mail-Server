@@ -7,8 +7,8 @@ import java.util.Objects;
 public class FolderModel {
 
     private String name;
-    private List <MailModel> emails;
-    private List<FolderModel> subFolders;
+    private List <MailModel> emails=new ArrayList<>();
+    private List<FolderModel> subFolders=new ArrayList<>();
     
     
     public List<FolderModel> getSubFolders() {
@@ -31,6 +31,7 @@ public class FolderModel {
     }    
     public FolderModel(){
         this.subFolders=new ArrayList<>();
+        this.emails=new ArrayList<>();
     }
 
     public FolderModel(String name, List<MailModel> emails, List<FolderModel> subFolders) {
