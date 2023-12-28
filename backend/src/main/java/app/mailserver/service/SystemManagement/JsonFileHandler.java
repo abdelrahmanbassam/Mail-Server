@@ -38,12 +38,8 @@ public class JsonFileHandler {
      public static void writeUserModel(UserModel updatedList) throws IOException{
       String userfile=usersDataFilePath+"/"+updatedList.getEmailAddress()+".json";
       ObjectMapper objectmapper=new ObjectMapper();
-        // System.out.println("Values read from Json");
-        //   for(var x:updatedList){
-        //       System.out.println(x.toString());
-        //   }
-        objectmapper.enable(SerializationFeature.INDENT_OUTPUT);
-        objectmapper.writeValue(new File(userfile), updatedList);
+      objectmapper.enable(SerializationFeature.INDENT_OUTPUT);
+      objectmapper.writeValue(new File(userfile), updatedList);
      } 
 
 }
