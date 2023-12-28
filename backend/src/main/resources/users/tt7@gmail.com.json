@@ -1,0 +1,71 @@
+{
+  "name" : "kdsj",
+  "emailAddress" : "tt7@gmail.com",
+  "password" : "123456",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ {
+        "from" : "",
+        "to" : [ "osama@email.com" ],
+        "subject" : "hjdsi;",
+        "body" : "'djshb",
+        "attachment" : null,
+        "importance" : "low",
+        "date" : "2023-12-27 03:52:13"
+      }, {
+        "from" : "",
+        "to" : [ "osama@email.com" ],
+        "subject" : "jhasd",
+        "body" : "oishduy",
+        "attachment" : null,
+        "importance" : "low",
+        "date" : "2023-12-27 03:50:00"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "jhasd",
+        "body" : "oishduy",
+        "attachment" : null,
+        "importance" : "low",
+        "date" : "2023-12-27 03:49:50"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 03:46:37"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}

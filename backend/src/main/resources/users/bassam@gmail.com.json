@@ -1,0 +1,151 @@
+{
+  "name" : "bassam",
+  "emailAddress" : "bassam@gmail.com",
+  "password" : "123456",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "grafdbdfsbdgph",
+        "body" : "nodes nddddfhdfhdfbdfdddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:06:38"
+      }, {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "graph",
+        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:06:31"
+      }, {
+        "from" : "bassam@gmail.com",
+        "to" : [ "mourad@gmail.com" ],
+        "subject" : "graph",
+        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-26 21:04:52"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 04:21:21"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 02:43:21"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 03:22:08"
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : ""
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : ""
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : ""
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : ""
+      }, {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : ""
+      } ],
+      "subFolders" : [ ],
+      "deletedmMails" : {
+        "2023-12-27 04:21:57" : {
+          "from" : "osama@email.com",
+          "to" : [ "osama@email.com" ],
+          "subject" : "subject2",
+          "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+          "attachment" : "file.txt",
+          "importance" : "very high",
+          "date" : "2023-12-27 04:21:21"
+        }
+      },
+      "email" : [ {
+        "from" : "osama@email.com",
+        "to" : [ "osama@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachment" : "file.txt",
+        "importance" : "very high",
+        "date" : "2023-12-27 04:21:21"
+      } ]
+    },
+    "labels" : [ {
+      "name" : "7doby",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
+  }
+}

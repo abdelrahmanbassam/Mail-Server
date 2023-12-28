@@ -1,0 +1,44 @@
+{
+  "name" : "hyuygd",
+  "emailAddress" : "kk@gmail.com",
+  "password" : "123456",
+  "contacts" : [ {
+    "name" : "ugdgydt",
+    "emailAddresses" : [ ],
+    "phoneNums" : [ "133232" ],
+    "importance" : "1"
+  } ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}
