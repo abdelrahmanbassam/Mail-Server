@@ -54,6 +54,11 @@ public class ContactController {
     public List<ContactModel> getContacts(){
         return contactService.getContacts();
     }
+    
+    @GetMapping("/sortContacts")
+    public List<ContactModel> sortContacts(){
+        return contactService.sort();
+    }
 
     public ContactModel ToContactModel(RequestObject params){
        Map<String, Object> reqContact = (Map<String, Object>) params.get("contact");
