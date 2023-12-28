@@ -363,7 +363,7 @@ export default {
 
         //send a post request to the server to change to contacts and recieve them
         async fetchContacts(){
-            await fetch('http://localhost:8081/getContacts')
+            await fetch('http://localhost:8085/getContacts')
             .then(response => response.json())
             .then(data => {
                 this.contacts = data;
@@ -389,7 +389,7 @@ params:
 
 };
 console.log(JSON.stringify(x, null, 2));
-await fetch('http://localhost:8081/addContact', {
+await fetch('http://localhost:8085/addContact', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json',
@@ -424,7 +424,7 @@ params:
 
 };
 console.log(JSON.stringify(x, null, 2));
-await fetch('http://localhost:8081/editContact', {
+await fetch('http://localhost:8085/editContact', {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json',
@@ -478,7 +478,7 @@ createContact() {
 
 };
 console.log(JSON.stringify(x, null, 2));
-await fetch('http://localhost:8081/deleteContact', {
+await fetch('http://localhost:8085/deleteContact', {
 method: 'DELETE',
 headers: {
 'Content-Type': 'application/json',

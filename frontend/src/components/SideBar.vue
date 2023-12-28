@@ -112,7 +112,7 @@ export default {
 
         saveEditLabel(label){
           this.isEdited = false;
-          fetch('http://localhost:8081/renameLabel', {
+          fetch('http://localhost:8085/renameLabel', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export default {
           this.$router.push({ name:  'mail-list-view', params: { name: folderName } });
         },
         async fetchLabels(){
-            fetch('http://localhost:8081/labelsNames')
+            fetch('http://localhost:8085/labelsNames')
             .then(response => response.json())
             .then(data => {
                 this.labels = data.labelsNames;
@@ -152,7 +152,7 @@ export default {
         async addNewLabel() {
             if (this.newLabel.trim() !== '') {
               // this.labels.push(this.newLabel.trim());
-              await fetch('http://localhost:8081/addLabel', {
+              await fetch('http://localhost:8085/addLabel', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ export default {
     // Delete a label
     deleteLabel(label) {
       // this.labels.splice(this.labels.indexOf(label), 1);
-      fetch('http://localhost:8081/deleteLabel', {
+      fetch('http://localhost:8085/deleteLabel', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

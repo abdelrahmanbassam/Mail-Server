@@ -42,7 +42,9 @@
         }
 
         };
+         console.log(JSON.stringify(x, null, 2));
         fetch('http://localhost:8081/signUp', {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

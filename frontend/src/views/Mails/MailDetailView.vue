@@ -4,7 +4,7 @@
   <div class="toolbar">
   <v-toolbar>
     <template v-slot:prepend v-if="$vuetify.display.smAndUp">
-        <router-link to="/">
+        <router-link to="/list/sent">
         <v-btn icon="mdi-arrow-left"></v-btn>
     </router-link>
         <v-btn icon="mdi-archive-plus-outline" class="ms-5"></v-btn>

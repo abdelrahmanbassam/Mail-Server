@@ -1,0 +1,127 @@
+{
+  "name" : "uguedgu",
+  "emailAddress" : "yyyy@gmail.com",
+  "password" : "123456",
+  "contacts" : [ ],
+  "folders" : {
+    "inbox" : {
+      "name" : "inbox",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "draft" : {
+      "name" : "draft",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "starred" : {
+      "name" : "starred",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "important" : {
+      "name" : "important",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    },
+    "send" : {
+      "name" : "send",
+      "emails" : [ {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "bsbsbs",
+        "body" : "bssbsb",
+        "attachment" : null,
+        "importance" : "very high",
+        "date" : "2023-12-27 07:58:07"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd" ],
+        "subject" : "jhgsa",
+        "body" : "kjdsjk",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:42:24"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd" ],
+        "subject" : "kara",
+        "body" : "kaara",
+        "attachment" : null,
+        "importance" : "medium",
+        "date" : "2023-12-27 07:33:07"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd" ],
+        "subject" : "grb",
+        "body" : "grb",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:32:14"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd" ],
+        "subject" : "attach",
+        "body" : "attach",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:29:20"
+      } ],
+      "subFolders" : [ ]
+    },
+    "trash" : {
+      "name" : "trash",
+      "emails" : [ {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd" ],
+        "subject" : "jhgsa",
+        "body" : "kjdsjk",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:19:24"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "ljsad",
+        "body" : "lkdsj",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:20:51"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "hdshu",
+        "body" : "lkjdh",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:22:12"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "ljsad",
+        "body" : "lkdsj",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:20:51"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "hdshu",
+        "body" : "lkjdh",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:22:12"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "cnmcn" ],
+        "subject" : "hdshu",
+        "body" : "lkjdh",
+        "attachment" : null,
+        "importance" : "high",
+        "date" : "2023-12-27 07:22:12"
+      } ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ ]
+  }
+}

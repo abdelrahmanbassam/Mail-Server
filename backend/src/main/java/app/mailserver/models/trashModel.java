@@ -13,6 +13,7 @@ import app.mailserver.service.SystemManagement.SystemManager;
 
 public class trashModel extends FolderModel {
 
+
     Map <String,MailModel> deletedmMails=new HashMap<String,MailModel>();
     public trashModel() {
     }

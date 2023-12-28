@@ -110,6 +110,7 @@ export default {
             priorety: 'low',
             to:[],
             subject:'',
+            preview:'',
             body:'',
             // attachments:[],
         }
@@ -185,46 +186,43 @@ export default {
             this.send();
         },
         async send() {
-          console.log(JSON.parse(localStorage.getItem('user')));
-          let x = { params:{
-            email:{
-              from: JSON.parse(localStorage.getItem('user'))?.emailAddress,
-              to: this.to,
-              date: new Date().toLocaleString(),
-              importance: this.priorety,
-              subject: this.subject,
-              body: this.body,
-              attachment: this.uploadedFiles,
+
+            try {
+
+              let x = {
+                params:{
+                  email:{
+                    from: this.from,
+                    to: this.to,
+                    date: new Date().toLocaleString(),
+                    importance: this.priorety,
+                    subject: this.subject,
+                    body: this.body,
+                    attachments: this.uploadedFiles,
+                  }
+              }
             }
-          }};
-          console.log(JSON.stringify(x));
-          
-        try {
-      await fetch('http://localhost:8081/sendEmail', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          params:{
-            email:{
-              from: JSON.parse(localStorage.getItem('user'))?.emailAddress,
-              to: this.to,
-              date: new Date().toLocaleString(),
-              importance: this.priorety,
-              subject: this.subject,
-              body: this.body,
-              attachment: this.uploadedFiles,
-            }
-          }
-        }),
-      });
+
+            //print x in json fromat in the console
+            console.log(JSON.stringify(x, null, 2));
+
+              // Simulate sending data to a server
+              await fetch('http://localhost:8085/sendEmail', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(x),
+              });
+              console.log(JSON.stringify(this.uploadedFiles, null, 2));
+              // console.log(JSON.stringify(this., null, 2));
       } catch (error) {
         console.error('Error sending email:', error);
       } finally {
-        this.clear();
+        // Clear the form and close the dialog
+        // this.clear();
         this.dialog = false;
-        this.$router.push('/list/send');
+        // this.$router.push('/list/send');
       }
     },   
         

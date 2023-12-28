@@ -61,14 +61,16 @@ public class UserModel {
     }
     @Override
     public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof UserModel)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof UserModel)) return false;
         UserModel userModel = (UserModel) o;
-        return Objects.equals(name, userModel.name) && Objects.equals(password, userModel.password) && Objects.equals(emailAddress, userModel.emailAddress) && Objects.equals(contacts, userModel.contacts) && Objects.equals(folders, userModel.folders);
+        return Objects.equals(name, userModel.name) &&
+                Objects.equals(emailAddress, userModel.emailAddress) &&
+                Objects.equals(password, userModel.password) &&
+                Objects.equals(contacts, userModel.contacts) &&
+                Objects.equals(folders, userModel.folders);
     }
+
 
     @Override
     public int hashCode() {
