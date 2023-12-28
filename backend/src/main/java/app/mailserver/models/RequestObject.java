@@ -20,6 +20,9 @@ public class RequestObject {
         this.params = params;
     }
     public Object get(String key){
+        if(params.get(key)==null){
+            return "";
+        }
       return params.get(key);
     }
 
