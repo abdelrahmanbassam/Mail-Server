@@ -26,7 +26,95 @@
     },
     "send" : {
       "name" : "send",
-      "emails" : [ ],
+      "emails" : [ {
+        "from" : "moura@gmail.com",
+        "to" : [ "mnd" ],
+        "subject" : "fmnm",
+        "body" : "m,nmf",
+        "attachments" : [ ],
+        "importance" : "low",
+        "date" : "2023-12-28 03:19:10"
+      }, {
+        "from" : "hamada@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "wa7sh",
+        "body" : "aaaaaaaaaaaaaxaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-28 03:01:15"
+      }, {
+        "from" : "hamada@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "wa7sh",
+        "body" : "aaaaaaaaaaaaaxaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-28 03:01:13"
+      }, {
+        "from" : "hamada@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "tmam",
+        "body" : "aaaaaaaaaaaaaxaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-28 03:01:08"
+      }, {
+        "from" : "hamada@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-28 03:00:47"
+      }, {
+        "from" : "hamada@email.com",
+        "to" : [ "bassam@email.com" ],
+        "subject" : "subject2",
+        "body" : "aaaaaaaaaaaaaaaaaaaaaaaaaaah.",
+        "attachments" : [ {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        }, {
+          "name" : "ha",
+          "type" : "ha",
+          "url" : "ha"
+        } ],
+        "importance" : "very high",
+        "date" : "2023-12-28 03:00:45"
+      } ],
       "subFolders" : [ ]
     },
     "trash" : {
