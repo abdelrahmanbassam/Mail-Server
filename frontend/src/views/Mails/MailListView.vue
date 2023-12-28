@@ -4,7 +4,7 @@
         <NavBar/>
         
         <v-btn 
-        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        v-show="searchKey || sortKey || filterFrom || filterSubject"
         @click="applyFilters"
         color="primary"
         block
@@ -163,7 +163,7 @@
 
     methods: {
         clear(){
-            this.sortKey= '',
+            this.sortKey= null,
             this.searchKey='',
             this.filterKeys= [],
             this.filterSubject= '',
@@ -177,14 +177,12 @@
             .then(response => response.json())
             .then(data => {
                 this.labels = data.labelsNames;
-                console.log("labels :   " + data);
             })
             .catch(error => console.log(error));
         },
         async changeList(folderName){
             if(folderName === 'contacts'){
                 this.showContacts = true;
-                console.log(folderName);
                 return;
             }
             this.clear();
@@ -204,12 +202,26 @@
             .then(response => response.json())
             .then(data => {
                 this.currentList = data;
+                this.currentFolder = folderName;
+                this.showContacts = false;
             })
             .catch(error => console.error('Error changing list:', error));
         },
 
         async applyFilters(){
-            await fetch('http://localhost:8081/filterEmails', {
+            //print the params in console in json format
+            let x = {
+                    params:{
+                        folderName: this.currentFolder,
+                        senderFilter: this.filterFrom,
+                        subjectFilter: this.filterSubject,
+                        sort: this.sortKey,
+                        search: this.searchKey,
+                    }
+                    };
+            console.log(JSON.stringify(x));
+            console.log
+                await fetch('http://localhost:8081/filterEmails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -248,6 +260,7 @@
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    this.selectedMails = [];
                 })
                 .catch(error => console.error('Error deleting selected mails:', error));
         },

@@ -185,7 +185,20 @@ export default {
             this.send();
         },
         async send() {
-        console.log(JSON.parse(localStorage.getItem('user')));
+          console.log(JSON.parse(localStorage.getItem('user')));
+          let x = { params:{
+            email:{
+              from: JSON.parse(localStorage.getItem('user'))?.emailAddress,
+              to: this.to,
+              date: new Date().toLocaleString(),
+              importance: this.priorety,
+              subject: this.subject,
+              body: this.body,
+              attachment: this.uploadedFiles,
+            }
+          }};
+          console.log(JSON.stringify(x));
+          
         try {
       await fetch('http://localhost:8081/sendEmail', {
         method: 'PUT',
