@@ -12,10 +12,11 @@ public class ImportanceStrategy implements SortingStrategy {
 
     private static final Map<String, Integer> importanceMap = new HashMap<>();
     static {
-        importanceMap.put("low", 1);
-        importanceMap.put("mid", 2);
-        importanceMap.put("high", 3);
-        importanceMap.put("very high", 4);
+        importanceMap.put("very low", 1);
+        importanceMap.put("low", 2);
+        importanceMap.put("medium", 3);
+        importanceMap.put("high", 4);
+        importanceMap.put("very high", 5);
     }
 
     @Override
