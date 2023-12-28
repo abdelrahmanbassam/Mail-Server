@@ -14,5 +14,4 @@ public class MailServerApplication {
 		
 		System.out.println("Domiaty");
 	}
-
 }

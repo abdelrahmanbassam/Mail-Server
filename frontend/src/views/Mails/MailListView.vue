@@ -1,18 +1,11 @@
 <template>
     <div>
-
+        
         <NavBar/>
         
-        <v-btn 
-        v-if="searchKey || sortKey || filterFrom || filterSubject"
-        @click="applyFilters"
-        color="primary"
-        block
-        >
-        Apply
-        </v-btn>
-    
-    <v-toolbar>
+        <div v-show="!showContacts">
+            
+            <v-toolbar>
         <v-row>
                 <v-col cols="2">
                     <v-text-field 
@@ -61,6 +54,20 @@
             
         </v-toolbar>
         
+        <v-btn
+        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        @click="changeList(currentFolder)"
+        color="secondary"
+        style="width:20vh;  margin: 1vh 1vh 1vh 60vh;"
+        >Cancel</v-btn>
+        <v-btn 
+        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        @click="applyFilters"
+        color="primary"
+        style="width:20vh; margin: 1vh 60vh 1vh 1vh; float: right;"
+        >Apply</v-btn>
+        <v-divider></v-divider>
+
         <!-- <v-toolbar v-if="selectedMails.length > 0"> -->
             <v-row v-show="selectedMails.length > 0">
                 <v-col cols="3" >
@@ -95,11 +102,6 @@
         
         <!-- </v-toolbar> -->
 
-        <div v-show="showContacts">
-            <ContactView />
-        </div>
-        <div v-show="!showContacts">
-            {{ labels }}
             <v-list class="mail-list">
                 <div v-for="mail in currentList" :key="mail" class="mail">
                     <v-checkbox
@@ -115,6 +117,9 @@
                     </v-list-item>
                 </div>
             </v-list>
+        </div>
+        <div v-show="showContacts">
+            <ContactView />
         </div>
 
 
@@ -134,7 +139,7 @@
             showContacts: false,
             contacts:[],
             labels:[],
-            sortKey: '',
+            sortKey: null,
             searchKey:'',
             filterKeys: [],
             filterSubject: '',
@@ -143,10 +148,6 @@
             selectedFolder: null,
         }
     },
-    
-    // created() {
-    //     this.currentFolder = this.$route.params.name; 
-    // },
     
     mounted() {
         this.changeList('inbox');
@@ -163,13 +164,14 @@
 
     methods: {
         clear(){
-            this.sortKey= '',
+            this.sortKey= null,
             this.searchKey='',
             this.filterKeys= [],
             this.filterSubject= '',
             this.filterFrom= '',
             this.selectedMails= [],
-            this.selectedFolder= null
+            this.selectedFolder= null,
+            this.showContacts= false
         },
 
         async getLabels(){
@@ -182,9 +184,9 @@
             .catch(error => console.log(error));
         },
         async changeList(folderName){
+            this.currentFolder = folderName;
             if(folderName === 'contacts'){
                 this.showContacts = true;
-                console.log(folderName);
                 return;
             }
             this.clear();
@@ -209,6 +211,10 @@
         },
 
         async applyFilters(){
+            
+        // if(this.currentFolder == 'contacts'){
+        //     this.applyFiltersContacs();
+        // }else{
             await fetch('http://localhost:8081/filterEmails', {
                 method: 'POST',
                 headers: {
@@ -223,13 +229,14 @@
                         search: this.searchKey,
                     }
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                this.currentList = data;
-                console.log("sorted...........................");
-            })
-            .catch(error => console.error('Error applying filters:', error));
+                })
+                .then(response => response.json())
+                .then(data => {
+                    this.currentList = data;
+                    console.log("sorted...........................");
+                })
+                .catch(error => console.error('Error applying filters:', error));
+            // }
         },
 
         async deleteSelectedMails() {

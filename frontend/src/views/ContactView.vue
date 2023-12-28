@@ -1,6 +1,48 @@
 <template>
   <!-- show the contacts as a list with a pgination and and make it available to show the contacts details and add a new contacts. besides, edit the contact[rename it, add or delete contact, add or delete emailAddresses and add or delete phoneNums of the contact ]  -->
     <div>
+
+      
+      
+      <v-toolbar>
+        <v-row>
+                <v-col cols="2">
+                  <v-text-field 
+                    v-model="searchKey"
+                    label="Search" 
+                    class="mx-2"
+                    ></v-text-field>
+                </v-col>
+                
+                <v-col cols="3">
+                    <v-select
+                    v-model="sortKey"
+                    :items="['alphabetical']"
+                    label="Sort by"
+                    class="mx-2"
+                    clearable
+                    ></v-select>
+                </v-col>                
+            </v-row>
+          </v-toolbar>
+            
+        <v-btn
+        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        @click="clear()"
+        color="secondary"
+        style="width:20vh;  margin: 1vh 1vh 1vh 60vh;"
+        >Cancel</v-btn>
+        <v-btn 
+          v-if="searchKey || sortKey"
+          @click="applyFiltersContacts"
+          color="primary"
+          style="width:20vh; margin: 1vh 60vh 1vh 1vh; float: right;"
+          >Apply</v-btn>
+          
+        <v-divider></v-divider>
+
+
+
       <v-btn color="orange"  @click="createContact">
         Add contacts
        </v-btn>
@@ -260,11 +302,8 @@ export default {
   data(){
     return{
       contacts:[],
-      searchQuery: null,
+      searchKey: null,
       sortKey: null,
-      filterKey: null,
-
-
       
       addEmailDialog: false,
       newEmail: '',
@@ -281,7 +320,47 @@ export default {
       },
         }
     },
+
     methods:{
+
+      clear(){
+        this.searchKey= null;
+        this.sortKey= null;
+        this.fetchContacts();
+      },
+
+      async applyFiltersContacts(){
+            if(this.searchKey != null && this.searchKey != ''){
+                await fetch('http://localhost:8081/searchContact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        params:{
+                            contactName: this.searchKey,
+                        }
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    this.contacts = data;
+                    console.log("searched...........................");
+                    console.log(data);
+                })
+                .catch(error => console.error('Error applying filters:', error));
+            }
+            if(this.sortKey != null && this.sortKey != ''){
+                await fetch('http://localhost:8081/sortContacts')
+                .then(response => response.json())
+                .then(data => {
+                    this.contacts = data;
+                })
+                .catch(error => console.error('Error applying filters:', error));
+            }
+        },
+
+
         //send a post request to the server to change to contacts and recieve them
         async fetchContacts(){
             await fetch('http://localhost:8081/getContacts')
@@ -386,16 +465,16 @@ createContact() {
    async deleteContact() {
       // Your code to delete the contact
       let x = {
-params:
-{
-  contact:
-  {
-    name: this.editingContact.name,
-    emailAddresses: this.editingContact.emailAddresses,
-    phoneNums: this.editingContact.phoneNums,
-    importance: this.editingContact.importance
-  }
-}
+        params:
+        {
+          contact:
+          {
+            name: this.editingContact.name,
+            emailAddresses: this.editingContact.emailAddresses,
+            phoneNums: this.editingContact.phoneNums,
+            importance: this.editingContact.importance
+          }
+        }
 
 };
 console.log(JSON.stringify(x, null, 2));
