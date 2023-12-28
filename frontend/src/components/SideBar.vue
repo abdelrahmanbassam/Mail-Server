@@ -1,8 +1,7 @@
 <template>
     <div class="side-bar">
-
+      <h1>{{  }}</h1>
         <Compose />
-        
         <v-btn
         prepend-icon="mdi-account"
         color="teal" 
@@ -21,7 +20,7 @@
         prepend-icon="mdi-send" 
         title="Send" 
         value="send" 
-        @click="navigateTo('sent')"
+        @click="navigateTo('send')"
         ></v-list-item>
         <v-list-item 
         prepend-icon="mdi-label-variant-outline" 
@@ -53,12 +52,39 @@
       </template>
 
       <!-- Display existing labels -->
-      <v-list-item v-for="label in labels" :key="label" :title="label" :value="label" @click="navigateTo(label)">
-        <!-- Add button for deleting label -->
-        <v-btn @click="deleteLabel(label)" icon>
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </v-list-item>
+      <v-span v-for="label in labels" :key="label" :value="label">
+        <div class="label">
+
+          <template v-if="isEdited !== label">
+            <!-- <span v-show="!isEdited" class="label"> -->
+              <v-btn  
+              @click="navigateTo(label)" @dblclick="startEditLabel(label)">
+              {{ label }}
+              </v-btn>
+          <v-btn icon @click="startEditLabel(label)">
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
+          <v-btn icon @click="deleteLabel(label)">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+          </template>
+          <!-- </span> -->
+          <template v-else>
+          <!-- <v-span v-show="isEdited" class="label"> -->
+              <v-text-field v-model="editedLabel" placeholder="Edit Label"></v-text-field>
+              <v-btn icon @click="saveEditLabel(label)">
+                <v-icon>mdi-content-save</v-icon>
+              </v-btn>
+              <v-btn icon @click="cancelEditLabel()">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <!-- </v-span> -->
+            </template>
+          </div>
+            
+            
+      </v-span>
+        
     </v-list-group>
   </v-list>
   </div>
@@ -68,43 +94,107 @@
 import Compose from './Compose.vue'
 export default {
     name: 'SideBar',
-     props: ['user'], 
     components:{Compose},
     data(){
         return{
-             labels: null,
-             newLabel: '',
-
+            labels: null,
+            newLabel: null,
+            isEdited:false,
+            editedLabel:null,
         }
     },
     methods: {
+
+        startEditLabel(label){
+          this.isEdited = label;
+          this.editedLabel = label;
+        },
+
+        saveEditLabel(label){
+          this.isEdited = false;
+          fetch('http://localhost:8081/renameLabel', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              params:{
+                oldName: label,
+                newName: this.editedLabel,
+              }
+            }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.labels = data.labelsNames;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        },
+
+        cancelEditLabel(){
+          this.isEdited = false;
+          this.editedLabel = null;
+        },
+
         navigateTo(folderName){
           this.$router.push({ name:  'mail-list-view', params: { name: folderName } });
-            // this.$emit('navigateTo', folderName);
-            // console.log(folderName);
         },
-        //fetch the labels from the server
         async fetchLabels(){
-            fetch('http://localhost:3000/labels')
+            fetch('http://localhost:8081/labelsNames')
             .then(response => response.json())
             .then(data => {
-                this.labels = data;
+                this.labels = data.labelsNames;
             })
             .catch(error => console.log(error));
         },
-        addNewLabel() {
-      if (this.newLabel.trim() !== '') {
-        this.labels.push(this.newLabel.trim());
-        this.newLabel = ''; // Clear the input field
-      }
-    },
-
+        async addNewLabel() {
+            if (this.newLabel.trim() !== '') {
+              // this.labels.push(this.newLabel.trim());
+              await fetch('http://localhost:8081/addLabel', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  params:{
+                    labelName: this.newLabel.trim(),
+                  }
+                }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                this.labels = data.labelsNames;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+            }
+            this.newLabel = ''; // Clear the input field
+          },
+          
     // Delete a label
     deleteLabel(label) {
-      const index = this.labels.indexOf(label);
-      if (index !== -1) {
-        this.labels.splice(index, 1);
-      }
+      // this.labels.splice(this.labels.indexOf(label), 1);
+      fetch('http://localhost:8081/deleteLabel', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          params:{
+            labelName: label,
+          }
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.labels = data.labelsNames;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     },
 
     },
@@ -115,6 +205,11 @@ export default {
 </script>
 
 <style scoped>
+.label{
+    display: flex;
+    justify-content: space-between;
+
+}
 .side-bar{
     display: flex;
     flex-direction: column;

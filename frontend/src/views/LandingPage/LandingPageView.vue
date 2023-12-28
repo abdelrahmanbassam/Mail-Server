@@ -53,7 +53,8 @@
 
            this.y=data;
           if(this.y.isValid){
-          this.$router.push('/list');
+          this.$router.push('/list/inbox');
+          localStorage.setItem('user', JSON.stringify(x.params));
         }
       })
      },
