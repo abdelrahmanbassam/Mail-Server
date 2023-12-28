@@ -179,7 +179,6 @@
             .then(response => response.json())
             .then(data => {
                 this.labels = data.labelsNames;
-                console.log("labels :   " + data);
             })
             .catch(error => console.log(error));
         },
@@ -206,6 +205,8 @@
             .then(response => response.json())
             .then(data => {
                 this.currentList = data;
+                this.currentFolder = folderName;
+                this.showContacts = false;
             })
             .catch(error => console.error('Error changing list:', error));
         },
@@ -255,6 +256,7 @@
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    this.selectedMails = [];
                 })
                 .catch(error => console.error('Error deleting selected mails:', error));
         },
