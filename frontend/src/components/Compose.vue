@@ -19,14 +19,14 @@
             <v-icon right @click="close">mdi-close</v-icon>
         </v-row>
         <v-col>
-            <v-autocomplete
+            <v-combobox
             v-model="to"
             label="To"
             :rules="toRules"
             :items="contacts"
             required
             multiple
-            ></v-autocomplete>
+            ></v-combobox>
             <v-select
             v-model="priorety"
             :items="prioretyList"
@@ -103,7 +103,7 @@ export default {
                 return 'Please specify at least one recipient'
                 }
             ],
-            from: 'moraaaaaaaaaaa',
+            from: '',
             contacts:['djd', 'cnmcn', 'djhjd'],
             prioretyList:['very high', 'high',  'medium', 'low','very low'],
             dialog: false,
@@ -178,9 +178,6 @@ export default {
         },
         close(){
             this.dialog = false;
-            console.log(JSON.stringify(this.uploadedFiles, null, 2));
-            // if (this.$refs.form.validate()) this.clear();
-
             this.clear();
         },
         // validate the input of the compose form to send the email
@@ -188,12 +185,8 @@ export default {
             // if (this.$refs.form.validate()) this.send();
             this.send();
         },
-        
-        send(){this.clear();
-        this.dialog = false;},
-        //send a post request the data email to the server
-        // async send(){},
         async send() {
+
             try {
 
               let x = {

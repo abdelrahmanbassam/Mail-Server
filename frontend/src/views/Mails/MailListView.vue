@@ -1,47 +1,67 @@
 <template>
     <div>
+        
         <NavBar/>
         
-        <v-toolbar>
+        <div v-show="!showContacts">
             
-            <div class="filter">
-                <v-text-field 
-                v-model="searchKey"
-                label="Search" 
-                class="mx-2"
-                ></v-text-field>
-            </div>
+            <v-toolbar>
+        <v-row>
+                <v-col cols="2">
+                    <v-text-field 
+                    v-model="searchKey"
+                    label="Search" 
+                    class="mx-2"
+                    ></v-text-field>
+                </v-col>
+                
+                <v-col cols="3">
+                    <v-select
+                    v-model="sortKey"
+                    :items="showContacts? ['alphabetical'] : ['importance', 'date']"
+                    label="Sort by"
+                    class="mx-2"
+                    clearable
+                    ></v-select>
+                </v-col>
+                
+                <v-col cols="3">
+                    <v-select
+                    v-show="!showContacts"
+                    v-model="filterKeys"
+                    :items="['from', 'subject']"
+                    label="flter by"
+                    class="mx-2"
+                    multiple
+                    ></v-select>
+                </v-col>
+                
+                <v-col cols="2" v-show="!showContacts && filterKeys?.includes('from')">
+                    <v-text-field
+                    v-model="filterFrom"
+                    placeholder="From"
+                    ></v-text-field>
+                </v-col>
+                
+                <v-col cols="2" v-show="!showContacts && filterKeys?.includes('subject')">
+                    <v-text-field
+                    v-model="filterSubject"
+                    placeholder="Subject"
+                    ></v-text-field>
+                </v-col>
+                
+            </v-row>
             
-            <div class="filter">
-            <v-select
-            v-model="sortKey"
-            :items="showContacts? ['alphabetical'] : ['importance', 'date']"
-            label="Sort by"
-            class="mx-2"
-            clearable
-            ></v-select>
-        </div>
+        </v-toolbar>
         
-        <div class="filter">
-            <v-select
-            v-show="!showContacts"
-            v-model="filterKeys"
-            :items="['from', 'subject']"
-            label="flter by"
-            class="mx-2"
-            multiple
-            ></v-select>
-        </div>
-        <div class="filter">
-            <v-text-field
-            v-show="!showContacts && filterKeys?.length > 0"
-            v-model="filterValue"
-            class="mx-2"
-            ></v-text-field>
-        </div>
-        
+        <v-btn
+        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        @click="changeList(currentFolder)"
+        color="secondary"
+        style="width:20vh;  margin: 1vh 1vh 1vh 60vh;"
+        >Cancel</v-btn>
         <v-btn 
-        v-if="searchKey || sortKey || (filterKeys?.length > 0 && filterValue)"
+        v-if="searchKey || sortKey || filterFrom || filterSubject"
         @click="applyFilters"
         class="bt"
         >
@@ -54,6 +74,7 @@
     </div>
 
 </v-toolbar>
+
 
         <!-- <v-toolbar v-if="selectedMails.length > 0"> -->
             <v-row v-show="selectedMails.length > 0">
@@ -89,11 +110,6 @@
         
         <!-- </v-toolbar> -->
 
-        <div v-show="showContacts">
-            <ContactView />
-        </div>
-        <div v-show="!showContacts">
-            {{ labels }}
             <v-list class="mail-list">
                 <div v-for="(mail,index) in currentList" :key="mail" class="mail">
                     <v-checkbox
@@ -109,6 +125,9 @@
                     </v-list-item>
                 </div>
             </v-list>
+        </div>
+        <div v-show="showContacts">
+            <ContactView />
         </div>
 
 
@@ -183,11 +202,11 @@
   import NavBar from '../../components/NavBar.vue';
   import ContactView from '../ContactView.vue';
   export default {
-    // props: ['name'],
     components:{NavBar, ContactView},
     data() {
         return {
             user: '',
+
             selectedindex:'',
             previewindex:'',
             sortKey: '',
@@ -195,24 +214,24 @@
             filterKeys: [],
             filterValue: '',
             currentFolder: '',
-            selectedMails: [],
             currentList: [],
             showEmailDialog:false,
             selectedEmail:null,
             selectedFolder: null,
             showContacts: false,
             contacts:[],
-            labels:[]
+            labels:[],
+            sortKey: null,
+            searchKey:'',
+            filterKeys: [],
+            filterSubject: '',
+            filterFrom: '',
+            selectedMails: [],
+            selectedFolder: null,
         }
     },
     
-    // created() {
-    //     this.currentFolder = this.$route.params.name; 
-    // },
-    
     mounted() {
-        // this.user = JSON.parse(localStorage.getItem('user'));
-        // console.log(this.user);
         this.changeList('inbox');
     },
 
@@ -226,6 +245,7 @@
 
 
     methods: {
+
         refreshPage() {
       // Reload the current page
       window.location.reload();
@@ -287,6 +307,17 @@
         onjumping(){
             this.selectedindex=this.previewindex-1,
             this.selectedEmail=this.currentList[this.selectedindex]
+            
+        clear(){
+            this.sortKey= null,
+            this.searchKey='',
+            this.filterKeys= [],
+            this.filterSubject= '',
+            this.filterFrom= '',
+            this.selectedMails= [],
+            this.selectedFolder= null,
+            this.showContacts= false
+            
         },
 
         async getLabels(){
@@ -294,22 +325,24 @@
             .then(response => response.json())
             .then(data => {
                 this.labels = data.labelsNames;
-                console.log("labels :   " + data);
             })
             .catch(error => console.log(error));
         },
         async changeList(folderName){
+            this.currentFolder = folderName;
             if(folderName === 'contacts'){
                 this.showContacts = true;
-                console.log(folderName);
                 return;
             }
+
             this.currentFolder = folderName;
             this.selectedMails = [];
             this.selectedFolders = [];
             this.showContacts = false;
             
-            await fetch('http://localhost:8085/getEmails'
+            this.clear();
+            await fetch('http://localhost:8081/getEmails'
+
             , {
                 method: 'POST',
                 headers: {
@@ -325,12 +358,16 @@
             .then(response => response.json())
             .then(data => {
                 this.currentList = data;
+                this.currentFolder = folderName;
+                this.showContacts = false;
             })
             .catch(error => console.error('Error changing list:', error));
         },
 
         async applyFilters(){
-            await fetch('http://localhost:8085/filterEmails', {
+
+            await fetch('http://localhost:8081/filterEmails', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -338,18 +375,20 @@
                 body: JSON.stringify({
                     params:{
                         folderName: this.currentFolder,
+                        senderFilter: this.filterFrom,
+                        subjectFilter: this.filterSubject,
                         sort: this.sortKey,
                         search: this.searchKey,
-                        filterKeys: this.filterKeys,
-                        filterValue: this.filterValue,
                     }
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                this.currentList = data;
-            })
-            .catch(error => console.error('Error applying filters:', error));
+                })
+                .then(response => response.json())
+                .then(data => {
+                    this.currentList = data;
+                    console.log("sorted...........................");
+                })
+                .catch(error => console.error('Error applying filters:', error));
+            // }
         },
 
         async deleteSelectedMails() {
@@ -368,6 +407,7 @@
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
+                    this.selectedMails = [];
                 })
                 .catch(error => console.error('Error deleting selected mails:', error));
         },
@@ -388,10 +428,10 @@
                 .then(response => response.json())
                 .then(data => {
                     this.currentList = data;
-                    console.log(data);
                 })
                 .catch(error => console.error('Error moving selected mails:', error));
-        },
+                this.$router.push('/list/' + this.selectedFolder);
+            },
 
     }
 }

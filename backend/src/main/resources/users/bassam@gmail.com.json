@@ -27,35 +27,83 @@
     "send" : {
       "name" : "send",
       "emails" : [ {
-        "from" : "bassam@gmail.com",
-        "to" : [ "mourad@gmail.com" ],
-        "subject" : "grafdbdfsbdgph",
-        "body" : "nodes nddddfhdfhdfbdfdddddddddddddddddddddddddddddddodes",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-26 21:06:38"
+        "from" : null,
+        "to" : [ "dm,dm," ],
+        "subject" : "cddc",
+        "body" : "vfdv",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:47:11"
       }, {
-        "from" : "bassam@gmail.com",
-        "to" : [ "mourad@gmail.com" ],
-        "subject" : "graph",
-        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-26 21:06:31"
+        "from" : "{\"params\":{\"emailAddress\":\"bassam@gmail.com\",\"password\":\"123456\"}}",
+        "to" : [ "djd" ],
+        "subject" : "ndnmd",
+        "body" : "nmdnmd",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:43:10"
       }, {
-        "from" : "bassam@gmail.com",
-        "to" : [ "mourad@gmail.com" ],
-        "subject" : "graph",
-        "body" : "nodes ndddddddddddddddddddddddddddddddddddodes",
-        "attachment" : "file.txt",
-        "importance" : "very high",
-        "date" : "2023-12-26 21:04:52"
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd", "cnmcn", "kfkf", "djhjd" ],
+        "subject" : "",
+        "body" : "",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:39:52"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd", "cnmcn" ],
+        "subject" : "bdnnd",
+        "body" : "ndndnmd",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 05:47:48"
+      }, {
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ ],
+        "subject" : "",
+        "body" : "dnmd",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 04:33:44"
       } ],
       "subFolders" : [ ]
     },
     "trash" : {
       "name" : "trash",
       "emails" : [ {
+        "from" : "[object Object]",
+        "to" : [ "djd" ],
+        "subject" : "eded",
+        "body" : "edde",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:48:57"
+      }, {
+        "from" : "{\"params\":{\"emailAddress\":\"bassam@gmail.com\",\"password\":\"123456\"}}",
+        "to" : [ "djd" ],
+        "subject" : "d ",
+        "body" : "",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:47:37"
+      }, {
+        "from" : "[object Object]",
+        "to" : [ "", "dcs" ],
+        "subject" : "cd",
+        "body" : "sc",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:53:05"
+      }, {
+        "from" : "[object Object]",
+        "to" : [ "xxdwxwd" ],
+        "subject" : "bhtbbt",
+        "body" : "htb",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 06:51:38"
+      }, {
         "from" : "osama@email.com",
         "to" : [ "osama@email.com" ],
         "subject" : "subject2",
@@ -103,6 +151,28 @@
         "attachment" : "file.txt",
         "importance" : "very high",
         "date" : ""
+      }, {
+
+        "from" : "moraaaaaaaaaaa",
+        "to" : [ "djd", "cnmcn", "djhjd" ],
+        "subject" : "nene",
+        "body" : "enmemnmne",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 03:58:40"
+      } ],
+      "subFolders" : [ ]
+    },
+    "labels" : [ {
+      "name" : "moraaa",
+      "emails" : [ {
+        "from" : "bassam@gmail.com",
+        "to" : [ "djd" ],
+        "subject" : "bgg",
+        "body" : "gfggffffff",
+        "attachment" : "",
+        "importance" : "low",
+        "date" : "2023-12-27 07:04:48"
       }, {
         "from" : "osama@email.com",
         "to" : [ "osama@email.com" ],
