@@ -4,7 +4,7 @@
         <NavBar/>
         
         <v-btn 
-        v-if="searchKey || sortKey || filterFrom || filterSubject"
+        v-show="searchKey || sortKey || filterFrom || filterSubject"
         @click="applyFilters"
         color="primary"
         block
@@ -163,7 +163,7 @@
 
     methods: {
         clear(){
-            this.sortKey= '',
+            this.sortKey= null,
             this.searchKey='',
             this.filterKeys= [],
             this.filterSubject= '',
