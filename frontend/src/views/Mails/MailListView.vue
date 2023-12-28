@@ -5,7 +5,7 @@
         
         <div v-show="!showContacts">
             
-            <v-toolbar>
+        <v-toolbar>
         <v-row>
                 <v-col cols="2">
                     <v-text-field 
@@ -52,6 +52,11 @@
                 
             </v-row>
             
+            <div class="refreshbutton">
+            <v-btn icon @click="refreshPage">
+            <v-icon size="50">mdi-refresh</v-icon>
+            </v-btn>
+            </div>
         </v-toolbar>
         
         <v-btn
@@ -63,32 +68,26 @@
         <v-btn 
         v-if="searchKey || sortKey || filterFrom || filterSubject"
         @click="applyFilters"
-        class="bt"
+        color="primary"
+        style="width:20vh; margin: 1vh 60vh 1vh 1vh; float: right;"
         >
         Apply
         </v-btn>
-        <div class="refreshbutton">
-      <v-btn icon @click="refreshPage">
-        <v-icon size="50">mdi-refresh</v-icon>
-        </v-btn>
-    </div>
-
-</v-toolbar>
 
 
-        <!-- <v-toolbar v-if="selectedMails.length > 0"> -->
-            <v-row v-show="selectedMails.length > 0">
+        <v-row v-show="selectedMails.length > 0">
                 <v-col cols="3" >
                     <v-select
                     v-model="selectedFolder"
                     :items="labels"
                     label="Move to"
                     clearable
+                    style="width:25vh;"
                     ></v-select>
                 </v-col>
 
             <v-col cols="auto">
-                <v-btn color="error" @click="deleteSelectedMails">
+                <v-btn v-show="currentFolder != 'trash'" color="error" @click="deleteSelectedMails">
                     <v-icon>mdi-delete</v-icon>
                     Delete
                 </v-btn>
@@ -131,14 +130,13 @@
         </div>
 
 
-</div>
-<div class="detail">
-<v-dialog v-model="showEmailDialog" max-width="700px">
-    {{ selectedindex }}
-    {{ currentList.length }}
-<v-card>
-    <v-toolbar>
-    <div class="text-center">
+        <div class="detail">
+            <v-dialog v-model="showEmailDialog" max-width="700px">
+                {{ selectedindex }}
+                {{ currentList.length }}
+                <v-card>
+                    <v-toolbar>
+                        <div class="text-center">
         <v-pagination
         v-model="previewindex"
         :length="currentList.length"
@@ -162,39 +160,42 @@
     </v-card>
     <h3 style=" margin-left: 2%;">Subject:</h3>
     <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
-    {{ selectedEmail?.subject }}
-</v-card>
-<h3 style=" margin-left: 2%;">Body:</h3>
+        {{ selectedEmail?.subject }}
+    </v-card>
+    <h3 style=" margin-left: 2%;">Body:</h3>
 <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.body }}
 </v-card>
-    <h3 style=" margin-left: 2%;">Attachment:</h3>
-    <div>
-           <ul>
-            <li v-for="(attachment, index) in selectedEmail.attachments" :key="index">
-               <span>
-                 <a href="#" @click.prevent="openAttachment(attachment)">
+<h3 style=" margin-left: 2%;">Attachment:</h3>
+<div>
+    <ul>
+        <li v-for="(attachment, index) in selectedEmail.attachments" :key="index">
+            <span>
+                <a href="#" @click.prevent="openAttachment(attachment)">
                     <div style="margin-left: 2%;">
-                   {{ attachment.name }}
-                </div>
-                
-                 </a>
-               </span>
-             </li>
-           </ul>
-         </div>
-    <h3 style=" margin-left: 2%;">importance:</h3>
-    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
+                        {{ attachment.name }}
+                    </div>
+                    
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+<h3 style=" margin-left: 2%;">importance:</h3>
+<v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.importance }}
 </v-card>
 
-    <h3 style=" margin-left: 2%;">Date:</h3>
-    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
+<h3 style=" margin-left: 2%;">Date:</h3>
+<v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.date }}
 </v-card>
 </v-card>
 
 </v-dialog>
+</div>
+
+
 </div>
 </template>
 
@@ -246,10 +247,14 @@
 
     methods: {
 
-        refreshPage() {
-      // Reload the current page
-      window.location.reload();
-    },
+        async refreshPage() {
+            // let temp = this.currentFolder;
+            // await window.location.reload().then(() => {
+            //     this.changeList(this.$route.params.name);
+            // });
+            // this.changeList(temp);
+            // this.changeList(this.$route.params.name);
+        },
         openAttachment(file) {
             const pdfUrl = file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
               ? `https://docs.google.com/gview?url=${encodeURIComponent(file.url)}&embedded=true`
@@ -307,7 +312,7 @@
         onjumping(){
             this.selectedindex=this.previewindex-1,
             this.selectedEmail=this.currentList[this.selectedindex]
-            
+        },
         clear(){
             this.sortKey= null,
             this.searchKey='',
@@ -341,7 +346,7 @@
             this.showContacts = false;
             
             this.clear();
-            await fetch('http://localhost:8081/getEmails'
+            await fetch('http://localhost:8085/getEmails'
 
             , {
                 method: 'POST',
@@ -366,7 +371,7 @@
 
         async applyFilters(){
 
-            await fetch('http://localhost:8081/filterEmails', {
+            await fetch('http://localhost:8085/filterEmails', {
 
                 method: 'POST',
                 headers: {
@@ -471,7 +476,7 @@ p{
 }
 .mail-list{
     z-index: 1;
-    height: 85vh;
+    /* height: 85vh; */
     overflow-y: auto;
 }
 .home-view {
