@@ -47,6 +47,11 @@
         >
         Apply
         </v-btn>
+        <div class="refreshbutton">
+      <v-btn icon @click="refreshPage">
+        <v-icon size="50">mdi-refresh</v-icon>
+        </v-btn>
+    </div>
 
 </v-toolbar>
 
@@ -90,13 +95,13 @@
         <div v-show="!showContacts">
             {{ labels }}
             <v-list class="mail-list">
-                <div v-for="mail in currentList" :key="mail" class="mail">
+                <div v-for="(mail,index) in currentList" :key="mail" class="mail">
                     <v-checkbox
                     v-model="selectedMails"
                     :value="mail"
                     ></v-checkbox> 
                     <v-list-item :value="mail"  @click="EmailDialog = true">
-                        <div  class="bs" v-on:click="showEmail(mail)">
+                        <div  class="bs" v-on:click="showEmail(mail,index)">
                             <p class="truncate">{{ mail.from }}</p>
                             <p class="truncate">{{ mail.subject }}</p>
                             <p class="truncate">{{ mail.date }}</p>
@@ -108,35 +113,70 @@
 
 
 </div>
+<div class="detail">
 <v-dialog v-model="showEmailDialog" max-width="700px">
-    {{ selectedEmail }}
+    {{ selectedindex }}
+    {{ currentList.length }}
 <v-card>
-    <h3>To:</h3>
-    {{ selectedEmail?.to }}
-    <h3>Subject:</h3>
+    <v-toolbar>
+    <div class="text-center">
+        <v-pagination
+        v-model="previewindex"
+        :length="currentList.length"
+        :total-visible="3"
+        @click="onjumping"
+        prev-icon ="mdi-menu-left"
+      next-icon="mdi-menu-right"
+        >
+        <template v-slot:prev>
+        <v-icon @click="customPrevClick">mdi-menu-left</v-icon>
+      </template>
+      <template v-slot:next>
+        <v-icon @click="customNextClick">mdi-menu-right</v-icon>
+      </template>
+    </v-pagination>
+    </div>
+</v-toolbar>
+    <h3 style=" margin-left: 2%;">To:</h3>
+    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
+     {{ selectedEmail?.to }}
+    </v-card>
+    <h3 style=" margin-left: 2%;">Subject:</h3>
+    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.subject }}
-<h3>Body:</h3>
+</v-card>
+<h3 style=" margin-left: 2%;">Body:</h3>
+<v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.body }}
-    <h3>Attachment:</h3>
+</v-card>
+    <h3 style=" margin-left: 2%;">Attachment:</h3>
     <div>
            <ul>
             <li v-for="(attachment, index) in selectedEmail.attachments" :key="index">
                <span>
                  <a href="#" @click.prevent="openAttachment(attachment)">
+                    <div style="margin-left: 2%;">
                    {{ attachment.name }}
+                </div>
+                
                  </a>
                </span>
              </li>
            </ul>
          </div>
-    <h3>importance:</h3>
+    <h3 style=" margin-left: 2%;">importance:</h3>
+    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.importance }}
+</v-card>
 
-    <h3>Date:</h3>
+    <h3 style=" margin-left: 2%;">Date:</h3>
+    <v-card style="background-color: rgb(224, 224, 224); margin-left: 2%;">
     {{ selectedEmail?.date }}
+</v-card>
 </v-card>
 
 </v-dialog>
+</div>
 </template>
 
 <script>
@@ -148,6 +188,8 @@
     data() {
         return {
             user: '',
+            selectedindex:'',
+            previewindex:'',
             sortKey: '',
             searchKey:'',
             filterKeys: [],
@@ -184,6 +226,10 @@
 
 
     methods: {
+        refreshPage() {
+      // Reload the current page
+      window.location.reload();
+    },
         openAttachment(file) {
             const pdfUrl = file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
               ? `https://docs.google.com/gview?url=${encodeURIComponent(file.url)}&embedded=true`
@@ -216,10 +262,33 @@
             newTab.document.write(newTabContent);
             newTab.document.close();
           },
-        showEmail(mail){
+        showEmail(mail,index){
             this.showEmailDialog=true,
-            this.selectedEmail=mail
+            this.selectedEmail=mail,
+            this.selectedindex=index,
+            this.previewindex=this.selectedindex+1
         },
+
+        customPrevClick(){
+            if(this.selectedindex>0){
+            this.selectedindex=this.selectedindex-1,
+            this.selectedEmail=this.currentList[this.selectedindex],
+            this.previewindex=this.selectedindex+1
+            }
+        },
+
+        customNextClick(){
+            if(this.selectedindex<this.currentList.length-1){
+            this.selectedindex=this.selectedindex+1,
+            this.selectedEmail=this.currentList[this.selectedindex],
+            this.previewindex=this.selectedindex+1
+            }
+        },
+        onjumping(){
+            this.selectedindex=this.previewindex-1,
+            this.selectedEmail=this.currentList[this.selectedindex]
+        },
+
         async getLabels(){
             await fetch('http://localhost:8085/labelsNames')
             .then(response => response.json())
@@ -372,5 +441,8 @@ p{
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+.detail{
+    margin-left: 5%;
 }
 </style>
