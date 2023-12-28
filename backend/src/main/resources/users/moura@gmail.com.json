@@ -2,7 +2,18 @@
   "name" : "moura",
   "emailAddress" : "moura@gmail.com",
   "password" : "123456",
-  "contacts" : [ ],
+  "contacts" : [ {
+    "name" : "bassam telmeez elma3lam MOURAD",
+    "emailAddresses" : [ "bassam@gmail.com" ],
+    "phoneNums" : [ "13213131" ],
+    "importance" : "1"
+  }, {
+    "name" : "Mourad Mahgoub",
+    "emailAddresses" : [ "mouradmahgoub710@gmail.com" ],
+    "phoneNums" : [ "010123" ],
+    "importance" : "1"
+  } ],
+
   "folders" : {
     "inbox" : {
       "name" : "inbox",
@@ -26,14 +37,38 @@
     },
     "send" : {
       "name" : "send",
-      "emails" : [ ],
+      "emails" : [ {
+        "from" : "moura@gmail.com",
+        "to" : [ "ahmed" ],
+        "subject" : "moura hamo",
+        "body" : "kdkd moura",
+        "attachments" : [ ],
+        "importance" : "low",
+        "date" : "2023-12-28 03:41:02"
+      }, {
+        "from" : "moura@gmail.com",
+        "to" : [ "cdnnmd" ],
+        "subject" : "dnnmd",
+        "body" : "jkdjkdjdk",
+        "attachments" : [ ],
+        "importance" : "low",
+        "date" : "2023-12-28 03:40:02"
+      } ],
+
       "subFolders" : [ ]
     },
     "trash" : {
       "name" : "trash",
       "emails" : [ ],
-      "subFolders" : [ ]
+      "subFolders" : [ ],
+      "deletedmMails" : { },
+      "emailsFromMap" : [ ]
     },
-    "labels" : [ ]
+    "labels" : [ {
+      "name" : "vcbgfmf,d",
+      "emails" : [ ],
+      "subFolders" : [ ]
+    } ]
+
   }
 }

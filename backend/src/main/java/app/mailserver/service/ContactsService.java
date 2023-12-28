@@ -30,7 +30,7 @@ public class ContactsService {
       return curUser.getContacts();
     }
     curContacts.add(newContact);
-    sort();
+    // sort();
     systemManager.updateUser(curUser);
     return curUser.getContacts();
   }
@@ -66,7 +66,7 @@ public class ContactsService {
       }
     }
     curUser.setContacts(curContacts);
-    sort();
+    // sort();
     systemManager.updateUser(curUser);
     return curUser.getContacts();
 
@@ -90,7 +90,7 @@ public class ContactsService {
         return Contact1.getName().toLowerCase().compareTo(Contact2.getName().toLowerCase());
       }
     });
-    systemManager.updateUser(curUser);
+    // systemManager.updateUser(curUser);
     return curUser.getContacts();
   }
 
