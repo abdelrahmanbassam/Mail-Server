@@ -91,8 +91,7 @@ These verification steps are aimed at providing a real-world experience similar 
 - The application is designed to avoid crashes, even when encountering malicious input, ensuring robust error handling.
 
 ### UML Diagram
-
-The full UML diagram, detailing the architecture of the mail server and its components, can be found in the project documentation.
+![UML class (1)_page-0001 (1)](https://github.com/user-attachments/assets/63dc8fb9-3d76-40c4-b25e-e78716918967)
 
 ### Implementation Notes
 
