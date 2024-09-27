@@ -5,7 +5,7 @@
 This project is a web-based email program that mimics the functionality of a simplified Gmail-like application. It allows users to manage their emails, contacts, and attachments in a streamlined and user-friendly interface. Designed with simplicity and efficiency in mind, the system is built using design patterns that ensure maintainability, flexibility, and scalability.
 
 ---
-https://github.com/user-attachments/assets/fb27f0c7-9abe-4020-b407-9a8a2f362869
+https://github.com/user-attachments/assets/c078bd07-524a-4a92-aa9d-dde4a66b33d6
 
 ### Main Features
 
