@@ -105,8 +105,6 @@ These verification steps are aimed at providing a real-world experience similar 
 - **Frontend**: Developed using **Vue.js**, the frontend can be started after the backend by using the following command:
     
     ```bash
-    bash
-    Copy code
     npm run serve
     ```
     
